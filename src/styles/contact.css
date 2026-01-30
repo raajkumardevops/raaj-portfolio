@@ -1,0 +1,126 @@
+/* ================================
+   TERMINAL PAGE
+================================ */
+
+.terminal-wrapper {
+  min-height: 100vh;
+  background: #0d0d0d;
+  color: white;
+  padding: 120px 8% 80px;
+}
+
+/* HEADER */
+.terminal-header {
+  text-align: center;
+  margin-bottom: 70px;
+}
+
+.terminal-tag {
+  font-size: 11px;
+  letter-spacing: 3px;
+  color: #ea2a33;
+}
+
+.terminal-header h1 {
+  margin-top: 12px;
+  font-size: 3.4rem;
+  font-weight: 900;
+  letter-spacing: -1px;
+}
+
+.terminal-header h1 span {
+  color: #ea2a33;
+}
+
+.terminal-header p {
+  margin-top: 14px;
+  font-size: 0.95rem;
+  color: #b0b0b0;
+}
+
+/* GRID */
+.terminal-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 34px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* CARD */
+.terminal-card {
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 1.1rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+
+  border-radius: 14px;
+  border: 1px solid rgba(234, 42, 51, 0.35);
+  background:
+    linear-gradient(rgba(13,13,13,0.9), rgba(13,13,13,0.95));
+
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* HOVER */
+.terminal-card:hover {
+  transform: translateY(-6px);
+  border-color: #ea2a33;
+  box-shadow: 0 0 35px rgba(234, 42, 51, 0.45);
+  color: #ea2a33;
+}
+
+/* COPY CARD */
+.copy-card {
+  user-select: none;
+}
+
+/* MOBILE */
+@media (max-width: 576px) {
+  .terminal-wrapper {
+    padding: 100px 6% 60px;
+  }
+
+  .terminal-header h1 {
+    font-size: 2.6rem;
+  }
+
+  .terminal-card {
+    height: 100px;
+    font-size: 1rem;
+  }
+}
+
+/* ================================
+   TERMINAL CARD ICONS
+================================ */
+
+.terminal-card {
+  flex-direction: column;
+  gap: 14px;
+  text-decoration: none;
+}
+
+.terminal-icon {
+  font-size: 34px;
+  color: #ffcc00;
+  transition: all 0.3s ease;
+}
+
+.terminal-card span {
+  font-size: 13px;
+  letter-spacing: 2px;
+  font-weight: 700;
+}
+
+/* Hover sync */
+.terminal-card:hover .terminal-icon {
+  color: #ea2a33;
+  transform: scale(1.1);
+}

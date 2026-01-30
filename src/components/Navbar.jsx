@@ -24,7 +24,6 @@ const Navbar = () => {
       {/* CENTER LINKS (DESKTOP) */}
       <nav className="nav-links">
         <Link to="/">Home</Link>
-        <Link to="/skills">Systems</Link>
         <Link to="/projects">Deployments</Link>
         <Link to="/profile">Profile</Link>
         <Link to="/contact">Terminal</Link>
@@ -47,9 +46,8 @@ const Navbar = () => {
       {menuOpen && (
         <div className="mobile-menu">
           <Link onClick={() => setMenuOpen(false)} to="/">Home</Link>
-          <Link onClick={() => setMenuOpen(false)} to="/skills">Systems</Link>
           <Link onClick={() => setMenuOpen(false)} to="/projects">Deployments</Link>
-          <Link onClick={() => setMenuOpen(false)} to="/about">Profile</Link>
+          <Link onClick={() => setMenuOpen(false)} to="/profile">Profile</Link>
           <Link onClick={() => setMenuOpen(false)} to="/contact">Terminal</Link>
         </div>
       )}
