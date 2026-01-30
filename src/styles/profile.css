@@ -1,0 +1,155 @@
+/* ================================
+   PAGE WRAPPER
+================================ */
+.profile-wrapper {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #0d0d0d;
+  padding: 80px 20px;
+}
+
+/* ================================
+   CARD
+================================ */
+.profile-card {
+  position: relative;
+  max-width: 900px;
+  width: 100%;
+  padding: 80px 70px;
+
+  background:
+    linear-gradient(rgba(13,13,13,0.9), rgba(13,13,13,0.98)),
+    url("https://lh3.googleusercontent.com/aida-public/AB6AXuDo_ncBVFAJQmujbcqbnnUCnCjRfpA3LKiVtevQCoxEYyE3tgFzWPGlC2j4sQsr-a30kb_YOpudqqWbDR-9Dmkwq1JoMu0JGWNwkbZJFORQrfNhSwTZdACFDaoexSP_4CX-oLC_zBFu060mEGKEs16qGOr90LH7LqSHCXZdEIfhiN9MlnjVV-U8BJQbT9iiFs4kajAg_xJsoOzBhq9qYT5Nv1w7Cue27G_3jLYvTKvias4tSDgIlB3UBXz3YayqU8QSuAlFtW8ramXI");
+
+  background-size: cover;
+  background-position: center;
+
+  border-radius: 16px;
+  border: 1px solid rgba(234, 42, 51, 0.35);
+}
+
+/* ================================
+   HUD
+================================ */
+.profile-hud {
+  position: absolute;
+  top: 18px;
+  left: 24px;
+  font-size: 10px;
+  color: rgba(234, 42, 51, 0.7);
+  letter-spacing: 1px;
+}
+
+.hud-line {
+  width: 130px;
+  height: 1px;
+  background: rgba(234, 42, 51, 0.5);
+  margin-bottom: 4px;
+}
+
+/* ================================
+   CONTENT LAYOUT
+================================ */
+.profile-content {
+  display: flex;
+  gap: 50px;
+  align-items: center;
+}
+
+/* IMAGE */
+.profile-image img {
+  width: 220px;
+  height: 260px;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 2px solid rgba(234, 42, 51, 0.4);
+}
+
+/* TEXT */
+.profile-title {
+  font-size: 3rem;
+  font-weight: 900;
+  letter-spacing: -2px;
+  text-transform: uppercase;
+}
+
+.profile-title span {
+  color: #ea2a33;
+}
+
+.profile-subtitle {
+  margin-top: 12px;
+  font-size: 0.85rem;
+  letter-spacing: 5px;
+  font-weight: 700;
+  color: #ea2a33;
+}
+
+.profile-description {
+  margin-top: 22px;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: #b0b0b0;
+}
+
+/* ================================
+   STATS
+================================ */
+.profile-stats {
+  margin-top: 40px;
+  display: flex;
+  gap: 26px;
+  flex-wrap: wrap;
+}
+
+.stat-box {
+  min-width: 130px;
+  padding: 16px 20px;
+  border: 1px solid rgba(234, 42, 51, 0.4);
+  border-radius: 10px;
+  text-align: center;
+}
+
+.stat-value {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #ffcc00;
+}
+
+.stat-label {
+  display: block;
+  margin-top: 6px;
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #b0b0b0;
+}
+
+/* ================================
+   MOBILE
+================================ */
+@media (max-width: 768px) {
+  .profile-card {
+    padding: 60px 28px;
+  }
+
+  .profile-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .profile-image img {
+    width: 180px;
+    height: 210px;
+  }
+
+  .profile-stats {
+    justify-content: center;
+  }
+
+  .profile-title {
+    font-size: 2.4rem;
+  }
+}

@@ -1,0 +1,298 @@
+/* ================================
+   GLOBAL RESET (Bootstrap Neutralizer)
+================================ */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: #0d0d0d;
+  color: #ffffff;
+  font-family: "Space Grotesk", sans-serif;
+}
+
+h1,
+h2,
+p {
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  border: none;
+  outline: none;
+  background: none;
+}
+
+/* Disable Bootstrap button effects */
+.btn,
+.btn:focus,
+.btn:active {
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+/* ================================
+   PAGE WRAPPER
+================================ */
+
+.home-wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  background: #0d0d0d;
+  padding: 40px 0;
+}
+
+.home-center {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+/* ================================
+   HERO CARD
+================================ */
+
+.hero-card {
+  position: relative;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 90px 70px;
+
+  background:
+    linear-gradient(
+      rgba(13, 13, 13, 0.85),
+      rgba(13, 13, 13, 0.95)
+    ),
+    url("https://lh3.googleusercontent.com/aida-public/AB6AXuDo_ncBVFAJQmujbcqbnnUCnCjRfpA3LKiVtevQCoxEYyE3tgFzWPGlC2j4sQsr-a30kb_YOpudqqWbDR-9Dmkwq1JoMu0JGWNwkbZJFORQrfNhSwTZdACFDaoexSP_4CX-oLC_zBFu060mEGKEs16qGOr90LH7LqSHCXZdEIfhiN9MlnjVV-U8BJQbT9iiFs4kajAg_xJsoOzBhq9qYT5Nv1w7Cue27G_3jLYvTKvias4tSDgIlB3UBXz3YayqU8QSuAlFtW8ramXI");
+
+  background-size: cover;
+  background-position: center;
+  border-radius: 16px;
+  border: 1px solid rgba(234, 42, 51, 0.35);
+  overflow: hidden;
+}
+
+/* ================================
+   HUD ELEMENTS
+================================ */
+
+.hud-top-left {
+  position: absolute;
+  top: 18px;
+  left: 24px;
+  font-size: 10px;
+  color: rgba(234, 42, 51, 0.7);
+  letter-spacing: 1px;
+}
+
+.hud-line {
+  width: 90px;
+  height: 1px;
+  background: rgba(234, 42, 51, 0.5);
+  margin-bottom: 4px;
+}
+
+.hud-bottom-right {
+  position: absolute;
+  bottom: 18px;
+  right: 24px;
+  font-size: 10px;
+  color: #ffcc00;
+  text-align: right;
+}
+
+.power-bar {
+  margin-top: 4px;
+  width: 120px;
+  height: 6px;
+  background: #222;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.power-fill {
+  width: 100%;
+  height: 100%;
+  background: #ffcc00;
+}
+
+/* ================================
+   TEXT STYLES
+================================ */
+
+.hero-title {
+  font-size: 4rem;
+  font-weight: 900;
+  letter-spacing: -2px;
+  text-transform: uppercase;
+  text-align :center;
+}
+
+.hero-title span {
+  color: #ea2a33;
+}
+
+.hero-subtitle {
+  margin-top: 14px;
+  font-size: 0.9rem;
+  letter-spacing: 6px;
+  font-weight: 700;
+  text-align: center;
+  color: #ea2a33;
+}
+
+.hero-description {
+  margin-top: 22px;
+  max-width: 520px;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 0.95rem;
+  color: #b0b0b0;
+  line-height: 1.6;
+}
+
+/* ================================
+   BUTTONS (FULL CUSTOM CONTROL)
+================================ */
+
+.hero-actions {
+  margin-top: 42px;
+  display: flex;
+  gap: 22px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.hero-actions button {
+  min-width: 180px;
+  height: 52px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+/* Primary Button */
+.btn-primary-custom {
+  background: #ea2a33;
+  color: #ffffff;
+  box-shadow: 0 0 18px rgba(234, 42, 51, 0.35);
+}
+
+.btn-primary-custom:hover {
+  transform: translateY(-3px) scale(1.04);
+  box-shadow: 0 0 32px rgba(234, 42, 51, 0.65);
+}
+
+/* Outline Button */
+.btn-outline-custom {
+  background: transparent;
+  border: 1px solid rgba(234, 42, 51, 0.6);
+  color: #ffffff;
+}
+
+.btn-outline-custom:hover {
+  background: rgba(234, 42, 51, 0.15);
+  transform: translateY(-3px);
+}
+
+/* ================================
+   RESPONSIVE FIXES
+================================ */
+
+@media (max-width: 768px) {
+  .hero-card {
+    padding: 70px 30px;
+  }
+
+  .hero-title {
+    font-size: 3rem;
+  }
+
+  .hero-subtitle {
+    letter-spacing: 4px;
+  }
+}
+
+/* ================================
+   MOBILE OPTIMIZATION (LOCKED)
+================================ */
+
+/* Small devices (phones) */
+@media (max-width: 576px) {
+  .hero-card {
+    padding: 60px 22px;
+    border-radius: 12px;
+  }
+
+  .hero-title {
+    font-size: 2.4rem;
+    line-height: 1.1;
+  }
+
+  .hero-subtitle {
+    font-size: 0.75rem;
+    letter-spacing: 3px;
+    margin-top: 10px;
+  }
+
+  .hero-description {
+    font-size: 0.85rem;
+    margin-top: 16px;
+    line-height: 1.5;
+  }
+
+  .hero-actions {
+    gap: 14px;
+    margin-top: 28px;
+  }
+
+  .hero-actions button {
+    width: 100%;
+    min-width: unset;
+    height: 48px;
+    font-size: 11px;
+  }
+
+  /* HUD adjustments */
+  .hud-top-left {
+    font-size: 9px;
+    top: 14px;
+    left: 16px;
+  }
+
+  .hud-bottom-right {
+    font-size: 9px;
+    bottom: 14px;
+    right: 16px;
+  }
+
+  .power-bar {
+    width: 90px;
+    height: 5px;
+  }
+}
+
+/* Medium devices (tablets) */
+@media (max-width: 992px) {
+  .hero-card {
+    padding: 75px 40px;
+  }
+
+  .hero-title {
+    font-size: 3.2rem;
+  }
+
+  .hero-description {
+    max-width: 460px;
+  }
+}
