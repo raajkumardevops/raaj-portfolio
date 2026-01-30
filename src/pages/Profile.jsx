@@ -1,5 +1,5 @@
 import "../styles/profile.css";
-import profileImg from "../assets/profile.jpg"; // <-- add your photo here
+import profileImg from "../assets/profile.png"; // <-- add your photo here
 
 const Profile = () => {
   return (
