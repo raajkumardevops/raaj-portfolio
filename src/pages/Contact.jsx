@@ -10,7 +10,7 @@ import "../styles/contact.css";
 
 const Contact = () => {
   const copyNumber = () => {
-    navigator.clipboard.writeText("+91XXXXXXXXXX");
+    navigator.clipboard.writeText("+91933247165");
     alert("Contact number copied!");
   };
 
@@ -27,7 +27,7 @@ const Contact = () => {
       <div className="terminal-grid">
 
         <a
-          href="https://github.com/yourusername"
+          href="https://github.com/raajkumardevops"
           target="_blank"
           className="terminal-card"
         >
@@ -36,7 +36,7 @@ const Contact = () => {
         </a>
 
         <a
-          href="https://linkedin.com/in/yourusername"
+          href="https://linkedin.com/in/RAAJKUMAR"
           target="_blank"
           className="terminal-card"
         >
@@ -45,7 +45,7 @@ const Contact = () => {
         </a>
 
         <a
-          href="https://instagram.com/yourusername"
+          href="https://instagram.com/_raaj._.kumar_"
           target="_blank"
           className="terminal-card"
         >
@@ -54,7 +54,7 @@ const Contact = () => {
         </a>
 
         <a
-          href="https://wa.me/91XXXXXXXXXX"
+          href="https://wa.me/+919344247165"
           target="_blank"
           className="terminal-card"
         >
@@ -63,7 +63,7 @@ const Contact = () => {
         </a>
 
         <a
-          href="mailto:yourmail@gmail.com"
+          href="mailto:raajkumardevops@gmail.com"
           className="terminal-card"
         >
           <FaEnvelope className="terminal-icon" />
