@@ -16,7 +16,7 @@ export const projects = [
   },
   {
     title: "Ml traders",
-    description: "Ecom frontend website with this you can see the produts and contact the shop",
-    github: "https://github.com/raajkumardevops/ml-traders",
+    description: "An IOS inspired calculator app that can do all logic calculations which is developed with REACT",
+    github: "https://github.com/raajkumardevops/calculator.ios",
   }
 ];
