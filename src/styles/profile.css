@@ -25,9 +25,18 @@
 
   background-size: cover;
   background-position: center;
-
   border-radius: 16px;
   border: 1px solid rgba(234, 42, 51, 0.35);
+  transition: all 0.35s ease;
+}
+
+/* CARD HOVER */
+.profile-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  border-color: rgba(234, 42, 51, 0.8);
+  box-shadow:
+    0 0 35px rgba(234, 42, 51, 0.35),
+    0 0 60px rgba(234, 42, 51, 0.15);
 }
 
 /* ================================
@@ -65,6 +74,12 @@
   object-fit: cover;
   border-radius: 12px;
   border: 2px solid rgba(234, 42, 51, 0.4);
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.profile-image img:hover {
+  transform: scale(1.05);
 }
 
 /* TEXT */
@@ -125,6 +140,28 @@
   letter-spacing: 2px;
   text-transform: uppercase;
   color: #b0b0b0;
+}
+
+/* ================================
+   IMAGE MODAL
+================================ */
+.image-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(13, 13, 13, 0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  cursor: pointer;
+}
+
+.image-modal img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 16px;
+  border: 2px solid rgba(234, 42, 51, 0.6);
+  box-shadow: 0 0 40px rgba(234, 42, 51, 0.5);
 }
 
 /* ================================

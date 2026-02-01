@@ -1,7 +1,10 @@
+import { useState } from "react";
 import "../styles/profile.css";
-import profileImg from "../assets/profile.png"; // <-- add your photo here
+import profileImg from "../assets/professionalPhotoFinal.jpg";
 
 const Profile = () => {
+  const [showImage, setShowImage] = useState(false);
+
   return (
     <main className="profile-wrapper">
       <section className="profile-card">
@@ -17,7 +20,11 @@ const Profile = () => {
 
           {/* LEFT: PHOTO */}
           <div className="profile-image">
-            <img src={profileImg} alt="Profile" />
+            <img
+              src={profileImg}
+              alt="Profile"
+              onClick={() => setShowImage(true)}
+            />
           </div>
 
           {/* RIGHT: TEXT */}
@@ -62,6 +69,13 @@ const Profile = () => {
 
         </div>
       </section>
+
+      {/* IMAGE MODAL */}
+      {showImage && (
+        <div className="image-modal" onClick={() => setShowImage(false)}>
+          <img src={profileImg} alt="Full Profile" />
+        </div>
+      )}
     </main>
   );
 };

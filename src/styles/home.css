@@ -1,7 +1,6 @@
 /* ================================
    GLOBAL RESET (Bootstrap Neutralizer)
 ================================ */
-
 * {
   box-sizing: border-box;
 }
@@ -38,28 +37,18 @@ button {
 /* ================================
    PAGE WRAPPER
 ================================ */
-
 .home-wrapper {
   min-height: 100vh;
   display: flex;
-  justify-content: center;   /* keep horizontal center */
-  align-items: flex-start;   /* ❗ allow top spacing */
-  background: #0d0d0d;
-  padding: 120px 0 60px;     /* 🔥 top space for hero */
-}
-
-.home-center {
-  min-height: 100vh;
-  display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+  background: #0d0d0d;
+  padding: 120px 0 60px;
 }
-
 
 /* ================================
    HERO CARD
 ================================ */
-
 .hero-card {
   position: relative;
   max-width: 760px;
@@ -78,12 +67,25 @@ button {
   border-radius: 16px;
   border: 1px solid rgba(234, 42, 51, 0.35);
   overflow: hidden;
+
+  /* 🔥 added for hover */
+  transition: all 0.35s ease;
+}
+
+/* ================================
+   HERO CARD HOVER (STARK EFFECT)
+================================ */
+.hero-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  border-color: rgba(234, 42, 51, 0.8);
+  box-shadow:
+    0 0 35px rgba(234, 42, 51, 0.35),
+    0 0 60px rgba(234, 42, 51, 0.15);
 }
 
 /* ================================
    HUD ELEMENTS
 ================================ */
-
 .hud-top-left {
   position: absolute;
   top: 18px;
@@ -127,13 +129,12 @@ button {
 /* ================================
    TEXT STYLES
 ================================ */
-
 .hero-title {
   font-size: 4rem;
   font-weight: 900;
   letter-spacing: -2px;
   text-transform: uppercase;
-  text-align :center;
+  text-align: center;
 }
 
 .hero-title span {
@@ -160,9 +161,8 @@ button {
 }
 
 /* ================================
-   BUTTONS (FULL CUSTOM CONTROL)
+   BUTTONS
 ================================ */
-
 .hero-actions {
   margin-top: 42px;
   display: flex;
@@ -182,7 +182,6 @@ button {
   transition: all 0.25s ease;
 }
 
-/* Primary Button */
 .btn-primary-custom {
   background: #ea2a33;
   color: #ffffff;
@@ -194,7 +193,6 @@ button {
   box-shadow: 0 0 32px rgba(234, 42, 51, 0.65);
 }
 
-/* Outline Button */
 .btn-outline-custom {
   background: transparent;
   border: 1px solid rgba(234, 42, 51, 0.6);
@@ -207,108 +205,14 @@ button {
 }
 
 /* ================================
-   RESPONSIVE FIXES
+   HOME SKILLS SECTION
 ================================ */
-
-@media (max-width: 768px) {
-  .hero-card {
-    padding: 70px 30px;
-  }
-
-  .hero-title {
-    font-size: 3rem;
-  }
-
-  .hero-subtitle {
-    letter-spacing: 4px;
-  }
-}
-
-/* ================================
-   MOBILE OPTIMIZATION (LOCKED)
-================================ */
-
-/* Small devices (phones) */
-@media (max-width: 576px) {
-  .hero-card {
-    padding: 60px 22px;
-    border-radius: 12px;
-  }
-
-  .hero-title {
-    font-size: 2.4rem;
-    line-height: 1.1;
-  }
-
-  .hero-subtitle {
-    font-size: 0.75rem;
-    letter-spacing: 3px;
-    margin-top: 10px;
-  }
-
-  .hero-description {
-    font-size: 0.85rem;
-    margin-top: 16px;
-    line-height: 1.5;
-  }
-
-  .hero-actions {
-    gap: 14px;
-    margin-top: 28px;
-  }
-
-  .hero-actions button {
-    width: 100%;
-    min-width: unset;
-    height: 48px;
-    font-size: 11px;
-  }
-
-  /* HUD adjustments */
-  .hud-top-left {
-    font-size: 9px;
-    top: 14px;
-    left: 16px;
-  }
-
-  .hud-bottom-right {
-    font-size: 9px;
-    bottom: 14px;
-    right: 16px;
-  }
-
-  .power-bar {
-    width: 90px;
-    height: 5px;
-  }
-}
-
-/* Medium devices (tablets) */
-@media (max-width: 992px) {
-  .hero-card {
-    padding: 75px 40px;
-  }
-
-  .hero-title {
-    font-size: 3.2rem;
-  }
-
-  .hero-description {
-    max-width: 460px;
-  }
-}
-
-/* ================================
-   HOME SKILLS SECTION (ADDED)
-================================ */
-
 .home-skills {
   margin-top: 120px;
   padding-bottom: 80px;
   text-align: center;
 }
 
-/* HUD */
 .skills-hud {
   font-size: 10px;
   color: rgba(234, 42, 51, 0.7);
@@ -316,7 +220,6 @@ button {
   margin-bottom: 12px;
 }
 
-/* Title */
 .skills-title {
   font-size: 2.6rem;
   font-weight: 900;
@@ -328,7 +231,6 @@ button {
   color: #ea2a33;
 }
 
-/* Grid */
 .skills-grid {
   margin-top: 50px;
   display: grid;
@@ -358,8 +260,18 @@ button {
   box-shadow: 0 0 20px rgba(234, 42, 51, 0.35);
 }
 
-/* Mobile */
+/* ================================
+   RESPONSIVE
+================================ */
 @media (max-width: 768px) {
+  .hero-card {
+    padding: 70px 30px;
+  }
+
+  .hero-title {
+    font-size: 3rem;
+  }
+
   .skills-title {
     font-size: 2rem;
   }
@@ -369,34 +281,17 @@ button {
   }
 }
 
-/* ================================
-   HOME CONTENT FLOW FIX (LOCKED)
-================================ */
-.home-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+@media (max-width: 576px) {
+  .hero-card {
+    padding: 60px 22px;
+  }
 
-}
+  .hero-title {
+    font-size: 2.4rem;
+  }
 
-/* ================================
-   FINAL HOME ALIGNMENT FIX (LOCKED)
-================================ */
-.home-wrapper {
-  display: flex;
-  justify-content: center;   /* horizontal center */
-}
-
-.home-content {
-  width: 100%;
-  max-width: 1200px;         /* controls content width */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.home-skills {
-  margin-top: 120px; /* pushes skills clearly below hero */
-  width: 100%;
-  text-align: center;
+  .hero-subtitle {
+    font-size: 0.75rem;
+    letter-spacing: 3px;
+  }
 }
