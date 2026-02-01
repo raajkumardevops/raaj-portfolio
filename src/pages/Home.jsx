@@ -49,7 +49,7 @@ const Home = () => {
 
           {/* HUD BOTTOM RIGHT */}
           <div className="hud-bottom-right">
-            <span>POWER_LEVEL: 100%</span>
+            <span>KNOWLEDGE_LEVEL: 100%</span>
             <div className="power-bar">
               <div className="power-fill"></div>
             </div>
@@ -71,6 +71,7 @@ const Home = () => {
           <div className="skills-grid">
             <div className="skill-box">HTML</div>
             <div className="skill-box">CSS</div>
+            <div className="skill-box">bootstrap</div>
             <div className="skill-box">JavaScript</div>
             <div className="skill-box">React</div>
             <div className="skill-box">Node.js</div>
