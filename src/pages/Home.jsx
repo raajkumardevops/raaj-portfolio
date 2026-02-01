@@ -2,19 +2,17 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/home.css";
 
-
 const Home = () => {
   const navigate = useNavigate();
 
   return (
     <main id="home" className="home-wrapper">
-
-      {/* NEW WRAPPER */}
       <div className="home-content">
 
         {/* ================= HERO CARD ================= */}
-        <div className="hero-card text-center position-relative">
+        <div className="hero-card">
 
+          {/* HUD TOP LEFT */}
           <div className="hud-top-left">
             <div className="hud-line"></div>
             <span>MARK_VII_CONNECTED</span>
@@ -49,6 +47,7 @@ const Home = () => {
             </button>
           </div>
 
+          {/* HUD BOTTOM RIGHT */}
           <div className="hud-bottom-right">
             <span>POWER_LEVEL: 100%</span>
             <div className="power-bar">
@@ -62,7 +61,7 @@ const Home = () => {
         <section className="home-skills" id="skills">
 
           <div className="skills-hud">
-            <span>SYSTEMS_OVERVIEW</span>
+            SYSTEMS_OVERVIEW
           </div>
 
           <h2 className="skills-title">

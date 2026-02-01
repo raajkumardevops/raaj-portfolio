@@ -1,5 +1,5 @@
 /* ================================
-   GLOBAL RESET (Bootstrap Neutralizer)
+   GLOBAL RESET
 ================================ */
 * {
   box-sizing: border-box;
@@ -7,43 +7,44 @@
 
 body {
   margin: 0;
-  padding: 0;
   background: #0d0d0d;
   color: #ffffff;
   font-family: "Space Grotesk", sans-serif;
 }
 
-h1,
-h2,
-p {
+h1, h2, p {
   margin: 0;
-  padding: 0;
 }
 
 button {
   border: none;
-  outline: none;
   background: none;
-}
-
-/* Disable Bootstrap button effects */
-.btn,
-.btn:focus,
-.btn:active {
-  box-shadow: none !important;
-  outline: none !important;
+  cursor: pointer;
 }
 
 /* ================================
-   PAGE WRAPPER
+   HOME WRAPPER
 ================================ */
 .home-wrapper {
   min-height: 100vh;
+  width: 100%;
+  background: #0d0d0d;
+
   display: flex;
   justify-content: center;
-  align-items: flex-start;
-  background: #0d0d0d;
-  padding: 120px 0 60px;
+
+  padding-top: 120px;
+  padding-bottom: 80px;
+}
+
+/* 🔥 IMPORTANT FIX */
+.home-content {
+  width: 100%;
+  max-width: 1200px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* ================================
@@ -51,54 +52,49 @@ button {
 ================================ */
 .hero-card {
   position: relative;
+  width: 100%;
   max-width: 760px;
-  margin: 0 auto;
+
   padding: 90px 70px;
 
   background:
-    linear-gradient(
-      rgba(13, 13, 13, 0.85),
-      rgba(13, 13, 13, 0.95)
-    ),
+    linear-gradient(rgba(13,13,13,0.85), rgba(13,13,13,0.95)),
     url("https://lh3.googleusercontent.com/aida-public/AB6AXuDo_ncBVFAJQmujbcqbnnUCnCjRfpA3LKiVtevQCoxEYyE3tgFzWPGlC2j4sQsr-a30kb_YOpudqqWbDR-9Dmkwq1JoMu0JGWNwkbZJFORQrfNhSwTZdACFDaoexSP_4CX-oLC_zBFu060mEGKEs16qGOr90LH7LqSHCXZdEIfhiN9MlnjVV-U8BJQbT9iiFs4kajAg_xJsoOzBhq9qYT5Nv1w7Cue27G_3jLYvTKvias4tSDgIlB3UBXz3YayqU8QSuAlFtW8ramXI");
 
   background-size: cover;
   background-position: center;
-  border-radius: 16px;
-  border: 1px solid rgba(234, 42, 51, 0.35);
-  overflow: hidden;
 
-  /* 🔥 added for hover */
+  border-radius: 16px;
+  border: 1px solid rgba(234,42,51,0.35);
+
   transition: all 0.35s ease;
 }
 
-/* ================================
-   HERO CARD HOVER (STARK EFFECT)
-================================ */
+/* HOVER */
 .hero-card:hover {
   transform: translateY(-10px) scale(1.02);
-  border-color: rgba(234, 42, 51, 0.8);
+  border-color: rgba(234,42,51,0.9);
   box-shadow:
-    0 0 35px rgba(234, 42, 51, 0.35),
-    0 0 60px rgba(234, 42, 51, 0.15);
+    0 0 35px rgba(234,42,51,0.4),
+    0 0 70px rgba(234,42,51,0.15);
 }
 
 /* ================================
-   HUD ELEMENTS
+   HUD
 ================================ */
 .hud-top-left {
   position: absolute;
   top: 18px;
   left: 24px;
   font-size: 10px;
-  color: rgba(234, 42, 51, 0.7);
   letter-spacing: 1px;
+  color: rgba(234,42,51,0.7);
 }
 
 .hud-line {
   width: 90px;
   height: 1px;
-  background: rgba(234, 42, 51, 0.5);
+  background: rgba(234,42,51,0.5);
   margin-bottom: 4px;
 }
 
@@ -108,16 +104,15 @@ button {
   right: 24px;
   font-size: 10px;
   color: #ffcc00;
-  text-align: right;
 }
 
 .power-bar {
-  margin-top: 4px;
   width: 120px;
   height: 6px;
   background: #222;
   border-radius: 6px;
   overflow: hidden;
+  margin-top: 4px;
 }
 
 .power-fill {
@@ -127,14 +122,14 @@ button {
 }
 
 /* ================================
-   TEXT STYLES
+   TEXT
 ================================ */
 .hero-title {
+  text-align: center;
   font-size: 4rem;
   font-weight: 900;
   letter-spacing: -2px;
   text-transform: uppercase;
-  text-align: center;
 }
 
 .hero-title span {
@@ -143,18 +138,17 @@ button {
 
 .hero-subtitle {
   margin-top: 14px;
+  text-align: center;
   font-size: 0.9rem;
   letter-spacing: 6px;
   font-weight: 700;
-  text-align: center;
   color: #ea2a33;
 }
 
 .hero-description {
-  margin-top: 22px;
+  margin: 22px auto 0;
   max-width: 520px;
-  margin-left: auto;
-  margin-right: auto;
+  text-align: center;
   font-size: 0.95rem;
   color: #b0b0b0;
   line-height: 1.6;
@@ -166,8 +160,8 @@ button {
 .hero-actions {
   margin-top: 42px;
   display: flex;
-  gap: 22px;
   justify-content: center;
+  gap: 22px;
   flex-wrap: wrap;
 }
 
@@ -178,52 +172,47 @@ button {
   font-weight: 700;
   letter-spacing: 2px;
   text-transform: uppercase;
-  cursor: pointer;
   transition: all 0.25s ease;
 }
 
 .btn-primary-custom {
   background: #ea2a33;
-  color: #ffffff;
-  box-shadow: 0 0 18px rgba(234, 42, 51, 0.35);
+  color: #fff;
+  box-shadow: 0 0 18px rgba(234,42,51,0.35);
 }
 
 .btn-primary-custom:hover {
-  transform: translateY(-3px) scale(1.04);
-  box-shadow: 0 0 32px rgba(234, 42, 51, 0.65);
+  transform: translateY(-3px) scale(1.05);
 }
 
 .btn-outline-custom {
-  background: transparent;
-  border: 1px solid rgba(234, 42, 51, 0.6);
-  color: #ffffff;
+  border: 1px solid rgba(234,42,51,0.6);
+  color: #fff;
 }
 
 .btn-outline-custom:hover {
-  background: rgba(234, 42, 51, 0.15);
-  transform: translateY(-3px);
+  background: rgba(234,42,51,0.15);
 }
 
 /* ================================
-   HOME SKILLS SECTION
+   SKILLS SECTION
 ================================ */
 .home-skills {
   margin-top: 120px;
-  padding-bottom: 80px;
+  width: 100%;
   text-align: center;
 }
 
 .skills-hud {
   font-size: 10px;
-  color: rgba(234, 42, 51, 0.7);
+  color: rgba(234,42,51,0.7);
   letter-spacing: 1px;
-  margin-bottom: 12px;
 }
 
 .skills-title {
+  margin-top: 10px;
   font-size: 2.6rem;
   font-weight: 900;
-  letter-spacing: -1px;
   text-transform: uppercase;
 }
 
@@ -232,66 +221,72 @@ button {
 }
 
 .skills-grid {
-  margin-top: 50px;
+  margin: 50px auto 0;
+  max-width: 900px;
+
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
   gap: 26px;
-  max-width: 900px;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .skill-box {
   padding: 22px;
-  border: 1px solid rgba(234, 42, 51, 0.35);
   border-radius: 12px;
+  border: 1px solid rgba(234,42,51,0.35);
+  background: rgba(13,13,13,0.85);
   font-size: 14px;
-  font-weight: 700;
   letter-spacing: 2px;
-  text-transform: uppercase;
-  color: #ffffff;
-  background: rgba(13, 13, 13, 0.85);
+  font-weight: 700;
   transition: all 0.25s ease;
 }
 
 .skill-box:hover {
   transform: translateY(-6px);
   border-color: #ea2a33;
-  box-shadow: 0 0 20px rgba(234, 42, 51, 0.35);
+  box-shadow: 0 0 20px rgba(234,42,51,0.35);
 }
 
 /* ================================
-   RESPONSIVE
+   MOBILE FIX
 ================================ */
 @media (max-width: 768px) {
   .hero-card {
-    padding: 70px 30px;
+    padding: 60px 28px;
   }
 
   .hero-title {
     font-size: 3rem;
   }
 
-  .skills-title {
-    font-size: 2rem;
-  }
-
   .home-skills {
-    margin-top: 90px;
+    margin-top: 80px;
   }
 }
 
 @media (max-width: 576px) {
+  .home-content {
+    padding: 0 16px;
+  }
+
   .hero-card {
-    padding: 60px 22px;
+    padding: 48px 18px;
   }
 
   .hero-title {
-    font-size: 2.4rem;
+    font-size: 2.2rem;
   }
 
   .hero-subtitle {
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     letter-spacing: 3px;
+  }
+
+  .hero-actions button {
+    width: 100%;
+    height: 46px;
+  }
+
+  .skills-title {
+    font-size: 2rem;
   }
 }
