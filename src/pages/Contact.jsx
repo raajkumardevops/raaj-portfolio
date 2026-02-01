@@ -10,7 +10,7 @@ import "../styles/contact.css";
 
 const Contact = () => {
   const copyNumber = () => {
-    navigator.clipboard.writeText("+91933247165");
+    navigator.clipboard.writeText("+91 9344247165");
     alert("Contact number copied!");
   };
 
