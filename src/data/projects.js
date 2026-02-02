@@ -5,17 +5,17 @@ export const projects = [
     github: "https://github.com/raajkumardevops/instagramClone"
   },
   {
-    title: "Newyear wishes",
+    title: "Newyear Wishes",
     description: "A romantic New Year web experience celebrating love, moments, and memories through an interactive and heartfelt design.using React and online CSS reference",
     github: "https://github.com/raajkumardevops/newyear.wishes",
   },
    {
-    title: "Ml traders",
+    title: "Ml Traders",
     description: "Ecom frontend website with this you can see the produts and contact the shop",
     github: "https://github.com/raajkumardevops/ml-traders",
   },
   {
-    title: "Ml traders",
+    title: "Calculator IOS",
     description: "An IOS inspired calculator app that can do all logic calculations which is developed with REACT",
     github: "https://github.com/raajkumardevops/calculator.ios",
   }
