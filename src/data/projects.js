@@ -18,5 +18,15 @@ export const projects = [
     title: "Calculator IOS",
     description: "An IOS inspired calculator app that can do all logic calculations which is developed with REACT",
     github: "https://github.com/raajkumardevops/calculator.ios",
+  },
+    {
+    title: "Task Master",
+    description: "TaskMaster is a backend task management system built with Node.js, Express, and MongoDB, featuring RESTful APIs for creating, updating, tracking, and managing tasks with a scalable architecture.",
+    github: "https://github.com/raajkumardevops/taskmaster-",
+  },
+  {
+    title: "RK portfolio",
+    description: "A personal portfolio website highlighting my full-stack development skills, real-world projects, and technical expertise. ",
+    github: "https://github.com/raajkumardevops/taskmaster-",
   }
 ];
