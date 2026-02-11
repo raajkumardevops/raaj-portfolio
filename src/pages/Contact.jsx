@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import {
   FaGithub,
   FaLinkedin,
@@ -9,6 +10,25 @@ import {
 import "../styles/contact.css";
 
 const Contact = () => {
+
+  useEffect(() => {
+    const reveals = document.querySelectorAll(".reveal");
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("active");
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+
+    reveals.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+
   const copyNumber = () => {
     navigator.clipboard.writeText("+91 9344247165");
     alert("Contact number copied!");
@@ -16,20 +36,28 @@ const Contact = () => {
 
   return (
     <main className="terminal-wrapper">
+
+      {/* HEADER */}
       <div className="terminal-header">
-        <span className="terminal-tag">COMMUNICATION_MODULE</span>
-        <h1>
+        <span className="terminal-tag reveal">COMMUNICATION_MODULE</span>
+
+        <h1 className="reveal delay-1">
           SYSTEM <span>TERMINAL</span>
         </h1>
-        <p>Direct secure channels to connect with me.</p>
+
+        <p className="reveal delay-2">
+          Direct secure channels to connect with me.
+        </p>
       </div>
 
+      {/* CONTACT GRID */}
       <div className="terminal-grid">
 
         <a
           href="https://github.com/raajkumardevops"
           target="_blank"
-          className="terminal-card"
+          rel="noreferrer"
+          className="terminal-card reveal delay-1"
         >
           <FaGithub className="terminal-icon" />
           <span>GitHub</span>
@@ -38,7 +66,8 @@ const Contact = () => {
         <a
           href="https://linkedin.com/in/raajkumar-pr"
           target="_blank"
-          className="terminal-card"
+          rel="noreferrer"
+          className="terminal-card reveal delay-2"
         >
           <FaLinkedin className="terminal-icon" />
           <span>LinkedIn</span>
@@ -47,7 +76,8 @@ const Contact = () => {
         <a
           href="https://instagram.com/_raaj._.kumar_"
           target="_blank"
-          className="terminal-card"
+          rel="noreferrer"
+          className="terminal-card reveal delay-3"
         >
           <FaInstagram className="terminal-icon" />
           <span>Instagram</span>
@@ -56,7 +86,8 @@ const Contact = () => {
         <a
           href="https://wa.me/+919344247165"
           target="_blank"
-          className="terminal-card"
+          rel="noreferrer"
+          className="terminal-card reveal delay-4"
         >
           <FaWhatsapp className="terminal-icon" />
           <span>WhatsApp</span>
@@ -64,13 +95,16 @@ const Contact = () => {
 
         <a
           href="mailto:raajkumardevops@gmail.com"
-          className="terminal-card"
+          className="terminal-card reveal delay-5"
         >
           <FaEnvelope className="terminal-icon" />
           <span>Email</span>
         </a>
 
-        <div className="terminal-card copy-card" onClick={copyNumber}>
+        <div
+          className="terminal-card reveal delay-6"
+          onClick={copyNumber}
+        >
           <FaPhoneAlt className="terminal-icon" />
           <span>Contact</span>
         </div>

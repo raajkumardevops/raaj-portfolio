@@ -1,18 +1,35 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/home.css";
 
 const Home = () => {
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const reveals = document.querySelectorAll(".reveal");
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("active");
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+
+    reveals.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <main id="home" className="home-wrapper">
       <div className="home-content">
 
-        {/* ================= HERO CARD ================= */}
-        <div className="hero-card">
+        {/* HERO CARD (NOW SLIDES IN) */}
+        <div className="hero-card reveal">
 
-          {/* HUD TOP LEFT */}
           <div className="hud-top-left">
             <div className="hud-line"></div>
             <span>MARK_VII_CONNECTED</span>
@@ -47,39 +64,33 @@ const Home = () => {
             </button>
           </div>
 
-          {/* HUD BOTTOM RIGHT */}
           <div className="hud-bottom-right">
             <span>KNOWLEDGE_LEVEL: 100%</span>
             <div className="power-bar">
               <div className="power-fill"></div>
             </div>
           </div>
-
         </div>
 
-        {/* ================= SKILLS SECTION ================= */}
-        <section className="home-skills" id="skills">
-
-          <div className="skills-hud">
-            SYSTEMS_OVERVIEW
-          </div>
+        {/* SKILLS SECTION */}
+        <section className="home-skills reveal" id="skills">
+          <div className="skills-hud">SYSTEMS_OVERVIEW</div>
 
           <h2 className="skills-title">
             CORE <span>SKILLS</span>
           </h2>
 
           <div className="skills-grid">
-            <div className="skill-box">HTML</div>
-            <div className="skill-box">CSS</div>
-            <div className="skill-box">bootstrap</div>
-            <div className="skill-box">JavaScript</div>
-            <div className="skill-box">React</div>
-            <div className="skill-box">Node.js</div>
-            <div className="skill-box">Express</div>
-            <div className="skill-box">MongoDB</div>
-            <div className="skill-box">Git & GitHub</div>
+            <div className="skill-box reveal delay-1">HTML</div>
+            <div className="skill-box reveal delay-2">CSS</div>
+            <div className="skill-box reveal delay-3">Bootstrap</div>
+            <div className="skill-box reveal delay-1">JavaScript</div>
+            <div className="skill-box reveal delay-2">React</div>
+            <div className="skill-box reveal delay-3">Node.js</div>
+            <div className="skill-box reveal delay-1">Express</div>
+            <div className="skill-box reveal delay-2">MongoDB</div>
+            <div className="skill-box reveal delay-3">Git & GitHub</div>
           </div>
-
         </section>
 
       </div>
