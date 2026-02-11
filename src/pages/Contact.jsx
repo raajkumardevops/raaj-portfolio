@@ -101,13 +101,14 @@ const Contact = () => {
           <span>Email</span>
         </a>
 
-        <div
+       <a
+          href="tel:+919344247165"
           className="terminal-card reveal delay-6"
-          onClick={copyNumber}
         >
           <FaPhoneAlt className="terminal-icon" />
           <span>Contact</span>
-        </div>
+        </a>
+
 
       </div>
     </main>
