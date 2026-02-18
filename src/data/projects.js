@@ -35,7 +35,7 @@ export const projects = [
     github: "https://github.com/raajkumardevops/for-my-eternity-portfolio",
   },
   {
-    title: "RK-QUIZ-APP",
+    title: "Fundamental-QUIZ-APP",
     description: "Fundamental Quiz Web App – A responsive quiz app built with HTML, CSS, Bootstrap, and Vanilla JavaScript, featuring difficulty levels, non-repeating questions, and localStorage-based score tracking.",
     github: "https://github.com/raajkumardevops/RK-quiz",
   }
