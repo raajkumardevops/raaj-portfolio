@@ -28,5 +28,15 @@ export const projects = [
     title: "RK portfolio",
     description: "A personal portfolio website highlighting my full-stack development skills, real-world projects, and technical expertise. ",
     github: "https://github.com/raajkumardevops/taskmaster-",
+  },
+  {
+    title: "For-My-Eternity",
+    description: "A responsive romantic web app built with React (Vite), CSS3, and Bootstrap, showcasing interactive UI flows, animated love letters, a draggable memory gallery, and music-driven emotional storytelling.",
+    github: "https://github.com/raajkumardevops/for-my-eternity-portfolio",
+  },
+  {
+    title: "RK-QUIZ-APP",
+    description: "Fundamental Quiz Web App – A responsive quiz app built with HTML, CSS, Bootstrap, and Vanilla JavaScript, featuring difficulty levels, non-repeating questions, and localStorage-based score tracking.",
+    github: "https://github.com/raajkumardevops/RK-quiz",
   }
 ];
