@@ -89,6 +89,9 @@ const Home = () => {
             <div className="skill-box reveal delay-3">Node.js</div>
             <div className="skill-box reveal delay-1">Express</div>
             <div className="skill-box reveal delay-2">MongoDB</div>
+            <div className="skill-box reveal delay-2">React-Router</div>
+            <div className="skill-box reveal delay-2">CRUD Operations</div>
+            <div className="skill-box reveal delay-2">O auth</div>
             <div className="skill-box reveal delay-3">Git & GitHub</div>
           </div>
         </section>

@@ -1,7 +1,7 @@
 export const projects = [
   {
     title: "InstaClone",
-    description: "Instagram clone site you with react and bootstrap and json database",
+    description: "Developed a responsive Instagram-style frontend application using React.js and Bootstrap to simulate modern social media interface behavior. Implemented reusable React components with CRUD-based dynamic rendering for managing posts and user interactions.",
     github: "https://github.com/raajkumardevops/instagramClone"
   },
   {
@@ -11,7 +11,7 @@ export const projects = [
   },
    {
     title: "Ml Traders",
-    description: "Ecom frontend website with this you can see the produts and contact the shop",
+    description: "Built a frontend e-commerce application with product listing and client-side routing. Implemented seamless navigation using React Router.",
     github: "https://github.com/raajkumardevops/ml-traders",
   },
   {
