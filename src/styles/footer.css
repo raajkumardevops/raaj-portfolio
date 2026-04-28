@@ -1,0 +1,112 @@
+.stark-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 40px;
+  background: #0a0a0a;
+  border-top: 1px solid rgba(255, 0, 0, 0.2);
+  font-family: "Orbitron", sans-serif;
+  position: relative;
+}
+
+/* LEFT */
+.footer-left {
+  flex: 1;
+}
+
+.footer-logo {
+  color: #ffffff;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+/* CENTER */
+.footer-center {
+  flex: 1;
+  text-align: center;
+}
+
+.footer-copy {
+  font-size: 12px;
+  color: #777;
+}
+
+/* RIGHT */
+.footer-links {
+  flex: 1;
+  display: flex;
+  flex-direction: column;   /* 🔥 THIS makes it vertical */
+  align-items: flex-end;    /* keep it on right side */
+  gap: 10px;
+}
+
+.footer-links a {
+  text-decoration: none;
+  color: #aaa;
+  font-size: 14px;
+  position: relative;
+  transition: 0.3s;
+}
+
+/* Hover glow (same futuristic feel as navbar) */
+.footer-links a:hover {
+  color: #ff2c2c;
+  text-shadow: 0 0 10px #ff2c2c;
+}
+
+/* Optional underline animation (clean + premium) */
+.footer-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0%;
+  height: 2px;
+  background: #ff2c2c;
+  transition: 0.3s;
+}
+
+.footer-links a:hover::after {
+  width: 100%;
+}
+
+/* STATUS (if you still want to use it later) */
+.footer-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  background: #00ff88;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #00ff88;
+}
+
+.status-text {
+  font-size: 12px;
+  color: #00ff88;
+}
+
+/* MOBILE RESPONSIVE */
+@media (max-width: 768px) {
+  .stark-footer {
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+  }
+
+  .footer-left,
+  .footer-center,
+  .footer-links {
+    flex: unset;
+  }
+
+  .footer-links {
+    flex-direction: column;
+    align-items: center;   /* ✅ center instead of right */
+    gap: 12px;
+  }
+}
