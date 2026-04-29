@@ -145,7 +145,7 @@ button {
 }
 
 /* ================================
-   BUTTONS
+   BUTTONS (FINAL EFFECT)
 ================================ */
 .hero-actions {
   margin-top: 42px;
@@ -162,26 +162,54 @@ button {
   font-weight: 700;
   letter-spacing: 2px;
   text-transform: uppercase;
-  transition: all 0.25s ease;
+
+  border-radius: 10px;
+  padding: 0 22px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: all 0.3s ease;
 }
 
+/* LEFT BUTTON */
 .btn-primary-custom {
   background: #ea2a33;
   color: #fff;
+  border: 1px solid transparent;
   box-shadow: 0 0 18px rgba(234,42,51,0.35);
 }
 
+/* LEFT HOVER */
 .btn-primary-custom:hover {
-  transform: translateY(-3px) scale(1.05);
+  transform: translateY(-4px) scale(1.05);
+
+  background: transparent;
+  color: #ffffff;
+  border: 1px solid rgba(234,42,51,0.6);
+
+  padding: 0 30px; /* expand */
+  box-shadow: none;
 }
 
+/* RIGHT BUTTON */
 .btn-outline-custom {
+  background: transparent;
   border: 1px solid rgba(234,42,51,0.6);
   color: #fff;
 }
 
+/* RIGHT HOVER */
 .btn-outline-custom:hover {
-  background: rgba(234,42,51,0.15);
+  transform: translateY(-4px) scale(1.05);
+
+  background: #ea2a33;
+  color: #fff;
+  border: 1px solid transparent;
+
+  padding: 0 30px; /* expand */
+  box-shadow: 0 0 18px rgba(234,42,51,0.35);
 }
 
 /* ================================
@@ -236,24 +264,6 @@ button {
 }
 
 /* ================================
-   SCROLL REVEAL
-================================ */
-.reveal {
-  opacity: 0;
-  transform: translateY(60px);
-  transition: all 0.8s ease;
-}
-
-.reveal.active {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.reveal.delay-1 { transition-delay: 0.15s; }
-.reveal.delay-2 { transition-delay: 0.3s; }
-.reveal.delay-3 { transition-delay: 0.45s; }
-
-/* ================================
    MOBILE
 ================================ */
 @media (max-width: 768px) {
@@ -268,4 +278,53 @@ button {
   .hero-subtitle { font-size: 0.7rem; letter-spacing: 3px; }
   .hero-actions button { width: 100%; height: 46px; }
   .skills-title { font-size: 2rem; }
+}
+
+/* ================================
+   TABLET ONLY
+================================ */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .home-wrapper {
+    padding-top: 110px;
+    padding-bottom: 70px;
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .hero-card {
+    padding: 75px 50px;
+  }
+
+  .hero-description {
+    margin-top: 20px;
+  }
+
+  .hero-actions {
+    margin-top: 38px;
+    gap: 20px;
+  }
+
+  .home-skills {
+    margin-top: 100px;
+  }
+
+  .skills-grid {
+    margin-top: 45px;
+    gap: 24px;
+  }
+}
+
+/* TYPEWRITER STYLE */
+.typing-text {
+  border-right: 2px solid #ea2a33;
+  padding-right: 6px;
+  white-space: nowrap;
+  overflow: hidden;
+  animation: blinkCursor 0.8s infinite;
+}
+
+@keyframes blinkCursor {
+  0% { border-color: #ea2a33; }
+  50% { border-color: transparent; }
+  100% { border-color: #ea2a33; }
 }

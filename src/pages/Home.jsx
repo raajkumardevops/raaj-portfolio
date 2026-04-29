@@ -6,6 +6,9 @@ const Home = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    /* =========================
+       SCROLL REVEAL (YOUR CODE)
+    ========================= */
     const reveals = document.querySelectorAll(".reveal");
 
     const observer = new IntersectionObserver(
@@ -20,6 +23,50 @@ const Home = () => {
     );
 
     reveals.forEach((el) => observer.observe(el));
+
+    /* =========================
+       TYPEWRITER EFFECT
+    ========================= */
+    const textElement = document.querySelector(".typing-text");
+
+    const words = [
+      "FULL STACK DEVELOPER",
+      "MERN STACK DEVELOPER"
+    ];
+
+    let wordIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+
+    function typeEffect() {
+      if (!textElement) return;
+
+      const currentWord = words[wordIndex];
+
+      if (!isDeleting) {
+        textElement.textContent = currentWord.substring(0, charIndex + 1);
+        charIndex++;
+      } else {
+        textElement.textContent = currentWord.substring(0, charIndex - 1);
+        charIndex--;
+      }
+
+      let speed = isDeleting ? 50 : 90;
+
+      if (!isDeleting && charIndex === currentWord.length) {
+        speed = 1200; // pause
+        isDeleting = true;
+      } else if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        wordIndex = (wordIndex + 1) % words.length;
+        speed = 400;
+      }
+
+      setTimeout(typeEffect, speed);
+    }
+
+    typeEffect();
+
     return () => observer.disconnect();
   }, []);
 
@@ -27,7 +74,7 @@ const Home = () => {
     <main id="home" className="home-wrapper">
       <div className="home-content">
 
-        {/* HERO CARD (NOW SLIDES IN) */}
+        {/* HERO CARD */}
         <div className="hero-card reveal">
 
           <div className="hud-top-left">
@@ -39,8 +86,9 @@ const Home = () => {
             RAAJ <span>KUMAR</span>
           </h1>
 
+          {/* 🔥 UPDATED TYPEWRITER */}
           <h2 className="hero-subtitle">
-            FULL STACK / MERN DEVELOPER
+            <span className="typing-text"></span>
           </h2>
 
           <p className="hero-description">

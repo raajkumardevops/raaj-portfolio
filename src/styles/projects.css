@@ -1,6 +1,6 @@
 .projects-wrapper {
   min-height: 100vh;
-  padding: 120px 20px 80px;
+  padding: 110px 24px 70px;
   background: #0d0d0d;
   text-align: center;
 }
@@ -8,7 +8,7 @@
 .projects-title {
   font-size: 3rem;
   font-weight: 900;
-  margin-bottom: 60px;
+  margin-bottom: 50px;
   text-transform: uppercase;
 }
 
@@ -21,11 +21,11 @@
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 32px;
+  gap: 28px;
 }
 
 .project-card {
-  padding: 32px;
+  padding: 28px;
   background: rgba(13, 13, 13, 0.9);
   border: 1px solid rgba(234, 42, 51, 0.35);
   border-radius: 14px;
@@ -41,7 +41,7 @@
 .project-name {
   font-size: 1.4rem;
   font-weight: 800;
-  margin-bottom: 14px;
+  margin-bottom: 12px;
 }
 
 .project-desc {
@@ -51,41 +51,112 @@
 }
 
 .project-actions {
-  margin-top: 24px;
+  margin-top: 20px;
   display: flex;
   justify-content: center;
-  gap: 16px;
+  gap: 14px;
 }
 
-.btn-primary {
-  padding: 10px 18px;
-  background: #ea2a33;
-  color: #fff;
-  text-decoration: none;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 1px;
-}
-
+/* ================================
+   BUTTONS (CURVED + EXPAND + SWAP)
+================================ */
+.btn-primary,
 .btn-outline {
   padding: 10px 18px;
-  border: 1px solid rgba(234, 42, 51, 0.6);
-  color: #fff;
-  text-decoration: none;
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 1px;
+  text-decoration: none;
+
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: all 0.3s ease;
 }
 
-.btn-primary:hover,
+/* PRIMARY BUTTON */
+.btn-primary {
+  background: #ea2a33;
+  color: #fff;
+  border: 1px solid transparent;
+  box-shadow: 0 0 14px rgba(234,42,51,0.35);
+}
+
+/* PRIMARY → HOVER */
+.btn-primary:hover {
+  transform: translateY(-3px) scale(1.05);
+  padding: 10px 26px;
+  background: transparent;
+  color: #fff;
+  border: 1px solid rgba(234, 42, 51, 0.6);
+  box-shadow: none;
+}
+
+/* OUTLINE BUTTON */
+.btn-outline {
+  background: transparent;
+  border: 1px solid rgba(234, 42, 51, 0.6);
+  color: #fff;
+}
+
+/* OUTLINE → HOVER */
 .btn-outline:hover {
-  transform: translateY(-3px);
+  transform: translateY(-3px) scale(1.05);
+  padding: 10px 26px;
+  background: #ea2a33;
+  color: #fff;
+  border: 1px solid transparent;
+  box-shadow: 0 0 14px rgba(234,42,51,0.35);
+}
+
+/* ================================
+   TABLET (Spacing Only)
+================================ */
+@media (max-width: 1024px) {
+  .projects-wrapper {
+    padding: 100px 20px 60px;
+  }
+
+  .projects-title {
+    margin-bottom: 45px;
+  }
+
+  .projects-grid {
+    gap: 24px;
+  }
+}
+
+/* ================================
+   MOBILE (Spacing Only)
+================================ */
+@media (max-width: 768px) {
+  .projects-wrapper {
+    padding: 90px 16px 50px;
+  }
+
+  .projects-title {
+    margin-bottom: 40px;
+  }
+
+  .projects-grid {
+    gap: 20px;
+  }
+
+  .project-card {
+    padding: 24px;
+  }
+
+  .project-actions {
+    margin-top: 18px;
+    gap: 12px;
+  }
 }
 
 /* ================================
    SCROLL REVEAL (REUSED)
 ================================ */
-
 .reveal {
   opacity: 0;
   transform: translateY(60px);

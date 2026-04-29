@@ -2,7 +2,10 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 15px 40px;
+
+  /* ✅ refined spacing */
+  padding: 18px 48px;
+
   background: #0a0a0a;
   border-top: 1px solid rgba(255, 0, 0, 0.2);
   font-family: "Orbitron", sans-serif;
@@ -35,9 +38,11 @@
 .footer-links {
   flex: 1;
   display: flex;
-  flex-direction: column;   /* 🔥 THIS makes it vertical */
-  align-items: flex-end;    /* keep it on right side */
-  gap: 10px;
+  flex-direction: column;
+  align-items: flex-end;
+
+  /* ✅ improved spacing */
+  gap: 12px;
 }
 
 .footer-links a {
@@ -48,13 +53,11 @@
   transition: 0.3s;
 }
 
-/* Hover glow (same futuristic feel as navbar) */
 .footer-links a:hover {
   color: #ff2c2c;
   text-shadow: 0 0 10px #ff2c2c;
 }
 
-/* Optional underline animation (clean + premium) */
 .footer-links a::after {
   content: "";
   position: absolute;
@@ -70,10 +73,12 @@
   width: 100%;
 }
 
-/* STATUS (if you still want to use it later) */
+/* STATUS */
 .footer-right {
   display: flex;
   align-items: center;
+
+  /* ✅ spacing */
   gap: 8px;
 }
 
@@ -90,11 +95,30 @@
   color: #00ff88;
 }
 
-/* MOBILE RESPONSIVE */
+/* ================================
+   TABLET (Spacing Only)
+================================ */
+@media (max-width: 1024px) {
+  .stark-footer {
+    padding: 16px 32px;
+  }
+
+  .footer-links {
+    gap: 11px;
+  }
+}
+
+/* ================================
+   MOBILE (Spacing Only)
+================================ */
 @media (max-width: 768px) {
   .stark-footer {
     flex-direction: column;
-    gap: 15px;
+
+    /* ✅ better vertical spacing */
+    gap: 18px;
+    padding: 20px 20px;
+
     text-align: center;
   }
 
@@ -104,9 +128,16 @@
     flex: unset;
   }
 
+  .footer-center {
+    margin-top: 4px;
+  }
+
   .footer-links {
     flex-direction: column;
-    align-items: center;   /* ✅ center instead of right */
-    gap: 12px;
+    align-items: center;
+
+    /* ✅ better tap spacing */
+    gap: 14px;
+    margin-top: 6px;
   }
 }
