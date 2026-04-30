@@ -11,7 +11,7 @@ import "../styles/contact.css";
 
 // 🔥 Firebase
 import { db } from "../firebase";
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc, serverTimestamp } from "firebase/firestore"; // ✅ ADDED
 
 const Contact = () => {
 
@@ -48,11 +48,23 @@ const Contact = () => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
+  // 🔥 UPDATED HANDLE SUBMIT
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!form.name || !form.email || !form.message) {
-      alert("Please fill all fields");
+    // ✅ VALIDATION ADDED
+    if (!form.name.trim()) {
+      alert("Name is required");
+      return;
+    }
+
+    if (!/\S+@\S+\.\S+/.test(form.email)) {
+      alert("Invalid email format");
+      return;
+    }
+
+    if (form.message.trim().length < 10) {
+      alert("Message must be at least 10 characters");
       return;
     }
 
@@ -61,7 +73,7 @@ const Contact = () => {
 
       await addDoc(collection(db, "contacts"), {
         ...form,
-        createdAt: new Date()
+        createdAt: serverTimestamp() // 🔥 UPDATED (server time)
       });
 
       setSuccess("Message sent successfully ✅");
@@ -125,7 +137,7 @@ const Contact = () => {
         </a>
 
       </div>
-
+     
       {/* 🔥 CONTACT FORM */}
       <form onSubmit={handleSubmit} className="terminal-form reveal">
 
@@ -152,6 +164,7 @@ const Contact = () => {
           onChange={handleChange}
         />
 
+        {/* ✅ UPDATED BUTTON (loading + disable) */}
         <button type="submit" disabled={loading}>
           {loading ? "Sending..." : "Send Message"}
         </button>
