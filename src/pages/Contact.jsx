@@ -11,7 +11,10 @@ import "../styles/contact.css";
 
 // 🔥 Firebase
 import { db } from "../firebase";
-import { collection, addDoc, serverTimestamp } from "firebase/firestore"; // ✅ ADDED
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+
+// 🔥 EMAILJS ADDED
+import emailjs from "@emailjs/browser";
 
 const Contact = () => {
 
@@ -52,7 +55,7 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // ✅ VALIDATION ADDED
+    // ✅ VALIDATION
     if (!form.name.trim()) {
       alert("Name is required");
       return;
@@ -71,10 +74,23 @@ const Contact = () => {
     try {
       setLoading(true);
 
+      // 🔹 SAVE TO FIREBASE
       await addDoc(collection(db, "contacts"), {
         ...form,
-        createdAt: serverTimestamp() // 🔥 UPDATED (server time)
+        createdAt: serverTimestamp()
       });
+
+      // 🔥 SEND EMAIL (ADDED)
+      await emailjs.send(
+        "portfolio_service",   // 🔥 replace
+        "template_ka92upp",  // 🔥 replace
+        {
+          name: form.name,
+          email: form.email,
+          message: form.message,
+        },
+        "qcUEHoAaDDBHc4h3I"    // 🔥 replace
+      );
 
       setSuccess("Message sent successfully ✅");
       setForm({ name: "", email: "", message: "" });
@@ -164,7 +180,6 @@ const Contact = () => {
           onChange={handleChange}
         />
 
-        {/* ✅ UPDATED BUTTON (loading + disable) */}
         <button type="submit" disabled={loading}>
           {loading ? "Sending..." : "Send Message"}
         </button>
