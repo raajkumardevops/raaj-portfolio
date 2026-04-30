@@ -43,5 +43,10 @@ export const projects = [
     title: "Campus Course Registration Portal (CCRP)",
     description: "Developed a MERN-based Campus Course Registration Portal to digitize student course enrollment and reduce manual registration work. Students can register, log in, apply for courses, and track applications, while admins manage records through a secure dashboard.",
     github: "https://github.com/raajkumardevops/CCRP",
+  },
+  {
+    title: "krizawsdba",
+    description: "A technical portfolio and blog focused on database administration and cloud technologies, showcasing practical knowledge, real-world solutions, and professional expertise in backend systems.",
+    github: "https://github.com/raajkumardevops/KrizAwsDba",
   }
 ];
