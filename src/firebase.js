@@ -5,12 +5,12 @@ import { getFirestore } from "firebase/firestore";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_PROJECT_ID.appspot.com",
-  messagingSenderId: "XXXX",
-  appId: "XXXX"
+  apiKey: "AIzaSyD0vWgmtJ7JhAJYAYlnKdv_i04HyIlHwRo",
+  authDomain: "raajportfolio.firebaseapp.com",
+  projectId: "raajportfolio",
+  storageBucket: "raajportfolio.firebasestorage.app",
+  messagingSenderId: "815316032594",
+  appId: "1:815316032594:web:fb01ea1419e7a2e1a3938b"
 };
 
 // INIT

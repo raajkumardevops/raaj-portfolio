@@ -20,7 +20,7 @@ function Admin() {
   const [user, setUser] = useState(null);
   const [messages, setMessages] = useState([]);
 
-  const ADMIN_EMAIL = "yourgmail@gmail.com"; // 🔥 CHANGE THIS
+  const ADMIN_EMAIL = "raajkumar.devops@gmail.com"; // 🔥 CHANGE THIS
 
   // 🔐 AUTH CHECK
   useEffect(() => {

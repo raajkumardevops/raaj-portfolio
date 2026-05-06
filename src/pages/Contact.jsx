@@ -73,12 +73,15 @@ const Contact = () => {
 
     try {
       setLoading(true);
-
+      console.log("STEP 1 → Firebase start");
       // 🔹 SAVE TO FIREBASE
       await addDoc(collection(db, "contacts"), {
         ...form,
         createdAt: serverTimestamp()
       });
+          console.log("STEP 2 → Firebase success"); 
+
+           console.log("STEP 3 → EmailJS start");
 
       // 🔥 SEND EMAIL (ADDED)
       await emailjs.send(
@@ -92,12 +95,16 @@ const Contact = () => {
         "qcUEHoAaDDBHc4h3I"    // 🔥 replace
       );
 
+
       setSuccess("Message sent successfully ✅");
       setForm({ name: "", email: "", message: "" });
 
     } catch (error) {
+      console.log("ERROR BELOW");
       console.error(error);
-      alert("Error sending message ❌");
+
+      alert("Something failed ❌");
+
     } finally {
       setLoading(false);
     }
