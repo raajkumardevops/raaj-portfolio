@@ -1,22 +1,39 @@
-/* ================================
+/* =================================
    PAGE WRAPPER
-================================ */
+================================= */
 .terminal-wrapper {
   min-height: 100vh;
+
   padding: 120px 20px 80px;
+
   background: #0d0d0d;
+
   color: #fff;
+
   text-align: center;
+
+  overflow: hidden;
 }
 
-/* ================================
+/* =================================
    HEADER
-================================ */
+================================= */
+.terminal-header {
+  position: relative;
+
+  z-index: 2;
+}
+
 .terminal-header h1 {
-  font-size: 3rem;
+  font-size: 3.5rem;
+
   font-weight: 900;
+
   text-transform: uppercase;
-  margin-top: 10px;
+
+  line-height: 1.1;
+
+  margin-top: 12px;
 }
 
 .terminal-header h1 span {
@@ -24,145 +41,491 @@
 }
 
 .terminal-header p {
-  margin-top: 12px;
-  font-size: 0.95rem;
+  margin-top: 14px;
+
+  font-size: 1rem;
+
   color: #b0b0b0;
 }
 
 .terminal-tag {
   font-size: 10px;
-  letter-spacing: 2px;
-  color: rgba(234, 42, 51, 0.7);
+
+  letter-spacing: 3px;
+
+  color:
+    rgba(234,42,51,0.7);
 }
 
-/* ================================
-   GRID → FLEX FIX
-================================ */
+/* =================================
+   CONTACT GRID
+================================= */
 .terminal-grid {
-  margin: 60px auto 0;
-  max-width: 900px;
+  margin: 70px auto 0;
 
-  display: flex;          /* 🔥 changed */
-  flex-wrap: wrap;        /* allow wrapping */
-  justify-content: center;/* center items */
-
-  gap: 30px;
-}
-
-/* ================================
-   CARD
-================================ */
-.terminal-card {
-  flex: 0 0 220px;   /* 🔥 fixed width */
-  max-width: 220px;
-
-  padding: 28px;
-  background: rgba(13, 13, 13, 0.9);
-  border-radius: 14px;
-  border: 1px solid rgba(234, 42, 51, 0.35);
-  text-decoration: none;
-  color: #fff;
-  font-weight: 700;
-  letter-spacing: 1px;
+  max-width: 1000px;
 
   display: flex;
+
+  flex-wrap: wrap;
+
+  justify-content: center;
+
+  gap: 28px;
+}
+
+/* =================================
+   CONTACT CARD
+================================= */
+.terminal-card {
+  position: relative;
+
+  flex: 0 0 220px;
+
+  max-width: 220px;
+
+  padding: 30px 24px;
+
+  border-radius: 22px;
+
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(15,15,15,0.95),
+      rgba(10,10,10,0.95)
+    );
+
+  border:
+    1px solid rgba(234,42,51,0.25);
+
+  text-decoration: none;
+
+  color: #fff;
+
+  display: flex;
+
   flex-direction: column;
+
   align-items: center;
-  gap: 14px;
 
-  transition: all 0.3s ease;
-  cursor: pointer;
+  justify-content: center;
+
+  gap: 16px;
+
+  transition:
+    transform 0.35s ease,
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
 }
 
+/* =================================
+   CARD GLOW ORB
+================================= */
+.terminal-card::before {
+  content: "";
+
+  position: absolute;
+
+  top: -80px;
+  right: -80px;
+
+  width: 180px;
+  height: 180px;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      rgba(234,42,51,0.15),
+      transparent
+    );
+
+  pointer-events: none;
+}
+
+/* =================================
+   CARD HOVER
+================================= */
 .terminal-card:hover {
-  transform: translateY(-8px);
-  border-color: rgba(234, 42, 51, 0.8);
-  box-shadow: 0 0 30px rgba(234, 42, 51, 0.35);
+  transform:
+    translateY(-10px)
+    scale(1.03);
+
+  border-color:
+    rgba(234,42,51,0.75);
+
+  box-shadow:
+    0 0 35px rgba(234,42,51,0.18);
 }
 
+/* =================================
+   ICON
+================================= */
 .terminal-icon {
   font-size: 2rem;
+
   color: #ea2a33;
+
+  transition: 0.3s ease;
 }
 
-/* ================================
-   SCROLL REVEAL (SAME SYSTEM)
-================================ */
-.reveal {
-  opacity: 0;
-  transform: translateY(70px);
-  transition: all 0.9s ease;
+.terminal-card:hover .terminal-icon {
+  transform: scale(1.12);
 }
 
-.reveal.active {
-  opacity: 1;
-  transform: translateY(0);
+/* =================================
+   CARD TEXT
+================================= */
+.terminal-card span {
+  font-size: 14px;
+
+  font-weight: 700;
+
+  letter-spacing: 1px;
 }
 
-.reveal.delay-1 { transition-delay: 0.15s; }
-.reveal.delay-2 { transition-delay: 0.3s; }
-.reveal.delay-3 { transition-delay: 0.45s; }
-.reveal.delay-4 { transition-delay: 0.6s; }
-.reveal.delay-5 { transition-delay: 0.75s; }
-.reveal.delay-6 { transition-delay: 0.9s; }
-
-/* ================================
-   MOBILE
-================================ */
-@media (max-width: 576px) {
-  .terminal-header h1 {
-    font-size: 2.2rem;
-  }
-}
-/* ================================
-   CONTACT FORM
-================================ */
+/* =================================
+   FORM
+================================= */
 .terminal-form {
-  margin-top: 60px;
-  max-width: 600px;
+  margin-top: 80px;
+
+  width: 100%;
+  max-width: 720px;
+
   margin-left: auto;
   margin-right: auto;
 
+  padding: 38px;
+
+  border-radius: 28px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(15,15,15,0.96),
+      rgba(10,10,10,0.96)
+    );
+
+  border:
+    1px solid rgba(234,42,51,0.22);
+
+  backdrop-filter: blur(10px);
+
   display: flex;
+
   flex-direction: column;
-  gap: 16px;
+
+  gap: 20px;
+
+  position: relative;
+
+  overflow: hidden;
 }
 
+/* =================================
+   FORM GLOW
+================================= */
+.terminal-form::before {
+  content: "";
+
+  position: absolute;
+
+  top: -120px;
+  right: -120px;
+
+  width: 260px;
+  height: 260px;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      rgba(234,42,51,0.12),
+      transparent
+    );
+
+  pointer-events: none;
+}
+
+/* =================================
+   INPUTS
+================================= */
 .terminal-form input,
-.terminal-form textarea {
-  padding: 14px;
-  background: rgba(13, 13, 13, 0.9);
-  border: 1px solid rgba(234, 42, 51, 0.35);
-  border-radius: 10px;
+.terminal-form textarea,
+.terminal-form select {
+  width: 100%;
+
+  padding: 16px 18px;
+
+  border-radius: 14px;
+
+  border:
+    1px solid rgba(255,255,255,0.08);
+
+  background:
+    rgba(255,255,255,0.03);
+
   color: #fff;
+
+  font-size: 14px;
+
   outline: none;
+
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    transform 0.3s ease;
 }
 
-.terminal-form textarea {
-  min-height: 120px;
-  resize: none;
+/* =================================
+   PLACEHOLDER
+================================= */
+.terminal-form input::placeholder,
+.terminal-form textarea::placeholder {
+  color: #7a7a7a;
 }
 
-.terminal-form button {
-  padding: 12px;
-  background: #ea2a33;
-  border: none;
-  border-radius: 10px;
+/* =================================
+   FOCUS
+================================= */
+.terminal-form input:focus,
+.terminal-form textarea:focus,
+.terminal-form select:focus {
+  border-color:
+    rgba(234,42,51,0.8);
+
+  box-shadow:
+    0 0 18px rgba(234,42,51,0.15);
+
+  transform: translateY(-2px);
+}
+
+/* =================================
+   SELECT OPTION
+================================= */
+.terminal-form option {
+  background: #111;
+
   color: #fff;
-  font-weight: 700;
+}
+
+/* =================================
+   TEXTAREA
+================================= */
+.terminal-form textarea {
+  min-height: 170px;
+
+  resize: none;
+
+  line-height: 1.8;
+}
+
+/* =================================
+   CHECKBOX
+================================= */
+.agreement-box {
+  display: flex;
+
+  align-items: flex-start;
+
+  gap: 12px;
+
+  margin-top: 4px;
+
+  text-align: left;
+
+  color: #b0b0b0;
+
+  font-size: 14px;
+
+  line-height: 1.6;
+}
+
+.agreement-box input {
+  width: 18px;
+  height: 18px;
+
+  margin-top: 2px;
+
+  accent-color: #ea2a33;
+
   cursor: pointer;
 }
 
-.terminal-form button:hover {
-  background: #c91f27;
+/* =================================
+   BUTTON
+================================= */
+.terminal-form button {
+  height: 54px;
+
+  border-radius: 16px;
+
+  border: none;
+
+  background: #ea2a33;
+
+  color: #fff;
+
+  font-size: 14px;
+
+  font-weight: 700;
+
+  letter-spacing: 1px;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
-.success-msg {
-  margin-top: 20px;
-  color: #4ade80;
+/* =================================
+   BUTTON HOVER
+================================= */
+.terminal-form button:hover {
+  background: #c91f27;
+
+  box-shadow:
+    0 0 24px rgba(234,42,51,0.28);
 }
-/* ✅ ADDED: disabled button state */
+
+/* =================================
+   BUTTON DISABLED
+================================= */
 .terminal-form button:disabled {
-  opacity: 0.6;
+  opacity: 0.7;
+
   cursor: not-allowed;
+
+  transform: none;
+
+  box-shadow: none;
+}
+
+/* =================================
+   SUCCESS MESSAGE
+================================= */
+.success-msg {
+  margin-top: 28px;
+
+  color: #4ade80;
+
+  font-size: 15px;
+
+  font-weight: 700;
+}
+
+/* =================================
+   TABLET
+================================= */
+@media (max-width: 1024px) {
+
+  .terminal-header h1 {
+    font-size: 3rem;
+  }
+
+  .terminal-grid {
+    gap: 24px;
+  }
+
+  .terminal-form {
+    padding: 32px;
+  }
+
+}
+
+/* =================================
+   MOBILE
+================================= */
+@media (max-width: 768px) {
+
+  .terminal-wrapper {
+    padding: 110px 18px 70px;
+  }
+
+  .terminal-header h1 {
+    font-size: 2.5rem;
+  }
+
+  .terminal-grid {
+    gap: 20px;
+  }
+
+  .terminal-card {
+    flex: 0 0 180px;
+
+    max-width: 180px;
+  }
+
+  .terminal-form {
+    margin-top: 70px;
+
+    padding: 28px;
+  }
+
+}
+
+/* =================================
+   SMALL MOBILE
+================================= */
+@media (max-width: 576px) {
+
+  .terminal-wrapper {
+    padding: 100px 16px 60px;
+  }
+
+  .terminal-header h1 {
+    font-size: 2rem;
+
+    line-height: 1.2;
+  }
+
+  .terminal-header p {
+    font-size: 0.9rem;
+  }
+
+  .terminal-grid {
+    gap: 18px;
+  }
+
+  .terminal-card {
+    flex: 0 0 100%;
+
+    max-width: 100%;
+  }
+
+  .terminal-form {
+    margin-top: 60px;
+
+    padding: 22px;
+
+    border-radius: 22px;
+  }
+
+  .terminal-form input,
+  .terminal-form textarea,
+  .terminal-form select {
+    padding: 14px;
+
+    font-size: 13px;
+  }
+
+  .terminal-form textarea {
+    min-height: 150px;
+  }
+
+  .terminal-form button {
+    height: 50px;
+
+    font-size: 13px;
+  }
+
+  .agreement-box {
+    font-size: 13px;
+  }
+
 }

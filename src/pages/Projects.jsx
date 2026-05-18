@@ -1,66 +1,237 @@
-import { useEffect } from "react";
+import { motion } from "framer-motion";
+import {
+  FaGithub,
+  FaExternalLinkAlt,
+} from "react-icons/fa";
+
 import "../styles/projects.css";
 import { projects } from "../data/projects";
 
 const Projects = () => {
 
-  useEffect(() => {
-    const reveals = document.querySelectorAll(".reveal");
+  /* =================================
+     FRAMER VARIANTS
+  ================================= */
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("active");
-          }
-        });
+  const containerVariants = {
+
+    hidden: {},
+
+    visible: {
+
+      transition: {
+        staggerChildren: 0.12,
       },
-      { threshold: 0.15 }
-    );
 
-    reveals.forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
-  }, []);
+    },
+
+  };
+
+  const itemVariants = {
+
+    hidden: {
+      opacity: 0,
+      y: 60,
+    },
+
+    visible: {
+
+      opacity: 1,
+      y: 0,
+
+      transition: {
+        duration: 0.8,
+        ease: "easeOut",
+      },
+
+    },
+
+  };
 
   return (
+
     <main className="projects-wrapper">
 
-      {/* TITLE */}
-      <h1 className="projects-title reveal">
+      {/* =========================
+          PAGE TITLE
+      ========================= */}
+
+      <motion.h1
+        className="projects-title"
+
+        initial={{
+          opacity: 0,
+          y: 30,
+        }}
+
+        animate={{
+          opacity: 1,
+          y: 0,
+        }}
+
+        transition={{
+          duration: 0.8,
+        }}
+      >
+
         PROJECT <span>DEPLOYMENTS</span>
-      </h1>
 
-      {/* PROJECT GRID */}
-      <div className="projects-grid">
-        {projects.map((project, index) => (
-          <div
-            className={`project-card reveal delay-${(index % 3) + 1}`}
-            key={index}
-          >
-            <h2 className="project-name">
-              {project.title}
-            </h2>
+      </motion.h1>
 
-            <p className="project-desc">
-              {project.description}
-            </p>
+      {/* =========================
+          PROJECT GRID
+      ========================= */}
 
-            <div className="project-actions">
-              <a
-                href={project.github}
-                target="_blank"
-                rel="noreferrer"
-                className="btn-outline"
-              >
-                GitHub
-              </a>
-            </div>
-          </div>
-        ))}
-      </div>
+      <motion.div
+        className="projects-grid"
+
+        variants={containerVariants}
+
+        initial="hidden"
+
+        whileInView="visible"
+
+        viewport={{
+          once: true,
+          amount: 0.15,
+        }}
+      >
+
+        {
+          projects.map((project, index) => (
+
+            <motion.div
+              key={index}
+
+              className="project-card"
+
+              variants={itemVariants}
+
+              whileHover={{
+                y: -10,
+                scale: 1.02,
+              }}
+            >
+
+              {/* GLOW ORB */}
+              <div className="project-orb"></div>
+
+              {/* TOP SECTION */}
+              <div className="project-top">
+
+                <span className="project-id">
+                  {project.id}
+                </span>
+
+                <span
+                  className={`project-status ${project.status
+                    .toLowerCase()
+                    .replace(/\s/g, "-")}`}
+                >
+                  {project.status}
+                </span>
+
+              </div>
+
+              {/* CATEGORY */}
+              <p className="project-category">
+                {project.category}
+              </p>
+
+              {/* TITLE */}
+              <h2 className="project-name">
+                {project.title}
+              </h2>
+
+              {/* DESCRIPTION */}
+              <p className="project-desc">
+                {project.description}
+              </p>
+
+              {/* TECH STACK */}
+              <div className="tech-stack">
+
+                {
+                  project.tech.map((tech, i) => (
+
+                    <span
+                      key={i}
+                      className="tech-badge"
+                    >
+                      {tech}
+                    </span>
+
+                  ))
+                }
+
+              </div>
+
+              {/* ACTION BUTTONS */}
+              <div className="project-actions">
+
+                {/* GITHUB */}
+                <motion.a
+                  href={project.github}
+
+                  target="_blank"
+
+                  rel="noreferrer"
+
+                  className="btn-outline"
+
+                  whileHover={{
+                    scale: 1.05,
+                  }}
+
+                  whileTap={{
+                    scale: 0.95,
+                  }}
+                >
+
+                  <FaGithub />
+
+                  GitHub
+
+                </motion.a>
+
+                {/* LIVE */}
+                {/* <motion.a
+                  href={project.live}
+
+                  target="_blank"
+
+                  rel="noreferrer"
+
+                  className="btn-primary"
+
+                  whileHover={{
+                    scale: 1.05,
+                  }}
+
+                  whileTap={{
+                    scale: 0.95,
+                  }}
+                >
+
+                  <FaExternalLinkAlt />
+
+                  Live
+
+                </motion.a> */}
+
+              </div>
+
+            </motion.div>
+
+          ))
+        }
+
+      </motion.div>
 
     </main>
+
   );
+
 };
 
 export default Projects;

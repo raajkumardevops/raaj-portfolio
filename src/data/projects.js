@@ -1,52 +1,264 @@
 export const projects = [
+
   {
+    id: "01",
+
     title: "InstaClone",
-    description: "Developed a responsive Instagram-style frontend application using React.js and Bootstrap to simulate modern social media interface behavior. Implemented reusable React components with CRUD-based dynamic rendering for managing posts and user interactions.",
-    github: "https://github.com/raajkumardevops/instagramClone"
+
+    description:
+      "Developed a responsive Instagram-style frontend application using React.js and Bootstrap to simulate modern social media behavior with reusable CRUD-based components.",
+
+    github:
+      "https://github.com/raajkumardevops/instagramClone",
+
+    live:
+      "#",
+
+    status: "COMPLETED",
+
+    category: "SOCIAL MEDIA",
+
+    tech: [
+      "React",
+      "Bootstrap",
+      "CRUD",
+      "UI/UX"
+    ],
   },
+
   {
+    id: "02",
+
     title: "Newyear Wishes",
-    description: "A romantic New Year web experience celebrating love, moments, and memories through an interactive and heartfelt design.using React and online CSS reference",
-    github: "https://github.com/raajkumardevops/newyear.wishes",
+
+    description:
+      "A romantic New Year web experience celebrating love, moments, and memories through an interactive and heartfelt animated interface.",
+
+    github:
+      "https://github.com/raajkumardevops/newyear.wishes",
+
+    live:
+      "#",
+
+    status: "LIVE",
+
+    category: "ROMANTIC EXPERIENCE",
+
+    tech: [
+      "React",
+      "CSS",
+      "Animation",
+      "Responsive"
+    ],
   },
-   {
+
+  {
+    id: "03",
+
     title: "Ml Traders",
-    description: "Built a frontend e-commerce application with product listing and client-side routing. Implemented seamless navigation using React Router.",
-    github: "https://github.com/raajkumardevops/ml-traders",
+
+    description:
+      "Built a frontend e-commerce application with product listing, modern UI cards, and seamless client-side navigation using React Router.",
+
+    github:
+      "https://github.com/raajkumardevops/ml-traders",
+
+    live:
+      "#",
+
+    status: "COMPLETED",
+
+    category: "E-COMMERCE",
+
+    tech: [
+      "React",
+      "Router",
+      "Frontend",
+      "E-Commerce"
+    ],
   },
+
   {
+    id: "04",
+
     title: "Calculator IOS",
-    description: "An IOS inspired calculator app that can do all logic calculations which is developed with REACT",
-    github: "https://github.com/raajkumardevops/calculator.ios",
+
+    description:
+      "An IOS-inspired calculator web app developed using React.js with smooth UI interactions and advanced logical calculations.",
+
+    github:
+      "https://github.com/raajkumardevops/calculator.ios",
+
+    live:
+      "#",
+
+    status: "LIVE",
+
+    category: "UTILITY APP",
+
+    tech: [
+      "React",
+      "JavaScript",
+      "UI Design",
+      "Logic"
+    ],
   },
-    {
+
+  {
+    id: "05",
+
     title: "Task Master",
-    description: "TaskMaster is a backend task management system built with Node.js, Express, and MongoDB, featuring RESTful APIs for creating, updating, tracking, and managing tasks with a scalable architecture.",
-    github: "https://github.com/raajkumardevops/taskmaster-",
+
+    description:
+      "TaskMaster is a backend task management system built with Node.js, Express, and MongoDB using scalable RESTful APIs.",
+
+    github:
+      "https://github.com/raajkumardevops/taskmaster-",
+
+    live:
+      "#",
+
+    status: "IN DEVELOPMENT",
+
+    category: "BACKEND SYSTEM",
+
+    tech: [
+      "Node.js",
+      "Express",
+      "MongoDB",
+      "REST API"
+    ],
   },
+
   {
-    title: "RK portfolio",
-    description: "A personal portfolio website highlighting my full-stack development skills, real-world projects, and technical expertise. ",
-    github: "https://github.com/raajkumardevops/taskmaster-",
+    id: "06",
+
+    title: "RK Portfolio",
+
+    description:
+      "A futuristic full-stack developer portfolio showcasing projects, Firebase integration, animations, and admin dashboard systems.",
+
+    github:
+      "https://github.com/raajkumardevops/taskmaster-",
+
+    live:
+      "#",
+
+    status: "LIVE",
+
+    category: "PORTFOLIO",
+
+    tech: [
+      "React",
+      "Firebase",
+      "Framer Motion",
+      "EmailJS"
+    ],
   },
+
   {
+    id: "07",
+
     title: "For-My-Eternity",
-    description: "A responsive romantic web app built with React (Vite), CSS3, and Bootstrap, showcasing interactive UI flows, animated love letters, a draggable memory gallery, and music-driven emotional storytelling.",
-    github: "https://github.com/raajkumardevops/for-my-eternity-portfolio",
+
+    description:
+      "A responsive romantic storytelling experience with animations, draggable gallery, music interactions, and emotional UI flow.",
+
+    github:
+      "https://github.com/raajkumardevops/for-my-eternity-portfolio",
+
+    live:
+      "#",
+
+    status: "COMPLETED",
+
+    category: "INTERACTIVE EXPERIENCE",
+
+    tech: [
+      "React",
+      "Animation",
+      "Bootstrap",
+      "Story UI"
+    ],
   },
+
   {
-    title: "Fundamental-QUIZ-APP",
-    description: "Fundamental Quiz Web App – A responsive quiz app built with HTML, CSS, Bootstrap, and Vanilla JavaScript, featuring difficulty levels, non-repeating questions, and localStorage-based score tracking.",
-    github: "https://github.com/raajkumardevops/RK-quiz",
+    id: "08",
+
+    title: "Fundamental Quiz App",
+
+    description:
+      "A responsive quiz application with difficulty levels, score tracking, dynamic questions, and localStorage integration.",
+
+    github:
+      "https://github.com/raajkumardevops/RK-quiz",
+
+    live:
+      "#",
+
+    status: "LIVE",
+
+    category: "QUIZ PLATFORM",
+
+    tech: [
+      "JavaScript",
+      "Bootstrap",
+      "Quiz Logic",
+      "Storage"
+    ],
   },
+
   {
-    title: "Campus Course Registration Portal (CCRP)",
-    description: "Developed a MERN-based Campus Course Registration Portal to digitize student course enrollment and reduce manual registration work. Students can register, log in, apply for courses, and track applications, while admins manage records through a secure dashboard.",
-    github: "https://github.com/raajkumardevops/CCRP",
+    id: "09",
+
+    title:
+      "Campus Course Registration Portal",
+
+    description:
+      "A MERN-based course registration portal allowing students to register, apply for courses, and track applications through secure dashboards.",
+
+    github:
+      "https://github.com/raajkumardevops/CCRP",
+
+    live:
+      "#",
+
+    status: "IN DEVELOPMENT",
+
+    category: "MERN APPLICATION",
+
+    tech: [
+      "MongoDB",
+      "Express",
+      "React",
+      "Node.js"
+    ],
   },
+
   {
-    title: "krizawsdba",
-    description: "A technical portfolio and blog focused on database administration and cloud technologies, showcasing practical knowledge, real-world solutions, and professional expertise in backend systems.",
-    github: "https://github.com/raajkumardevops/KrizAwsDba",
-  }
+    id: "10",
+
+    title: "KrizAwsDba",
+
+    description:
+      "A technical platform focused on cloud technologies, backend systems, database administration, and infrastructure solutions.",
+
+    github:
+      "https://github.com/raajkumardevops/KrizAwsDba",
+
+    live:
+      "#",
+
+    status: "COMPLETED",
+
+    category: "CLOUD & DBA",
+
+    tech: [
+      "AWS",
+      "Database",
+      "Backend",
+      "Cloud"
+    ],
+  },
+
 ];

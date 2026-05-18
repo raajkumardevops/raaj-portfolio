@@ -1,179 +1,405 @@
+/* =================================
+   WRAPPER
+================================= */
 .projects-wrapper {
   min-height: 100vh;
-  padding: 110px 24px 70px;
+
+  padding: 120px 24px 80px;
+
   background: #0d0d0d;
+
   text-align: center;
+
+  overflow: hidden;
 }
 
+/* =================================
+   TITLE
+================================= */
 .projects-title {
-  font-size: 3rem;
+  font-size: 3.2rem;
+
   font-weight: 900;
-  margin-bottom: 50px;
+
+  margin-bottom: 60px;
+
   text-transform: uppercase;
+
+  line-height: 1.1;
 }
 
 .projects-title span {
   color: #ea2a33;
 }
 
+/* =================================
+   GRID
+================================= */
 .projects-grid {
-  max-width: 1100px;
+  max-width: 1300px;
+
   margin: 0 auto;
 
-  display: flex;           /* 🔥 CHANGE */
-  flex-wrap: wrap;         /* allow multiple rows */
-  justify-content: center; /* center items */
+  display: flex;
 
-  gap: 28px;
+  flex-wrap: wrap;
+
+  justify-content: center;
+
+  gap: 32px;
 }
 
+/* =================================
+   CARD
+================================= */
 .project-card {
-  flex: 0 0 280px;   /* 🔥 FIX width */
-  max-width: 280px;
+  position: relative;
+
+  width: 340px;
 
   padding: 28px;
-  background: rgba(13, 13, 13, 0.9);
-  border: 1px solid rgba(234, 42, 51, 0.35);
-  border-radius: 14px;
-  transition: all 0.3s ease;
+
+  border-radius: 22px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(15,15,15,0.95),
+      rgba(10,10,10,0.95)
+    );
+
+  border:
+    1px solid rgba(234,42,51,0.25);
+
+  overflow: hidden;
+
+  text-align: left;
+
+  transition:
+    transform 0.35s ease,
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
 }
 
+/* =================================
+   GLOW EFFECT
+================================= */
+.project-orb {
+  position: absolute;
+
+  top: -90px;
+  right: -90px;
+
+  width: 200px;
+  height: 200px;
+
+  background:
+    radial-gradient(
+      rgba(234,42,51,0.18),
+      transparent
+    );
+
+  border-radius: 50%;
+
+  pointer-events: none;
+}
+
+/* =================================
+   HOVER
+================================= */
 .project-card:hover {
-  transform: translateY(-8px);
-  border-color: rgba(234, 42, 51, 0.8);
-  box-shadow: 0 0 30px rgba(234, 42, 51, 0.35);
+  border-color:
+    rgba(234,42,51,0.6);
+
+  box-shadow:
+    0 0 30px rgba(234,42,51,0.18);
 }
 
-.project-name {
-  font-size: 1.4rem;
-  font-weight: 800;
-  margin-bottom: 12px;
-}
-
-.project-desc {
-  font-size: 0.9rem;
-  color: #b0b0b0;
-  line-height: 1.6;
-}
-
-.project-actions {
-  margin-top: 20px;
+/* =================================
+   TOP
+================================= */
+.project-top {
   display: flex;
-  justify-content: center;
-  gap: 14px;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  margin-bottom: 16px;
 }
 
-/* ================================
-   BUTTONS (CURVED + EXPAND + SWAP)
-================================ */
+/* PROJECT NUMBER */
+.project-id {
+  font-size: 0.9rem;
+
+  font-weight: 800;
+
+  color:
+    rgba(255,255,255,0.35);
+}
+
+/* =================================
+   STATUS
+================================= */
+.project-status {
+  padding: 6px 12px;
+
+  border-radius: 999px;
+
+  font-size: 10px;
+
+  font-weight: 700;
+
+  letter-spacing: 1px;
+}
+
+/* LIVE */
+.live {
+  background:
+    rgba(34,197,94,0.15);
+
+  color: #4ade80;
+}
+
+/* COMPLETED */
+.completed {
+  background:
+    rgba(59,130,246,0.15);
+
+  color: #60a5fa;
+}
+
+/* DEVELOPMENT */
+.in-development {
+  background:
+    rgba(234,179,8,0.15);
+
+  color: #facc15;
+}
+
+/* =================================
+   CATEGORY
+================================= */
+.project-category {
+  font-size: 11px;
+
+  letter-spacing: 2px;
+
+  color:
+    rgba(234,42,51,0.7);
+
+  margin-bottom: 12px;
+
+  text-transform: uppercase;
+}
+
+/* =================================
+   NAME
+================================= */
+.project-name {
+  font-size: 1.6rem;
+
+  font-weight: 900;
+
+  line-height: 1.2;
+
+  margin-bottom: 18px;
+}
+
+/* =================================
+   DESCRIPTION
+================================= */
+.project-desc {
+  font-size: 0.92rem;
+
+  color: #b0b0b0;
+
+  line-height: 1.8;
+
+  margin-bottom: 24px;
+}
+
+/* =================================
+   TECH STACK
+================================= */
+.tech-stack {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 10px;
+
+  margin-bottom: 28px;
+}
+
+.tech-badge {
+  padding: 8px 12px;
+
+  border-radius: 999px;
+
+  background:
+    rgba(255,255,255,0.05);
+
+  border:
+    1px solid rgba(255,255,255,0.08);
+
+  font-size: 11px;
+
+  font-weight: 700;
+
+  color: #d1d5db;
+
+  transition: 0.3s ease;
+}
+
+.tech-badge:hover {
+  border-color:
+    rgba(234,42,51,0.5);
+
+  color: #fff;
+}
+
+/* =================================
+   ACTIONS
+================================= */
+.project-actions {
+  display: flex;
+
+  gap: 14px;
+
+  flex-wrap: wrap;
+}
+
+/* =================================
+   BUTTONS
+================================= */
 .btn-primary,
 .btn-outline {
-  padding: 10px 18px;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 1px;
-  text-decoration: none;
+  height: 44px;
 
-  border-radius: 10px;
+  padding: 0 18px;
+
+  border-radius: 12px;
+
   display: inline-flex;
+
   align-items: center;
   justify-content: center;
 
+  gap: 10px;
+
+  text-decoration: none;
+
+  font-size: 12px;
+
+  font-weight: 700;
+
+  letter-spacing: 1px;
+
   transition: all 0.3s ease;
 }
 
-/* PRIMARY BUTTON */
+/* PRIMARY */
 .btn-primary {
   background: #ea2a33;
+
   color: #fff;
+
   border: 1px solid transparent;
-  box-shadow: 0 0 14px rgba(234,42,51,0.35);
+
+  box-shadow:
+    0 0 16px rgba(234,42,51,0.25);
 }
 
-/* PRIMARY → HOVER */
 .btn-primary:hover {
-  transform: translateY(-3px) scale(1.05);
-  padding: 10px 26px;
   background: transparent;
-  color: #fff;
-  border: 1px solid rgba(234, 42, 51, 0.6);
+
+  border:
+    1px solid rgba(234,42,51,0.6);
+
   box-shadow: none;
 }
 
-/* OUTLINE BUTTON */
+/* OUTLINE */
 .btn-outline {
   background: transparent;
-  border: 1px solid rgba(234, 42, 51, 0.6);
+
+  border:
+    1px solid rgba(234,42,51,0.4);
+
   color: #fff;
 }
 
-/* OUTLINE → HOVER */
 .btn-outline:hover {
-  transform: translateY(-3px) scale(1.05);
-  padding: 10px 26px;
   background: #ea2a33;
-  color: #fff;
-  border: 1px solid transparent;
-  box-shadow: 0 0 14px rgba(234,42,51,0.35);
+
+  border-color: transparent;
 }
 
-/* ================================
-   TABLET (Spacing Only)
-================================ */
+/* =================================
+   TABLET
+================================= */
 @media (max-width: 1024px) {
-  .projects-wrapper {
-    padding: 100px 20px 60px;
-  }
 
-  .projects-title {
-    margin-bottom: 45px;
+  .projects-wrapper {
+    padding: 110px 20px 70px;
   }
 
   .projects-grid {
-    gap: 24px;
+    gap: 26px;
   }
+
 }
 
-/* ================================
-   MOBILE (Spacing Only)
-================================ */
+/* =================================
+   MOBILE
+================================= */
 @media (max-width: 768px) {
-  .projects-wrapper {
-    padding: 90px 16px 50px;
-  }
 
   .projects-title {
-    margin-bottom: 40px;
-  }
-
-  .projects-grid {
-    gap: 20px;
+    font-size: 2.3rem;
   }
 
   .project-card {
-    padding: 24px;
+    width: 100%;
+  }
+
+}
+
+/* =================================
+   SMALL MOBILE
+================================= */
+@media (max-width: 576px) {
+
+  .projects-wrapper {
+    padding: 100px 16px 60px;
+  }
+
+  .projects-title {
+    font-size: 2rem;
+
+    line-height: 1.2;
+  }
+
+  .project-card {
+    padding: 22px;
+  }
+
+  .project-name {
+    font-size: 1.4rem;
+  }
+
+  .project-desc {
+    font-size: 0.88rem;
   }
 
   .project-actions {
-    margin-top: 18px;
-    gap: 12px;
+    flex-direction: column;
   }
-}
 
-/* ================================
-   SCROLL REVEAL (REUSED)
-================================ */
-.reveal {
-  opacity: 0;
-  transform: translateY(60px);
-  transition: all 0.8s ease;
-}
+  .btn-primary,
+  .btn-outline {
+    width: 100%;
+  }
 
-.reveal.active {
-  opacity: 1;
-  transform: translateY(0);
 }
-
-.reveal.delay-1 { transition-delay: 0.15s; }
-.reveal.delay-2 { transition-delay: 0.3s; }
-.reveal.delay-3 { transition-delay: 0.45s; }
