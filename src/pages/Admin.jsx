@@ -1,63 +1,157 @@
-import { useEffect, useState } from "react";
-import { db, auth, provider } from "../firebase";
+import {
+  useEffect,
+  useState,
+} from "react";
 
 import {
+  motion,
+  AnimatePresence,
+} from "framer-motion";
+
+import {
+  FaGoogle,
+  FaSignOutAlt,
+  FaTrash,
+  FaEnvelope,
+  FaPhoneAlt,
+  FaGlobe,
+  FaDatabase,
+  FaClipboardList,
+} from "react-icons/fa";
+
+import {
+  db,
+  auth,
+  provider,
+} from "../firebase";
+
+import {
+
   collection,
   getDocs,
   query,
   orderBy,
   deleteDoc,
-  doc
+  doc,
+
 } from "firebase/firestore";
 
 import {
+
   signInWithPopup,
   onAuthStateChanged,
-  signOut
+  signOut,
+
 } from "firebase/auth";
 
-// ✅ CSS IMPORT
 import "../styles/admin.css";
 
 function Admin() {
 
-  const [user, setUser] = useState(null);
-  const [messages, setMessages] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [loginLoading, setLoginLoading] = useState(false);
+  /* =================================
+     STATES
+  ================================= */
 
-  // ✅ ADMIN EMAIL
-  const ADMIN_EMAIL = "raajkumar.devops@gmail.com";
+  const [user, setUser] =
+    useState(null);
 
-  // 🔐 AUTH CHECK
+  const [messages, setMessages] =
+    useState([]);
+
+  const [loading, setLoading] =
+    useState(true);
+
+  const [loginLoading, setLoginLoading] =
+    useState(false);
+
+  /* =================================
+     ADMIN EMAIL
+  ================================= */
+
+  const ADMIN_EMAIL =
+    "raajkumar.devops@gmail.com";
+
+  /* =================================
+     FRAMER VARIANTS
+  ================================= */
+
+  const containerVariants = {
+
+    hidden: {},
+
+    visible: {
+
+      transition: {
+        staggerChildren: 0.1,
+      },
+
+    },
+
+  };
+
+  const itemVariants = {
+
+    hidden: {
+      opacity: 0,
+      y: 40,
+    },
+
+    visible: {
+
+      opacity: 1,
+      y: 0,
+
+      transition: {
+        duration: 0.7,
+        ease: "easeOut",
+      },
+
+    },
+
+  };
+
+  /* =================================
+     AUTH CHECK
+  ================================= */
+
   useEffect(() => {
 
-    const unsub = onAuthStateChanged(auth, async (currentUser) => {
+    const unsub =
+      onAuthStateChanged(
+        auth,
 
-      // ❌ FORCE LOGOUT IF NOT ADMIN
-      if (
-        currentUser &&
-        currentUser.email !== ADMIN_EMAIL
-      ) {
+        async (currentUser) => {
 
-        await signOut(auth);
+          if (
+            currentUser &&
+            currentUser.email !==
+              ADMIN_EMAIL
+          ) {
 
-        setUser(null);
-        setLoading(false);
+            await signOut(auth);
 
-        return;
-      }
+            setUser(null);
 
-      setUser(currentUser);
-      setLoading(false);
+            setLoading(false);
 
-    });
+            return;
+          }
+
+          setUser(currentUser);
+
+          setLoading(false);
+
+        }
+      );
 
     return () => unsub();
 
   }, []);
 
-  // 🔥 FETCH MESSAGES
+  /* =================================
+     FETCH DATA
+  ================================= */
+
   useEffect(() => {
 
     if (!user) return;
@@ -67,16 +161,26 @@ function Admin() {
       try {
 
         const q = query(
+
           collection(db, "contacts"),
-          orderBy("createdAt", "desc")
+
+          orderBy(
+            "createdAt",
+            "desc"
+          )
+
         );
 
-        const snapshot = await getDocs(q);
+        const snapshot =
+          await getDocs(q);
 
-        const data = snapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data()
-        }));
+        const data =
+          snapshot.docs.map((doc) => ({
+
+            id: doc.id,
+            ...doc.data(),
+
+          }));
 
         setMessages(data);
 
@@ -92,121 +196,211 @@ function Admin() {
 
   }, [user]);
 
-  // 🔐 LOGIN
-  const handleLogin = async () => {
+  /* =================================
+     LOGIN
+  ================================= */
 
-    try {
+  const handleLogin =
+    async () => {
 
-      setLoginLoading(true);
+      try {
 
-      const result = await signInWithPopup(
-        auth,
-        provider
-      );
+        setLoginLoading(true);
 
-      if (
-        result.user.email !== ADMIN_EMAIL
-      ) {
+        const result =
+          await signInWithPopup(
+            auth,
+            provider
+          );
 
-        alert("Unauthorized Access ❌");
+        if (
+          result.user.email !==
+          ADMIN_EMAIL
+        ) {
 
-        await signOut(auth);
+          alert(
+            "Unauthorized Access ❌"
+          );
 
-        return;
+          await signOut(auth);
+
+          return;
+        }
+
+      } catch (error) {
+
+        console.error(error);
+
+        alert(
+          "Login Failed ❌"
+        );
+
+      } finally {
+
+        setLoginLoading(false);
 
       }
 
-    } catch (error) {
+    };
 
-      console.error(error);
+  /* =================================
+     LOGOUT
+  ================================= */
 
-      alert("Login Failed ❌");
+  const handleLogout =
+    async () => {
 
-    } finally {
+      await signOut(auth);
 
-      setLoginLoading(false);
+    };
 
-    }
+  /* =================================
+     DELETE
+  ================================= */
 
-  };
+  const handleDelete =
+    async (id) => {
 
-  // 🔥 LOGOUT
-  const handleLogout = async () => {
+      const confirmDelete =
+        window.confirm(
+          "Delete this request?"
+        );
 
-    await signOut(auth);
+      if (!confirmDelete) return;
 
-  };
+      try {
 
-  // 🔥 DELETE
-  const handleDelete = async (id) => {
+        await deleteDoc(
+          doc(
+            db,
+            "contacts",
+            id
+          )
+        );
 
-    const confirmDelete = window.confirm(
-      "Delete this message?"
-    );
+        setMessages(
 
-    if (!confirmDelete) return;
+          messages.filter(
+            (msg) =>
+              msg.id !== id
+          )
 
-    try {
+        );
 
-      await deleteDoc(
-        doc(db, "contacts", id)
-      );
+      } catch (error) {
 
-      setMessages(
-        messages.filter(
-          (msg) => msg.id !== id
-        )
-      );
+        console.error(error);
 
-    } catch (error) {
+      }
 
-      console.error(error);
+    };
 
-    }
+  /* =================================
+     LOADING SCREEN
+  ================================= */
 
-  };
-
-  // 🔄 LOADING
   if (loading) {
 
     return (
-      <div className="admin-center">
-        <h1>Loading Dashboard...</h1>
+
+      <div className="admin-loading">
+
+        <motion.div
+
+          animate={{
+            rotate: 360,
+          }}
+
+          transition={{
+            repeat: Infinity,
+            duration: 1,
+            ease: "linear",
+          }}
+
+          className="loader-circle"
+        />
+
+        <h1>
+          Loading Dashboard...
+        </h1>
+
       </div>
+
     );
 
   }
 
-  // ❌ LOGIN SCREEN
+  /* =================================
+     LOGIN SCREEN
+  ================================= */
+
   if (!user) {
 
     return (
 
       <div className="admin-login-wrapper">
 
-        <div className="admin-login-card">
+        <motion.div
+          className="admin-login-card"
+
+          initial={{
+            opacity: 0,
+            y: 40,
+          }}
+
+          animate={{
+            opacity: 1,
+            y: 0,
+          }}
+
+          transition={{
+            duration: 0.8,
+          }}
+        >
+
+          <div className="login-orb"></div>
 
           <h1 className="admin-title">
+
             Admin Access 🔐
+
           </h1>
 
           <p className="admin-subtitle">
+
             Secure Firebase Dashboard
+
           </p>
 
-          <button
+          <motion.button
+
             onClick={handleLogin}
+
             className="admin-login-btn"
+
             disabled={loginLoading}
+
+            whileHover={{
+              scale: 1.03,
+              y: -2,
+            }}
+
+            whileTap={{
+              scale: 0.96,
+            }}
           >
+
+            <FaGoogle />
+
             {
               loginLoading
                 ? "Authenticating..."
                 : "Login with Google"
             }
-          </button>
 
-        </div>
+          </motion.button>
+
+        </motion.div>
 
       </div>
 
@@ -214,221 +408,325 @@ function Admin() {
 
   }
 
-  // ✅ DASHBOARD
-return (
+  /* =================================
+     DASHBOARD
+  ================================= */
 
-  <div className="admin-wrapper">
+  return (
 
-    {/* =========================
-        HEADER
-    ========================= */}
-    <div className="admin-header">
+    <motion.div
+      className="admin-wrapper"
 
-      <div>
+      variants={containerVariants}
 
-        <h1 className="admin-dashboard-title">
-          Admin Dashboard
-        </h1>
+      initial="hidden"
 
-        <p className="admin-email">
-          {user.email}
-        </p>
+      animate="visible"
+    >
 
-      </div>
+      {/* =========================
+          HEADER
+      ========================= */}
 
-      <button
-        onClick={handleLogout}
-        className="admin-logout-btn"
+      <motion.div
+        className="admin-header"
+
+        variants={itemVariants}
       >
-        Logout
-      </button>
 
-    </div>
+        <div>
 
-    {/* =========================
-        STATS
-    ========================= */}
-<div className="admin-stats-grid">
+          <h1 className="admin-dashboard-title">
 
-  {/* TOTAL REQUESTS */}
-  <div className="admin-stat-card requests-card">
+            Admin Dashboard
 
-    <div className="admin-stat-top">
-      <span className="admin-stat-label">
-        Total Requests
-      </span>
+          </h1>
 
-      <span className="admin-stat-icon">
-        📩
-      </span>
-    </div>
+          <p className="admin-email">
 
-    <h2 className="admin-stat-number">
-      {messages.length}
-    </h2>
+            {user.email}
 
-    <p className="admin-stat-desc">
-      Client project requests received
-    </p>
+          </p>
 
-  </div>
-
-  {/* DATABASE */}
-  <div className="admin-stat-card firebase-card">
-
-    <div className="admin-stat-top">
-
-      <span className="admin-stat-label">
-        Database Status
-      </span>
-
-      <span className="admin-stat-icon">
-        🔥
-      </span>
-
-    </div>
-
-    <h2 className="admin-stat-number">
-      Online
-    </h2>
-
-    <p className="admin-stat-desc">
-      Firebase connected successfully
-    </p>
-
-  </div>
-
-</div>
-
-    {/* =========================
-        EMPTY STATE
-    ========================= */}
-    {
-      messages.length === 0 && (
-        <div className="admin-empty">
-          No project requests yet 📭
         </div>
-      )
-    }
 
-    {/* =========================
-        CLIENT REQUESTS
-    ========================= */}
-    <div className="admin-grid">
+        <motion.button
 
-      {
-        messages.map((msg) => (
+          onClick={handleLogout}
 
-          <div
-            key={msg.id}
-            className="admin-card"
-          >
+          className="admin-logout-btn"
 
-            {/* =========================
-                TOP
-            ========================= */}
-            <div className="admin-card-top">
+          whileHover={{
+            scale: 1.04,
+          }}
 
-              <div>
+          whileTap={{
+            scale: 0.95,
+          }}
+        >
 
-                <h3 className="admin-name">
-                  {msg.name}
-                </h3>
+          <FaSignOutAlt />
 
-                <p className="admin-msg-email">
-                  {msg.email}
-                </p>
+          Logout
 
-              </div>
+        </motion.button>
 
-              <button
-                onClick={() =>
-                  handleDelete(msg.id)
-                }
-                className="admin-delete-btn"
-              >
-                Delete
-              </button>
+      </motion.div>
 
-            </div>
+      {/* =========================
+          STATS
+      ========================= */}
 
-            {/* =========================
-                CLIENT DETAILS
-            ========================= */}
+      <motion.div
+        className="admin-stats-grid"
 
-            <div className="admin-details">
+        variants={containerVariants}
+      >
 
-              <p>
-                <strong>📞 Phone:</strong>
-                {" "}
-                {msg.phone || "N/A"}
-              </p>
+        {/* REQUESTS */}
+        <motion.div
+          className="admin-stat-card requests-card"
 
-              <p>
-                <strong>🌐 Website Type:</strong>
-                {" "}
-                {msg.websiteType || "N/A"}
-              </p>
+          variants={itemVariants}
+        >
 
-              <p>
-                <strong>💰 Budget:</strong>
-                {" "}
-                {msg.budget || "N/A"}
-              </p>
+          <div className="admin-stat-icon-box">
 
-              <p>
-                <strong>✅ Agreement:</strong>
-                {" "}
-                {
-                  msg.agreement
-                    ? "Accepted"
-                    : "Not Accepted"
-                }
-              </p>
+            <FaClipboardList />
 
-            </div>
+          </div>
 
-            {/* =========================
-                REQUIREMENT
-            ========================= */}
-            <div className="admin-requirement-box">
+          <div>
 
-              <h4>
-                Project Requirement
-              </h4>
+            <h2>
+              {messages.length}
+            </h2>
 
-              <p className="admin-message">
-                {
-                  msg.message ||
-                  "No requirement provided"
-                }
-              </p>
-
-            </div>
-
-            {/* =========================
-                DATE
-            ========================= */}
-            <p className="admin-date">
-
-              {
-                msg.createdAt
-                  ?.toDate?.()
-                  ?.toLocaleString()
-              }
-
+            <p>
+              Total Requests
             </p>
 
           </div>
 
-        ))
+        </motion.div>
+
+        {/* DATABASE */}
+        <motion.div
+          className="admin-stat-card firebase-card"
+
+          variants={itemVariants}
+        >
+
+          <div className="admin-stat-icon-box">
+
+            <FaDatabase />
+
+          </div>
+
+          <div>
+
+            <h2>
+              Online
+            </h2>
+
+            <p>
+              Firebase Connected
+            </p>
+
+          </div>
+
+        </motion.div>
+
+      </motion.div>
+
+      {/* =========================
+          EMPTY
+      ========================= */}
+
+      {
+        messages.length === 0 && (
+
+          <motion.div
+            className="admin-empty"
+
+            variants={itemVariants}
+          >
+
+            No project requests yet 📭
+
+          </motion.div>
+
+        )
       }
 
-    </div>
+      {/* =========================
+          REQUEST GRID
+      ========================= */}
 
-  </div>
+      <motion.div
+        className="admin-grid"
 
-);
+        variants={containerVariants}
+      >
+
+        <AnimatePresence>
+
+          {
+            messages.map((msg) => (
+
+              <motion.div
+
+                key={msg.id}
+
+                className="admin-card"
+
+                variants={itemVariants}
+
+                initial={{
+                  opacity: 0,
+                  y: 30,
+                }}
+
+                animate={{
+                  opacity: 1,
+                  y: 0,
+                }}
+
+                exit={{
+                  opacity: 0,
+                  scale: 0.9,
+                }}
+
+                whileHover={{
+                  y: -6,
+                }}
+              >
+
+                {/* TOP */}
+                <div className="admin-card-top">
+
+                  <div>
+
+                    <h3 className="admin-name">
+
+                      {msg.name}
+
+                    </h3>
+
+                    <p className="admin-msg-email">
+
+                      <FaEnvelope />
+
+                      {msg.email}
+
+                    </p>
+
+                  </div>
+
+                  <motion.button
+
+                    onClick={() =>
+                      handleDelete(
+                        msg.id
+                      )
+                    }
+
+                    className="admin-delete-btn"
+
+                    whileHover={{
+                      scale: 1.05,
+                    }}
+
+                    whileTap={{
+                      scale: 0.95,
+                    }}
+                  >
+
+                    <FaTrash />
+
+                  </motion.button>
+
+                </div>
+
+                {/* DETAILS */}
+                <div className="admin-details">
+
+                  <p>
+
+                    <FaPhoneAlt />
+
+                    {msg.phone || "N/A"}
+
+                  </p>
+
+                  <p>
+
+                    <FaGlobe />
+
+                    {
+                      msg.websiteType ||
+                      "N/A"
+                    }
+
+                  </p>
+
+                  <p>
+
+                    💰
+                    {" "}
+                    {
+                      msg.budget ||
+                      "N/A"
+                    }
+
+                  </p>
+
+                </div>
+
+                {/* REQUIREMENT */}
+                <div className="admin-requirement-box">
+
+                  <h4>
+
+                    Project Requirement
+
+                  </h4>
+
+                  <p className="admin-message">
+
+                    {
+                      msg.message ||
+                      "No requirement"
+                    }
+
+                  </p>
+
+                </div>
+
+                {/* DATE */}
+                <p className="admin-date">
+
+                  {
+                    msg.createdAt
+                      ?.toDate?.()
+                      ?.toLocaleString()
+                  }
+
+                </p>
+
+              </motion.div>
+
+            ))
+          }
+
+        </AnimatePresence>
+
+      </motion.div>
+
+    </motion.div>
+
+  );
+
 }
 
 export default Admin;
