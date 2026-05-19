@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
+
 import { motion } from "framer-motion";
 
 import {
@@ -15,6 +16,8 @@ import {
 import { SiFirebase } from "react-icons/si";
 
 import "../styles/home.css";
+
+import skillsData from "../data/skillsData";
 
 const Home = () => {
 
@@ -648,38 +651,76 @@ const Home = () => {
 
         <div className="skills-grid">
 
-          {[
-            "HTML",
-            "CSS",
-            "Bootstrap",
-            "JavaScript",
-            "React",
-            "Node.js",
-            "Express",
-            "MongoDB",
-            "Firebase",
-            "Framer Motion",
-            "CRUD Operations",
-            "Git & GitHub",
-          ].map((skill, index) => (
+            {
+              skillsData.map((skill, index) => (
 
-            <motion.div
+                <motion.div
 
-              key={index}
+                  key={index}
 
-              className="skill-box"
+                  className="skill-card"
 
-              whileHover={{
-                y: -6,
-                scale: 1.04,
-              }}
-            >
+                  whileHover={{
+                    y: -8,
+                    scale: 1.02,
+                  }}
 
-              {skill}
+                  whileTap={{
+                    scale: 0.98,
+                  }}
 
-            </motion.div>
+                  onClick={() =>
+                    navigate(
+                      `/skills/${skill.id}`
+                    )
+                  }
+                >
 
-          ))}
+                  {/* GLOW */}
+
+                  <div className="skill-card-glow"></div>
+
+                  {/* ICON */}
+
+                <div
+                  className="skill-icon"
+                  style={{
+                    color: skill.color,
+                  }}
+                >
+
+                  {skill.icon}
+
+                </div>
+
+                {/* TITLE */}
+
+                <h3>
+
+                  {skill.title}
+
+                </h3>
+
+                {/* DESCRIPTION */}
+
+                <p>
+
+                  {skill.shortDesc}
+
+                </p>
+
+                {/* BUTTON */}
+
+                <div className="skill-link">
+
+                  Explore Technology →
+
+                </div>
+
+              </motion.div>
+
+            ))
+          }
 
         </div>
 

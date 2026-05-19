@@ -1,67 +1,42 @@
 import { motion } from "framer-motion";
+
 import {
   FaGithub,
   FaExternalLinkAlt,
+  FaCodeBranch,
 } from "react-icons/fa";
 
 import "../styles/projects.css";
+
 import { projects } from "../data/projects";
 
 const Projects = () => {
-
-  /* =================================
-     FRAMER VARIANTS
-  ================================= */
-
-  const containerVariants = {
-
-    hidden: {},
-
-    visible: {
-
-      transition: {
-        staggerChildren: 0.12,
-      },
-
-    },
-
-  };
-
-  const itemVariants = {
-
-    hidden: {
-      opacity: 0,
-      y: 60,
-    },
-
-    visible: {
-
-      opacity: 1,
-      y: 0,
-
-      transition: {
-        duration: 0.8,
-        ease: "easeOut",
-      },
-
-    },
-
-  };
 
   return (
 
     <main className="projects-wrapper">
 
-      {/* =========================
-          PAGE TITLE
-      ========================= */}
+      {/* =================================
+          BACKGROUND ELEMENTS
+      ================================= */}
 
-      <motion.h1
-        className="projects-title"
+      <div className="projects-grid-overlay"></div>
+
+      <div className="projects-orb orb-one"></div>
+
+      <div className="projects-orb orb-two"></div>
+
+      {/* =================================
+          PAGE HEADER
+      ================================= */}
+
+      <motion.section
+
+        className="projects-hero"
 
         initial={{
           opacity: 0,
-          y: 30,
+          y: 40,
         }}
 
         animate={{
@@ -74,103 +49,171 @@ const Projects = () => {
         }}
       >
 
-        PROJECT <span>DEPLOYMENTS</span>
+        <div className="hero-line"></div>
 
-      </motion.h1>
+        <span className="hero-label">
 
-      {/* =========================
+          SYSTEMS_OVERVIEW
+
+        </span>
+
+        <h1 className="projects-title">
+
+          PROJECT <span>DEPLOYMENTS</span>
+
+        </h1>
+
+        <p className="projects-subtitle">
+
+          Advanced frontend systems,
+          cinematic user interfaces,
+          scalable architecture, and
+          futuristic development
+          deployments crafted with
+          precision.
+
+        </p>
+
+      </motion.section>
+
+      {/* =================================
           PROJECT GRID
-      ========================= */}
+      ================================= */}
 
-      <motion.div
-        className="projects-grid"
-
-        variants={containerVariants}
-
-        initial="hidden"
-
-        whileInView="visible"
-
-        viewport={{
-          once: true,
-          amount: 0.15,
-        }}
-      >
+      <div className="projects-grid">
 
         {
           projects.map((project, index) => (
 
             <motion.div
+
               key={index}
 
               className="project-card"
 
-              variants={itemVariants}
+              initial={{
+                opacity: 0,
+                y: 50,
+              }}
+
+              animate={{
+                opacity: 1,
+                y: 0,
+              }}
+
+              transition={{
+                duration: 0.6,
+                delay: index * 0.12,
+              }}
 
               whileHover={{
                 y: -10,
-                scale: 1.02,
               }}
             >
 
-              {/* GLOW ORB */}
-              <div className="project-orb"></div>
+              {/* SHINE */}
 
-              {/* TOP SECTION */}
+              <div className="card-shine"></div>
+
+              {/* GLOW */}
+
+              <div className="project-orb-card"></div>
+
+              {/* =================================
+                  TOP BAR
+              ================================= */}
+
               <div className="project-top">
 
-                <span className="project-id">
-                  {project.id}
-                </span>
+                <div className="project-number">
+
+                  <FaCodeBranch />
+
+                  <span>
+
+                    {project.id}
+
+                  </span>
+
+                </div>
 
                 <span
                   className={`project-status ${project.status
                     .toLowerCase()
                     .replace(/\s/g, "-")}`}
                 >
+
                   {project.status}
+
                 </span>
 
               </div>
 
-              {/* CATEGORY */}
+              {/* =================================
+                  CATEGORY
+              ================================= */}
+
               <p className="project-category">
+
                 {project.category}
+
               </p>
 
-              {/* TITLE */}
+              {/* =================================
+                  TITLE
+              ================================= */}
+
               <h2 className="project-name">
+
                 {project.title}
+
               </h2>
 
-              {/* DESCRIPTION */}
+              {/* =================================
+                  DESCRIPTION
+              ================================= */}
+
               <p className="project-desc">
+
                 {project.description}
+
               </p>
 
-              {/* TECH STACK */}
+              {/* =================================
+                  TECH STACK
+              ================================= */}
+
               <div className="tech-stack">
 
                 {
-                  project.tech.map((tech, i) => (
+                  project.tech.map(
+                    (tech, i) => (
 
-                    <span
-                      key={i}
-                      className="tech-badge"
-                    >
-                      {tech}
-                    </span>
+                      <span
+                        key={i}
+                        className="tech-badge"
+                      >
 
-                  ))
+                        {tech}
+
+                      </span>
+
+                    )
+                  )
                 }
 
               </div>
 
-              {/* ACTION BUTTONS */}
+              {/* =================================
+                  ACTION BUTTONS
+              ================================= */}
+
               <div className="project-actions">
 
                 {/* GITHUB */}
+
                 <motion.a
+
                   href={project.github}
 
                   target="_blank"
@@ -195,29 +238,37 @@ const Projects = () => {
                 </motion.a>
 
                 {/* LIVE */}
-                {/* <motion.a
-                  href={project.live}
 
-                  target="_blank"
+                {
+                  project.live && (
 
-                  rel="noreferrer"
+                    <motion.a
 
-                  className="btn-primary"
+                      href={project.live}
 
-                  whileHover={{
-                    scale: 1.05,
-                  }}
+                      target="_blank"
 
-                  whileTap={{
-                    scale: 0.95,
-                  }}
-                >
+                      rel="noreferrer"
 
-                  <FaExternalLinkAlt />
+                      className="btn-primary"
 
-                  Live
+                      whileHover={{
+                        scale: 1.05,
+                      }}
 
-                </motion.a> */}
+                      whileTap={{
+                        scale: 0.95,
+                      }}
+                    >
+
+                      <FaExternalLinkAlt />
+
+                      Live
+
+                    </motion.a>
+
+                  )
+                }
 
               </div>
 
@@ -226,7 +277,7 @@ const Projects = () => {
           ))
         }
 
-      </motion.div>
+      </div>
 
     </main>
 

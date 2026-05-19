@@ -1,0 +1,852 @@
+/* =================================
+   SKILL DETAILS PAGE
+================================= */
+
+.skill-details-page {
+
+  position: relative;
+
+  min-height: 100vh;
+
+  padding: 140px 30px 100px;
+
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      135deg,
+      #050505 0%,
+      #0a0a0a 50%,
+      #070707 100%
+    );
+
+}
+
+/* =================================
+   GRID BACKGROUND
+================================= */
+
+.details-grid {
+
+  position: absolute;
+
+  inset: 0;
+
+  background-image:
+
+    linear-gradient(
+      rgba(255,255,255,0.02) 1px,
+      transparent 1px
+    ),
+
+    linear-gradient(
+      90deg,
+      rgba(255,255,255,0.02) 1px,
+      transparent 1px
+    );
+
+  background-size: 45px 45px;
+
+  opacity: 0.12;
+
+  pointer-events: none;
+
+}
+
+/* =================================
+   BACKGROUND ORBS
+================================= */
+
+.details-orb {
+
+  position: absolute;
+
+  border-radius: 50%;
+
+  filter: blur(90px);
+
+  opacity: 0.18;
+
+  pointer-events: none;
+
+}
+
+.orb-one {
+
+  width: 320px;
+  height: 320px;
+
+  background:
+    rgba(234,42,51,0.22);
+
+  top: -120px;
+  left: -100px;
+
+}
+
+.orb-two {
+
+  width: 260px;
+  height: 260px;
+
+  background:
+    rgba(255,255,255,0.04);
+
+  bottom: -80px;
+  right: -80px;
+
+}
+
+/* =================================
+   HERO SECTION
+================================= */
+
+.details-hero {
+
+  position: relative;
+
+  z-index: 2;
+
+  overflow: hidden;
+
+  padding: 70px 60px;
+
+  border-radius: 32px;
+
+  background:
+
+    linear-gradient(
+      rgba(12,12,12,0.94),
+      rgba(10,10,10,0.96)
+    );
+
+  border:
+    1px solid rgba(255,255,255,0.07);
+
+  box-shadow:
+
+    0 10px 40px rgba(0,0,0,0.5),
+
+    inset 0 1px 1px
+    rgba(255,255,255,0.04);
+
+}
+
+/* TOP SHINE */
+
+.details-hero::before {
+
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,0.04),
+      transparent 40%
+    );
+
+  pointer-events: none;
+
+}
+
+/* =================================
+   BACK BUTTON
+================================= */
+
+.back-btn {
+
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  margin-bottom: 40px;
+
+  padding: 12px 18px;
+
+  border: none;
+
+  border-radius: 14px;
+
+  cursor: pointer;
+
+  background:
+    rgba(255,255,255,0.05);
+
+  border:
+    1px solid rgba(255,255,255,0.08);
+
+  color: #ffffff;
+
+  font-size: 14px;
+
+  font-weight: 700;
+
+  transition:
+    all 0.35s ease;
+
+}
+
+.back-btn:hover {
+
+  border-color:
+    rgba(234,42,51,0.25);
+
+  background:
+    rgba(255,255,255,0.07);
+
+}
+
+/* =================================
+   SKILL ICON
+================================= */
+
+.details-icon {
+
+  position: relative;
+
+  z-index: 2;
+
+  font-size: 5rem;
+
+  margin-bottom: 24px;
+
+  text-shadow:
+    0 0 20px rgba(255,255,255,0.15);
+
+}
+
+/* =================================
+   TITLE
+================================= */
+
+.details-title {
+
+  position: relative;
+
+  z-index: 2;
+
+  font-size: 5rem;
+
+  line-height: 1;
+
+  font-weight: 900;
+
+  letter-spacing: -4px;
+
+  color: #ffffff;
+
+}
+
+/* =================================
+   SUBTITLE
+================================= */
+
+.details-subtitle {
+
+  position: relative;
+
+  z-index: 2;
+
+  margin-top: 24px;
+
+  max-width: 750px;
+
+  color: rgba(255,255,255,0.78);
+
+  line-height: 1.9;
+
+  font-size: 1rem;
+
+}
+
+/* =================================
+   CONTENT SECTION
+================================= */
+
+.details-content {
+
+  position: relative;
+
+  z-index: 2;
+
+  margin-top: 60px;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(auto-fit,minmax(320px,1fr));
+
+  gap: 28px;
+
+}
+
+/* =================================
+   DETAILS CARD
+================================= */
+
+.details-card {
+
+  position: relative;
+
+  overflow: hidden;
+
+  padding: 30px;
+
+  border-radius: 26px;
+
+  background:
+    rgba(18,18,18,0.84);
+
+  border:
+    1px solid rgba(255,255,255,0.07);
+
+  box-shadow:
+
+    0 10px 35px rgba(0,0,0,0.35),
+
+    inset 0 1px 1px
+    rgba(255,255,255,0.04);
+
+  transition:
+    transform 0.35s ease,
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
+
+}
+
+/* SHINE EFFECT */
+
+.details-card::before {
+
+  content: "";
+
+  position: absolute;
+
+  inset: -40%;
+
+  background:
+    linear-gradient(
+      120deg,
+      transparent 20%,
+      rgba(255,255,255,0.05) 50%,
+      transparent 80%
+    );
+
+  transform:
+    translateX(-120%)
+    rotate(25deg);
+
+  transition:
+    transform 0.8s ease;
+
+  pointer-events: none;
+
+}
+
+.details-card:hover::before {
+
+  transform:
+    translateX(120%)
+    rotate(25deg);
+
+}
+
+.details-card:hover {
+
+  transform:
+    translateY(-8px);
+
+  border-color:
+    rgba(234,42,51,0.2);
+
+  box-shadow:
+
+    0 18px 45px rgba(0,0,0,0.45),
+
+    0 0 20px rgba(234,42,51,0.08);
+
+}
+
+/* =================================
+   CARD TOP
+================================= */
+
+.card-top {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  margin-bottom: 22px;
+
+}
+
+.card-top svg {
+
+  color: #ea2a33;
+
+  font-size: 1.1rem;
+
+}
+
+.card-top span {
+
+  font-size: 12px;
+
+  letter-spacing: 2px;
+
+  color: #9a9a9a;
+
+}
+
+/* =================================
+   CARD TEXT
+================================= */
+
+.details-card p {
+
+  color: #c2c2c2;
+
+  line-height: 1.9;
+
+  font-size: 0.96rem;
+
+}
+
+/* =================================
+   TOOLS LIST
+================================= */
+
+.tools-list {
+
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 14px;
+
+}
+
+.tool-pill {
+
+  padding: 10px 16px;
+
+  border-radius: 999px;
+
+  background:
+    rgba(255,255,255,0.05);
+
+  border:
+    1px solid rgba(255,255,255,0.08);
+
+  color: #ffffff;
+
+  font-size: 13px;
+
+  font-weight: 700;
+
+  transition:
+    all 0.3s ease;
+
+}
+
+.tool-pill:hover {
+
+  transform:
+    translateY(-2px);
+
+  border-color:
+    rgba(234,42,51,0.22);
+
+}
+
+/* =================================
+   PROJECT SECTION
+================================= */
+
+.projects-section {
+
+  position: relative;
+
+  z-index: 2;
+
+  margin-top: 90px;
+
+}
+
+.section-header {
+
+  font-size: 12px;
+
+  letter-spacing: 3px;
+
+  color: #8d8d8d;
+
+  margin-bottom: 28px;
+
+}
+
+/* =================================
+   PROJECT GRID
+================================= */
+
+.projects-grid {
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(auto-fit,minmax(280px,1fr));
+
+  gap: 26px;
+
+}
+
+/* =================================
+   PROJECT CARD
+================================= */
+
+.project-card {
+
+  position: relative;
+
+  overflow: hidden;
+
+  padding: 28px;
+
+  border-radius: 24px;
+
+  background:
+    rgba(18,18,18,0.84);
+
+  border:
+    1px solid rgba(255,255,255,0.07);
+
+  box-shadow:
+
+    0 10px 35px rgba(0,0,0,0.35),
+
+    inset 0 1px 1px
+    rgba(255,255,255,0.04);
+
+  transition:
+    transform 0.35s ease,
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
+
+}
+
+.project-card:hover {
+
+  transform:
+    translateY(-8px);
+
+  border-color:
+    rgba(234,42,51,0.2);
+
+  box-shadow:
+
+    0 18px 45px rgba(0,0,0,0.45),
+
+    0 0 20px rgba(234,42,51,0.08);
+
+}
+
+/* =================================
+   PROJECT NUMBER
+================================= */
+
+.project-number {
+
+  font-size: 12px;
+
+  color: #ea2a33;
+
+  letter-spacing: 2px;
+
+  margin-bottom: 18px;
+
+}
+
+/* =================================
+   PROJECT TITLE
+================================= */
+
+.project-card h3 {
+
+  font-size: 1.4rem;
+
+  margin-bottom: 14px;
+
+  color: #ffffff;
+
+}
+
+/* =================================
+   PROJECT TEXT
+================================= */
+
+.project-card p {
+
+  color: #bdbdbd;
+
+  line-height: 1.8;
+
+  font-size: 0.95rem;
+
+}
+
+/* =================================
+   EXPERIENCE SECTION
+================================= */
+
+.experience-section {
+
+  position: relative;
+
+  z-index: 2;
+
+  margin-top: 90px;
+
+}
+
+/* =================================
+   EXPERIENCE CARD
+================================= */
+
+.experience-card {
+
+  overflow: hidden;
+
+  padding: 38px;
+
+  border-radius: 28px;
+
+  background:
+    rgba(18,18,18,0.84);
+
+  border:
+    1px solid rgba(255,255,255,0.07);
+
+  box-shadow:
+
+    0 10px 35px rgba(0,0,0,0.35),
+
+    inset 0 1px 1px
+    rgba(255,255,255,0.04);
+
+}
+
+/* =================================
+   EXPERIENCE TITLE
+================================= */
+
+.experience-card h2 {
+
+  font-size: 2rem;
+
+  margin-bottom: 18px;
+
+  color: #ffffff;
+
+}
+
+/* =================================
+   EXPERIENCE TEXT
+================================= */
+
+.experience-card p {
+
+  color: #bdbdbd;
+
+  line-height: 1.9;
+
+  margin-bottom: 28px;
+
+}
+
+/* =================================
+   EXPERIENCE BAR
+================================= */
+
+.experience-bar {
+
+  width: 100%;
+
+  height: 12px;
+
+  border-radius: 999px;
+
+  overflow: hidden;
+
+  background:
+    rgba(255,255,255,0.06);
+
+}
+
+/* =================================
+   EXPERIENCE FILL
+================================= */
+
+.experience-fill {
+
+  height: 100%;
+
+  border-radius: 999px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #ea2a33,
+      #ff4d4d
+    );
+
+  box-shadow:
+    0 0 15px rgba(234,42,51,0.3);
+
+}
+
+/* =================================
+   NOT FOUND
+================================= */
+
+.skill-not-found {
+
+  min-height: 100vh;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+
+  align-items: center;
+
+  gap: 20px;
+
+  background: #050505;
+
+}
+
+.skill-not-found h1 {
+
+  color: #ffffff;
+
+}
+
+.skill-not-found button {
+
+  padding: 12px 20px;
+
+  border: none;
+
+  border-radius: 14px;
+
+  cursor: pointer;
+
+  background: #ea2a33;
+
+  color: #ffffff;
+
+  font-weight: 700;
+
+}
+
+/* =================================
+   TABLET
+================================= */
+
+@media (max-width: 1024px) {
+
+  .details-title {
+
+    font-size: 4rem;
+
+  }
+
+}
+
+/* =================================
+   MOBILE
+================================= */
+
+@media (max-width: 768px) {
+
+  .skill-details-page {
+
+    padding: 120px 18px 80px;
+
+  }
+
+  .details-hero {
+
+    padding: 50px 28px;
+
+  }
+
+  .details-title {
+
+    font-size: 3rem;
+
+    letter-spacing: -2px;
+
+  }
+
+  .details-subtitle {
+
+    font-size: 0.95rem;
+
+  }
+
+  .details-content {
+
+    grid-template-columns: 1fr;
+
+  }
+
+  .projects-grid {
+
+    grid-template-columns: 1fr;
+
+  }
+
+}
+
+/* =================================
+   SMALL MOBILE
+================================= */
+
+@media (max-width: 480px) {
+
+  .details-title {
+
+    font-size: 2.5rem;
+
+  }
+
+  .details-card {
+
+    padding: 24px;
+
+  }
+
+  .project-card {
+
+    padding: 24px;
+
+  }
+
+  .experience-card {
+
+    padding: 28px 22px;
+
+  }
+
+}
