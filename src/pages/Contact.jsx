@@ -5,15 +5,15 @@ import {
   FaLinkedin,
   FaInstagram,
   FaWhatsapp,
-  FaEnvelope,
-  FaPhoneAlt,
+  FaRocket,
+  FaClock,
+  FaShieldAlt,
+  FaCode,
+  FaArrowRight,
 } from "react-icons/fa";
 
 import { motion } from "framer-motion";
 
-import "../styles/contact.css";
-
-// 🔥 Firebase
 import { db } from "../firebase";
 
 import {
@@ -22,8 +22,7 @@ import {
   serverTimestamp,
 } from "firebase/firestore";
 
-// 🔥 EmailJS
-import emailjs from "@emailjs/browser";
+import "../styles/contact.css";
 
 const Contact = () => {
 
@@ -31,58 +30,24 @@ const Contact = () => {
      FORM STATE
   ================================= */
 
-  const [form, setForm] = useState({
-    name: "",
-    phone: "",
-    email: "",
-    websiteType: "",
-    budget: "",
-    message: "",
-    agreement: false,
-  });
+  const [form, setForm] =
+    useState({
 
-  const [loading, setLoading] = useState(false);
+      name: "",
+      phone: "",
+      email: "",
+      websiteType: "",
+      budget: "",
+      message: "",
+      agreement: false,
 
-  const [success, setSuccess] = useState("");
+    });
 
-  /* =================================
-     FRAMER VARIANTS
-  ================================= */
+  const [loading, setLoading] =
+    useState(false);
 
-  const containerVariants = {
-
-    hidden: {},
-
-    visible: {
-
-      transition: {
-        staggerChildren: 0.12,
-      },
-
-    },
-
-  };
-
-  const itemVariants = {
-
-    hidden: {
-      opacity: 0,
-      y: 50,
-    },
-
-    visible: {
-
-      opacity: 1,
-      y: 0,
-
-      transition: {
-        duration: 0.8,
-        ease: "easeOut",
-      },
-
-    },
-
-  };
+  const [success, setSuccess] =
+    useState("");
 
   /* =================================
      HANDLE CHANGE
@@ -118,120 +83,146 @@ const Contact = () => {
 
     e.preventDefault();
 
-    // VALIDATION
-
-    if (!form.name.trim()) {
-      alert("Name is required");
-      return;
-    }
-
-    if (!form.phone.trim()) {
-      alert("Phone number is required");
-      return;
-    }
-
-    if (!/^\d{10}$/.test(form.phone)) {
-      alert(
-        "Phone number must be 10 digits"
-      );
-      return;
-    }
-
-    if (!/\S+@\S+\.\S+/.test(form.email)) {
-      alert("Invalid email format");
-      return;
-    }
-
-    if (!form.websiteType) {
-      alert(
-        "Please select website type"
-      );
-      return;
-    }
-
-    if (!form.message.trim()) {
-      alert(
-        "Project requirement is required"
-      );
-      return;
-    }
+    /* VALIDATION */
 
     if (
-      form.message.trim().length < 15
+      !form.name ||
+      !form.phone ||
+      !form.email ||
+      !form.websiteType ||
+      !form.budget ||
+      !form.message
     ) {
 
-      alert(
-        "Requirement must be at least 15 characters"
+      setSuccess(
+        "Please fill all fields ❌"
       );
 
       return;
+
     }
 
     if (!form.agreement) {
-      alert("Please accept terms");
+
+      setSuccess(
+        "Please accept agreement checkbox ❌"
+      );
+
       return;
+
     }
+
+    setLoading(true);
+
+    setSuccess("");
 
     try {
 
-      setLoading(true);
-
       /* =========================
-         FIREBASE
+         SAVE TO FIREBASE
       ========================= */
 
       await addDoc(
         collection(db, "contacts"),
         {
+
           ...form,
-          createdAt: serverTimestamp(),
+
+          createdAt:
+            serverTimestamp(),
+
         }
       );
 
       /* =========================
-         EMAILJS
+         WEB3FORMS
       ========================= */
 
-      await emailjs.send(
+      const web3Data =
+        new FormData();
 
-        "portfolio_service",
-
-        "template_ka92upp",
-
-        {
-          name: form.name,
-          phone: form.phone,
-          email: form.email,
-          websiteType:
-            form.websiteType,
-          budget: form.budget,
-          message: form.message,
-        },
-
-        "qcUEHoAaDDBHc4h3I"
-
+      web3Data.append(
+        "access_key",
+        "a3bf2f4b-f8e5-4dce-bf13-8ac6e0cff831"
       );
 
-      setSuccess(
-        "Project request submitted successfully ✅"
+      web3Data.append(
+        "name",
+        form.name
       );
 
-      // RESET FORM
-      setForm({
-        name: "",
-        phone: "",
-        email: "",
-        websiteType: "",
-        budget: "",
-        message: "",
-        agreement: false,
-      });
+      web3Data.append(
+        "phone",
+        form.phone
+      );
+
+      web3Data.append(
+        "email",
+        form.email
+      );
+
+      web3Data.append(
+        "websiteType",
+        form.websiteType
+      );
+
+      web3Data.append(
+        "budget",
+        form.budget
+      );
+
+      web3Data.append(
+        "message",
+        form.message
+      );
+
+      const response =
+        await fetch(
+          "https://api.web3forms.com/submit",
+          {
+            method: "POST",
+            body: web3Data,
+          }
+        );
+
+      const result =
+        await response.json();
+
+      if (result.success) {
+
+        setSuccess(
+          "Project Request Sent Successfully 🚀"
+        );
+
+        /* RESET FORM */
+
+        setForm({
+
+          name: "",
+          phone: "",
+          email: "",
+          websiteType: "",
+          budget: "",
+          message: "",
+          agreement: false,
+
+        });
+
+      } else {
+
+        setSuccess(
+          "Something went wrong ❌"
+        );
+
+      }
 
     } catch (error) {
 
       console.error(error);
 
-      alert("Something failed ❌");
+      setSuccess(
+        "Submission Failed ❌"
+      );
 
     } finally {
 
@@ -241,225 +232,96 @@ const Contact = () => {
 
   };
 
+  /* =================================
+     SOCIAL LINKS
+  ================================= */
+
+  const socials = [
+
+    {
+
+      icon: <FaGithub />,
+
+      title: "GitHub",
+
+      desc:
+        "Explore production repositories and real-world development systems.",
+
+      link:
+        "https://github.com/raajkumardevops",
+
+    },
+
+    {
+
+      icon: <FaLinkedin />,
+
+      title: "LinkedIn",
+
+      desc:
+        "Professional collaborations, networking and business communication.",
+
+      link:
+        "https://linkedin.com",
+
+    },
+
+    {
+
+      icon: <FaInstagram />,
+
+      title: "Instagram",
+
+      desc:
+        "Creative UI showcases, updates and visual project moments.",
+
+      link:
+        "https://instagram.com",
+
+    },
+
+    {
+
+      icon: <FaWhatsapp />,
+
+      title: "WhatsApp",
+
+      desc:
+        "Quick project discussions and fast communication support.",
+
+      link:
+        "https://wa.me/919344247165",
+
+    },
+
+  ];
+
   return (
 
     <main className="terminal-wrapper">
 
-      {/* =========================
+      {/* =================================
+          BACKGROUND EFFECTS
+      ================================= */}
+
+      <div className="bg-orb orb-1"></div>
+
+      <div className="bg-orb orb-2"></div>
+
+      {/* =================================
           HEADER
-      ========================= */}
+      ================================= */}
 
       <motion.div
+
         className="terminal-header"
-
-        variants={containerVariants}
-
-        initial="hidden"
-
-        animate="visible"
-      >
-
-        <motion.span
-          className="terminal-tag"
-
-          variants={itemVariants}
-        >
-
-          CLIENT_REQUIREMENT_MODULE
-
-        </motion.span>
-
-        <motion.h1
-          variants={itemVariants}
-        >
-
-          PROJECT <span>REQUEST</span>
-
-        </motion.h1>
-
-        <motion.p
-          variants={itemVariants}
-        >
-
-          Tell me about your project
-          requirement.
-
-        </motion.p>
-
-      </motion.div>
-
-      {/* =========================
-          CONTACT CARDS
-      ========================= */}
-
-      <motion.div
-        className="terminal-grid"
-
-        variants={containerVariants}
-
-        initial="hidden"
-
-        whileInView="visible"
-
-        viewport={{
-          once: true,
-          amount: 0.15,
-        }}
-      >
-
-        {/* GITHUB */}
-        <motion.a
-          href="https://github.com/raajkumardevops"
-
-          target="_blank"
-
-          rel="noreferrer"
-
-          className="terminal-card"
-
-          variants={itemVariants}
-
-          whileHover={{
-            y: -8,
-            scale: 1.03,
-          }}
-        >
-
-          <FaGithub className="terminal-icon" />
-
-          <span>GitHub</span>
-
-        </motion.a>
-
-        {/* LINKEDIN */}
-        <motion.a
-          href="https://linkedin.com/in/raajkumar-pr"
-
-          target="_blank"
-
-          rel="noreferrer"
-
-          className="terminal-card"
-
-          variants={itemVariants}
-
-          whileHover={{
-            y: -8,
-            scale: 1.03,
-          }}
-        >
-
-          <FaLinkedin className="terminal-icon" />
-
-          <span>LinkedIn</span>
-
-        </motion.a>
-
-        {/* INSTAGRAM */}
-        <motion.a
-          href="https://instagram.com/_raaj._.kumar_"
-
-          target="_blank"
-
-          rel="noreferrer"
-
-          className="terminal-card"
-
-          variants={itemVariants}
-
-          whileHover={{
-            y: -8,
-            scale: 1.03,
-          }}
-        >
-
-          <FaInstagram className="terminal-icon" />
-
-          <span>Instagram</span>
-
-        </motion.a>
-
-        {/* WHATSAPP */}
-        <motion.a
-          href="https://wa.me/+919344247165"
-
-          target="_blank"
-
-          rel="noreferrer"
-
-          className="terminal-card"
-
-          variants={itemVariants}
-
-          whileHover={{
-            y: -8,
-            scale: 1.03,
-          }}
-        >
-
-          <FaWhatsapp className="terminal-icon" />
-
-          <span>WhatsApp</span>
-
-        </motion.a>
-
-        {/* EMAIL */}
-        <motion.a
-          href="mailto:raajkumardevops@gmail.com"
-
-          className="terminal-card"
-
-          variants={itemVariants}
-
-          whileHover={{
-            y: -8,
-            scale: 1.03,
-          }}
-        >
-
-          <FaEnvelope className="terminal-icon" />
-
-          <span>Email</span>
-
-        </motion.a>
-
-        {/* PHONE */}
-        <motion.a
-          href="tel:+919344247165"
-
-          className="terminal-card"
-
-          variants={itemVariants}
-
-          whileHover={{
-            y: -8,
-            scale: 1.03,
-          }}
-        >
-
-          <FaPhoneAlt className="terminal-icon" />
-
-          <span>Contact</span>
-
-        </motion.a>
-
-      </motion.div>
-
-      {/* =========================
-          REQUIREMENT FORM
-      ========================= */}
-
-      <motion.form
-        onSubmit={handleSubmit}
-
-        className="terminal-form"
 
         initial={{
           opacity: 0,
-          y: 50,
+          y: 40,
         }}
 
-        whileInView={{
+        animate={{
           opacity: 1,
           y: 0,
         }}
@@ -467,192 +329,769 @@ const Contact = () => {
         transition={{
           duration: 0.8,
         }}
+      >
+
+        <span className="terminal-tag">
+
+          CLIENT_REQUIREMENT_MODULE
+
+        </span>
+
+        <h1>
+
+          PROJECT <span>REQUEST</span>
+
+        </h1>
+
+        <p>
+
+          Premium client communication
+          portal for modern digital
+          solutions and scalable
+          applications.
+
+        </p>
+
+      </motion.div>
+
+      {/* =================================
+          STATS SECTION
+      ================================= */}
+
+      <motion.section
+
+        className="terminal-stats"
+
+        initial="hidden"
+
+        whileInView="visible"
 
         viewport={{
+
           once: true,
+          amount: 0.2,
+
+        }}
+
+        variants={{
+
+          hidden: {},
+
+          visible: {
+
+            transition: {
+              staggerChildren: 0.15,
+            },
+
+          },
+
         }}
       >
 
-        {/* NAME */}
-        <input
-          type="text"
-          name="name"
-          placeholder="Full Name"
-          value={form.name}
-          onChange={handleChange}
-        />
+        {/* CARD 1 */}
 
-        {/* PHONE */}
-        <input
-          type="text"
-          name="phone"
-          placeholder="Phone Number"
-          value={form.phone}
-          onChange={handleChange}
-        />
+        <motion.div
 
-        {/* EMAIL */}
-        <input
-          type="email"
-          name="email"
-          placeholder="Email Address"
-          value={form.email}
-          onChange={handleChange}
-        />
+          className="stats-card"
 
-        {/* WEBSITE TYPE */}
-        <select
-          name="websiteType"
-          value={form.websiteType}
-          onChange={handleChange}
+          variants={{
+
+            hidden: {
+
+              opacity: 0,
+              y: 60,
+
+            },
+
+            visible: {
+
+              opacity: 1,
+              y: 0,
+
+              transition: {
+                duration: 0.7,
+              },
+
+            },
+
+          }}
+
+          whileHover={{
+
+            y: -10,
+            scale: 1.03,
+
+          }}
         >
 
-          <option value="">
-            Select Website Type
-          </option>
+          <div className="stats-icon">
 
-          <option>
-            Business Website
-          </option>
+            <FaRocket />
 
-          <option>
-            Portfolio Website
-          </option>
+          </div>
 
-          <option>
-            E-Commerce Website
-          </option>
+          <h3>50+</h3>
 
-          <option>
-            Billing Software
-          </option>
+          <p>
+            Projects Delivered
+          </p>
 
-          <option>
-            Admin Dashboard
-          </option>
+          <span className="card-badge">
+            ACTIVE
+          </span>
 
-          <option>
-            Restaurant Website
-          </option>
+        </motion.div>
 
-          <option>
-            Textile Website
-          </option>
+        {/* CARD 2 */}
 
-          <option>
-            Custom Web App
-          </option>
+        <motion.div
 
-          <option>
-            Other
-          </option>
+          className="stats-card"
 
-        </select>
+          variants={{
 
-        {/* BUDGET */}
-        <select
-          name="budget"
-          value={form.budget}
-          onChange={handleChange}
+            hidden: {
+
+              opacity: 0,
+              y: 60,
+
+            },
+
+            visible: {
+
+              opacity: 1,
+              y: 0,
+
+              transition: {
+                duration: 0.7,
+              },
+
+            },
+
+          }}
+
+          whileHover={{
+
+            y: -10,
+            scale: 1.03,
+
+          }}
         >
 
-          <option value="">
-            Select Budget Range
-          </option>
+          <div className="stats-icon">
 
-          <option>
-            Below ₹10K
-          </option>
+            <FaClock />
 
-          <option>
-            ₹10K - ₹25K
-          </option>
+          </div>
 
-          <option>
-            ₹25K - ₹50K
-          </option>
+          <h3>24H</h3>
 
-          <option>
-            ₹50K+
-          </option>
+          <p>
+            Response Time
+          </p>
 
-        </select>
+          <span className="card-badge">
+            FAST
+          </span>
 
-        {/* MESSAGE */}
-        <textarea
-          name="message"
-          placeholder="Describe your project requirement..."
-          value={form.message}
-          onChange={handleChange}
-        />
+        </motion.div>
 
-        {/* CHECKBOX */}
-        <label className="agreement-box">
+        {/* CARD 3 */}
+
+        <motion.div
+
+          className="stats-card"
+
+          variants={{
+
+            hidden: {
+
+              opacity: 0,
+              y: 60,
+
+            },
+
+            visible: {
+
+              opacity: 1,
+              y: 0,
+
+              transition: {
+                duration: 0.7,
+              },
+
+            },
+
+          }}
+
+          whileHover={{
+
+            y: -10,
+            scale: 1.03,
+
+          }}
+        >
+
+          <div className="stats-icon">
+
+            <FaCode />
+
+          </div>
+
+          <h3>MERN</h3>
+
+          <p>
+            Modern Stack
+          </p>
+
+          <span className="card-badge">
+            STACK
+          </span>
+
+        </motion.div>
+
+        {/* CARD 4 */}
+
+        <motion.div
+
+          className="stats-card"
+
+          variants={{
+
+            hidden: {
+
+              opacity: 0,
+              y: 60,
+
+            },
+
+            visible: {
+
+              opacity: 1,
+              y: 0,
+
+              transition: {
+                duration: 0.7,
+              },
+
+            },
+
+          }}
+
+          whileHover={{
+
+            y: -10,
+            scale: 1.03,
+
+          }}
+        >
+
+          <div className="stats-icon">
+
+            <FaShieldAlt />
+
+          </div>
+
+          <h3>100%</h3>
+
+          <p>
+            Secure Solutions
+          </p>
+
+          <span className="card-badge">
+            VERIFIED
+          </span>
+
+        </motion.div>
+
+      </motion.section>
+
+      {/* =================================
+          SECTION HEADING
+      ================================= */}
+
+      <div className="section-heading">
+
+        <span>
+
+          CLIENT COMMUNICATION CHANNELS
+
+        </span>
+
+        <h2>
+
+          Connect Through Preferred
+          Platforms
+
+        </h2>
+
+        <p>
+
+          Select your preferred
+          communication channel for
+          project discussions,
+          collaborations and updates.
+
+        </p>
+
+      </div>
+
+      {/* =================================
+          SOCIAL CARDS
+      ================================= */}
+
+      <motion.section
+
+        className="terminal-grid"
+
+        initial="hidden"
+
+        whileInView="visible"
+
+        viewport={{
+
+          once: true,
+          amount: 0.15,
+
+        }}
+
+        variants={{
+
+          hidden: {},
+
+          visible: {
+
+            transition: {
+              staggerChildren: 0.18,
+            },
+
+          },
+
+        }}
+      >
+
+        {
+          socials.map((item, index) => (
+
+            <motion.a
+
+              href={item.link}
+
+              target="_blank"
+
+              rel="noreferrer"
+
+              key={index}
+
+              className="terminal-card"
+
+              variants={{
+
+                hidden: {
+
+                  opacity: 0,
+                  y: 80,
+                  scale: 0.9,
+
+                },
+
+                visible: {
+
+                  opacity: 1,
+                  y: 0,
+                  scale: 1,
+
+                  transition: {
+
+                    duration: 0.8,
+                    ease: "easeOut",
+
+                  },
+
+                },
+
+              }}
+
+              whileHover={{
+
+                y: -12,
+                scale: 1.03,
+                rotateX: 4,
+                rotateY: -4,
+
+              }}
+            >
+
+              <div className="card-glow"></div>
+
+              <span className="live-badge">
+
+                LIVE
+
+              </span>
+
+              <motion.div
+
+                className="icon-circle"
+
+                whileHover={{
+
+                  rotate: 10,
+                  scale: 1.1,
+
+                }}
+              >
+
+                {item.icon}
+
+              </motion.div>
+
+              <h3>
+
+                {item.title}
+
+              </h3>
+
+              <p>
+
+                {item.desc}
+
+              </p>
+
+              <motion.div
+
+                className="connect-link"
+
+                whileHover={{
+                  x: 4,
+                }}
+              >
+
+                CONNECT NOW
+
+                <FaArrowRight />
+
+              </motion.div>
+
+            </motion.a>
+
+          ))
+        }
+
+      </motion.section>
+
+      {/* =================================
+          MAIN LAYOUT
+      ================================= */}
+
+      <section className="terminal-main-layout">
+
+        {/* =================================
+            INFO PANEL
+        ================================= */}
+
+        <motion.div
+
+          className="terminal-info-panel"
+
+          initial={{
+            opacity: 0,
+            x: -40,
+          }}
+
+          whileInView={{
+            opacity: 1,
+            x: 0,
+          }}
+
+          transition={{
+            duration: 0.8,
+          }}
+        >
+
+          <div className="info-box">
+
+            <span className="info-label">
+              SYSTEM STATUS
+            </span>
+
+            <h3>
+              Secure Client Portal
+              Active & Ready.
+            </h3>
+
+          </div>
+
+          <div className="info-box">
+
+            <span className="info-label">
+              DEVELOPMENT STACK
+            </span>
+
+            <h3>
+              React • Node • Express
+              • MongoDB
+            </h3>
+
+          </div>
+
+          <div className="info-box">
+
+            <span className="info-label">
+              SUPPORT
+            </span>
+
+            <h3>
+              UI/UX • Web Apps •
+              Admin Panels • SaaS
+            </h3>
+
+          </div>
+
+        </motion.div>
+
+        {/* =================================
+            FORM
+        ================================= */}
+
+        <motion.form
+
+          className="terminal-form"
+
+          onSubmit={handleSubmit}
+
+          initial={{
+            opacity: 0,
+            y: 40,
+          }}
+
+          whileInView={{
+            opacity: 1,
+            y: 0,
+          }}
+
+          transition={{
+            duration: 0.8,
+          }}
+        >
+
+          <div className="terminal-bar">
+
+            <span></span>
+            <span></span>
+            <span></span>
+
+          </div>
+
+          <div className="form-top">
+
+            <span>
+              PROJECT_INITIALIZATION
+            </span>
+
+            <h2>
+              Project Requirement
+            </h2>
+
+            <p>
+              Fill the client request
+              form to initiate project
+              discussion.
+            </p>
+
+          </div>
+
+          {/* NAME */}
 
           <input
-            type="checkbox"
-            name="agreement"
-            checked={form.agreement}
+            type="text"
+            name="name"
+            placeholder="Full Name"
+            value={form.name}
             onChange={handleChange}
           />
 
-          <span>
-            I agree to share my project
-            details with RK(DEV)
-          </span>
+          {/* PHONE */}
 
-        </label>
+          <input
+            type="text"
+            name="phone"
+            placeholder="Phone Number"
+            value={form.phone}
+            onChange={handleChange}
+          />
 
-        {/* BUTTON */}
-        <motion.button
-          type="submit"
+          {/* EMAIL */}
 
-          disabled={loading}
+          <input
+            type="email"
+            name="email"
+            placeholder="Email Address"
+            value={form.email}
+            onChange={handleChange}
+          />
 
-          whileHover={{
-            scale: 1.02,
-            y: -2,
-          }}
+          {/* WEBSITE TYPE */}
 
-          whileTap={{
-            scale: 0.97,
-          }}
-        >
+          <div className="select-wrapper">
 
-          {
-            loading
-              ? "Submitting..."
-              : "Send Project Request"
-          }
+            <select
+              name="websiteType"
+              value={form.websiteType}
+              onChange={handleChange}
+            >
 
-        </motion.button>
+              <option value="">
+                Select Website Type
+              </option>
 
-      </motion.form>
+              <option>
+                Business Website
+              </option>
 
-      {/* SUCCESS */}
-      {
-        success && (
+              <option>
+                Portfolio Website
+              </option>
 
-          <motion.p
-            className="success-msg"
+              <option>
+                E-Commerce Website
+              </option>
 
-            initial={{
-              opacity: 0,
-              y: 20,
+              <option>
+                Billing Software
+              </option>
+
+              <option>
+                Admin Dashboard
+              </option>
+
+              <option>
+                Custom Web App
+              </option>
+
+            </select>
+
+          </div>
+
+          {/* BUDGET */}
+
+          <div className="select-wrapper">
+
+            <select
+              name="budget"
+              value={form.budget}
+              onChange={handleChange}
+            >
+
+              <option value="">
+                Select Budget Range
+              </option>
+
+              <option>
+                Below ₹10K
+              </option>
+
+              <option>
+                ₹10K - ₹25K
+              </option>
+
+              <option>
+                ₹25K - ₹50K
+              </option>
+
+              <option>
+                ₹50K+
+              </option>
+
+            </select>
+
+          </div>
+
+          {/* MESSAGE */}
+
+          <textarea
+            name="message"
+            placeholder="Describe your project requirement..."
+            value={form.message}
+            onChange={handleChange}
+          />
+
+          {/* AGREEMENT */}
+
+          <label className="agreement-box">
+
+            <input
+              type="checkbox"
+              name="agreement"
+              checked={form.agreement}
+              onChange={handleChange}
+            />
+
+            <span>
+
+              I agree to share my
+              project requirements for
+              communication purposes.
+
+            </span>
+
+          </label>
+
+          {/* BUTTON */}
+
+          <motion.button
+
+            type="submit"
+
+            disabled={loading}
+
+            whileTap={{
+              scale: 0.96,
             }}
 
-            animate={{
-              opacity: 1,
-              y: 0,
+            whileHover={{
+              scale: 1.02,
             }}
           >
 
-            {success}
+            {
+              loading
+                ? "INITIALIZING..."
+                : "SEND PROJECT REQUEST"
+            }
 
-          </motion.p>
+          </motion.button>
 
-        )
-      }
+          {/* SUCCESS MESSAGE */}
+
+          {
+            success && (
+
+              <motion.p
+
+                className="success-msg"
+
+                initial={{
+                  opacity: 0,
+                  y: 20,
+                }}
+
+                animate={{
+                  opacity: 1,
+                  y: 0,
+                }}
+              >
+
+                {success}
+
+              </motion.p>
+
+            )
+          }
+
+        </motion.form>
+
+      </section>
 
     </main>
 

@@ -1,0 +1,107 @@
+/* =================================
+   GOOGLE FONTS
+================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Exo+2:wght@300;400;500;600;700;800&display=swap');
+
+/* =================================
+   GLOBAL RESET
+================================= */
+
+* {
+
+  margin: 0;
+  padding: 0;
+
+  box-sizing: border-box;
+
+  font-family: 'Exo 2', sans-serif;
+
+  scroll-behavior: smooth;
+
+}
+
+/* =================================
+   BODY
+================================= */
+
+body {
+
+  background: #070707;
+
+  color: #ffffff;
+
+  overflow-x: hidden;
+
+  font-family: 'Exo 2', sans-serif;
+
+}
+
+/* =================================
+   HEADINGS / LOGO
+================================= */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.logo,
+.nav-logo,
+.hero-title,
+.projects-title,
+.profile-title,
+.admin-dashboard-title {
+
+  font-family: 'Chakra Petch', sans-serif;
+
+  letter-spacing: 1px;
+
+}
+
+/* =================================
+   BUTTONS
+================================= */
+
+button {
+
+  font-family: 'Chakra Petch', sans-serif;
+
+}
+
+/* =================================
+   INPUTS
+================================= */
+
+input,
+textarea,
+select {
+
+  font-family: 'Exo 2', sans-serif;
+
+}
+
+/* =================================
+   LINKS
+================================= */
+
+a {
+
+  text-decoration: none;
+
+  color: inherit;
+
+}
+
+/* =================================
+   IMAGES
+================================= */
+
+img {
+
+  max-width: 100%;
+
+  display: block;
+
+}
