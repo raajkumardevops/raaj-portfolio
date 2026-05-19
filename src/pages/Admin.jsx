@@ -64,6 +64,9 @@ function Admin() {
   const [loginLoading, setLoginLoading] =
     useState(false);
 
+  const [authError, setAuthError] =
+    useState(false);
+
   /* =================================
      ADMIN EMAIL
   ================================= */
@@ -127,6 +130,8 @@ function Admin() {
             currentUser.email !==
               ADMIN_EMAIL
           ) {
+
+            setAuthError(true);
 
             await signOut(auth);
 
@@ -207,6 +212,8 @@ function Admin() {
 
         setLoginLoading(true);
 
+        setAuthError(false);
+
         const result =
           await signInWithPopup(
             auth,
@@ -218,9 +225,7 @@ function Admin() {
           ADMIN_EMAIL
         ) {
 
-          alert(
-            "Unauthorized Access ❌"
-          );
+          setAuthError(true);
 
           await signOut(auth);
 
@@ -231,9 +236,7 @@ function Admin() {
 
         console.error(error);
 
-        alert(
-          "Login Failed ❌"
-        );
+        setAuthError(true);
 
       } finally {
 
@@ -341,20 +344,40 @@ function Admin() {
       <div className="admin-login-wrapper">
 
         <motion.div
-          className="admin-login-card"
+
+          className={`admin-login-card ${
+            authError
+              ? "auth-error"
+              : ""
+          }`}
 
           initial={{
             opacity: 0,
             y: 40,
           }}
 
-          animate={{
-            opacity: 1,
-            y: 0,
-          }}
+          animate={
+            authError
+              ? {
+                  opacity: 1,
+                  y: 0,
+                  x: [
+                    0,
+                    -10,
+                    10,
+                    -10,
+                    10,
+                    0,
+                  ],
+                }
+              : {
+                  opacity: 1,
+                  y: 0,
+                }
+          }
 
           transition={{
-            duration: 0.8,
+            duration: 0.5,
           }}
         >
 
@@ -371,6 +394,19 @@ function Admin() {
             Secure Firebase Dashboard
 
           </p>
+
+          {
+            authError && (
+
+              <p className="auth-error-text">
+
+                Unauthorized Access
+                Detected ❌
+
+              </p>
+
+            )
+          }
 
           <motion.button
 
@@ -424,9 +460,7 @@ function Admin() {
       animate="visible"
     >
 
-      {/* =========================
-          HEADER
-      ========================= */}
+      {/* HEADER */}
 
       <motion.div
         className="admin-header"
@@ -473,9 +507,7 @@ function Admin() {
 
       </motion.div>
 
-      {/* =========================
-          STATS
-      ========================= */}
+      {/* STATS */}
 
       <motion.div
         className="admin-stats-grid"
@@ -483,7 +515,6 @@ function Admin() {
         variants={containerVariants}
       >
 
-        {/* REQUESTS */}
         <motion.div
           className="admin-stat-card requests-card"
 
@@ -510,7 +541,6 @@ function Admin() {
 
         </motion.div>
 
-        {/* DATABASE */}
         <motion.div
           className="admin-stat-card firebase-card"
 
@@ -539,9 +569,7 @@ function Admin() {
 
       </motion.div>
 
-      {/* =========================
-          EMPTY
-      ========================= */}
+      {/* EMPTY */}
 
       {
         messages.length === 0 && (
@@ -559,9 +587,7 @@ function Admin() {
         )
       }
 
-      {/* =========================
-          REQUEST GRID
-      ========================= */}
+      {/* REQUEST GRID */}
 
       <motion.div
         className="admin-grid"
@@ -602,7 +628,6 @@ function Admin() {
                 }}
               >
 
-                {/* TOP */}
                 <div className="admin-card-top">
 
                   <div>
@@ -648,7 +673,6 @@ function Admin() {
 
                 </div>
 
-                {/* DETAILS */}
                 <div className="admin-details">
 
                   <p>
@@ -683,7 +707,6 @@ function Admin() {
 
                 </div>
 
-                {/* REQUIREMENT */}
                 <div className="admin-requirement-box">
 
                   <h4>
@@ -703,7 +726,6 @@ function Admin() {
 
                 </div>
 
-                {/* DATE */}
                 <p className="admin-date">
 
                   {

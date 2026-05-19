@@ -925,3 +925,33 @@
   }
 
 }
+
+/* ================================
+   AUTH ERROR
+================================ */
+
+.auth-error {
+
+  border:
+    1px solid rgba(255,0,0,0.7);
+
+  box-shadow:
+    0 0 30px rgba(255,0,0,0.18);
+
+}
+
+/* ERROR TEXT */
+
+.auth-error-text {
+
+  margin-bottom: 20px;
+
+  color: #ff4d4d;
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+  letter-spacing: 1px;
+
+}

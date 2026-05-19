@@ -1,6 +1,18 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+
 import { motion } from "framer-motion";
+
+import {
+  FaReact,
+  FaNodeJs,
+  FaDatabase,
+  FaRocket,
+  FaCircle,
+  FaCode,
+} from "react-icons/fa";
+
+import { SiFirebase } from "react-icons/si";
 
 import "../styles/home.css";
 
@@ -11,18 +23,30 @@ const Home = () => {
   /* =================================
      TYPEWRITER EFFECT
   ================================= */
+
   useEffect(() => {
 
     const textElement =
-      document.querySelector(".typing-text");
+      document.querySelector(
+        ".typing-text"
+      );
 
     const words = [
+
       "FULL STACK DEVELOPER",
-      "MERN STACK DEVELOPER"
+
+      "MERN STACK ENGINEER",
+
+      "FUTURISTIC UI DESIGNER",
+
+      "FIREBASE ARCHITECT",
+
     ];
 
     let wordIndex = 0;
+
     let charIndex = 0;
+
     let isDeleting = false;
 
     function typeEffect() {
@@ -55,14 +79,16 @@ const Home = () => {
       }
 
       let speed =
-        isDeleting ? 50 : 90;
+        isDeleting ? 40 : 80;
 
       if (
         !isDeleting &&
-        charIndex === currentWord.length
+        charIndex ===
+          currentWord.length
       ) {
 
-        speed = 1200;
+        speed = 1400;
+
         isDeleting = true;
 
       } else if (
@@ -76,10 +102,15 @@ const Home = () => {
           (wordIndex + 1) %
           words.length;
 
-        speed = 400;
+        speed = 300;
+
       }
 
-      setTimeout(typeEffect, speed);
+      setTimeout(
+        typeEffect,
+        speed
+      );
+
     }
 
     typeEffect();
@@ -90,30 +121,29 @@ const Home = () => {
      FRAMER VARIANTS
   ================================= */
 
-  const containerVariants = {
-    hidden: {},
-    visible: {
-      transition: {
-        staggerChildren: 0.12,
-      },
-    },
-  };
+  const cardVariant = {
 
-  const itemVariants = {
     hidden: {
+
       opacity: 0,
-      y: 60,
+      y: 40,
+
     },
 
     visible: {
+
       opacity: 1,
       y: 0,
 
       transition: {
-        duration: 0.8,
+
+        duration: 0.7,
         ease: "easeOut",
+
       },
+
     },
+
   };
 
   return (
@@ -123,18 +153,33 @@ const Home = () => {
       className="home-wrapper"
     >
 
-      <div className="home-content">
+      {/* =================================
+          BACKGROUND
+      ================================= */}
 
-        {/* =========================
-            HERO CARD
-        ========================= */}
+      <div className="bg-orb orb-1"></div>
+
+      <div className="bg-orb orb-2"></div>
+
+      <div className="grid-overlay"></div>
+
+      {/* =================================
+          MAIN LAYOUT
+      ================================= */}
+
+      <div className="home-layout">
+
+        {/* =================================
+            HERO SECTION
+        ================================= */}
 
         <motion.div
+
           className="hero-card"
 
           initial={{
             opacity: 0,
-            y: 60,
+            y: 40,
           }}
 
           animate={{
@@ -143,29 +188,25 @@ const Home = () => {
           }}
 
           transition={{
-            duration: 0.9,
-            ease: "easeOut",
+            duration: 0.8,
           }}
         >
 
+          {/* SCAN LINE */}
+
+          <div className="scan-line"></div>
+
+          {/* HERO GLOW */}
+
+          <div className="hero-glow"></div>
+
+          {/* GRID */}
+
+          <div className="hero-grid"></div>
+
           {/* HUD */}
-          <motion.div
-            className="hud-top-left"
 
-            initial={{
-              opacity: 0,
-              x: -20,
-            }}
-
-            animate={{
-              opacity: 1,
-              x: 0,
-            }}
-
-            transition={{
-              delay: 0.3,
-            }}
-          >
+          <div className="hud-top-left">
 
             <div className="hud-line"></div>
 
@@ -173,35 +214,13 @@ const Home = () => {
               MARK_VII_CONNECTED
             </span>
 
-          </motion.div>
+          </div>
 
-          {/* TITLE */}
+          {/* HERO TITLE */}
+
           <motion.h1
+
             className="hero-title"
-
-            initial={{
-              opacity: 0,
-              scale: 0.9,
-            }}
-
-            animate={{
-              opacity: 1,
-              scale: 1,
-            }}
-
-            transition={{
-              delay: 0.2,
-              duration: 0.8,
-            }}
-          >
-
-            RAAJ <span>KUMAR</span>
-
-          </motion.h1>
-
-          {/* SUBTITLE */}
-          <motion.h2
-            className="hero-subtitle"
 
             initial={{
               opacity: 0,
@@ -214,8 +233,30 @@ const Home = () => {
             }}
 
             transition={{
-              delay: 0.45,
-              duration: 0.7,
+              delay: 0.2,
+            }}
+          >
+
+            RAAJ <span>KUMAR</span>
+
+          </motion.h1>
+
+          {/* SUBTITLE */}
+
+          <motion.h2
+
+            className="hero-subtitle"
+
+            initial={{
+              opacity: 0,
+            }}
+
+            animate={{
+              opacity: 1,
+            }}
+
+            transition={{
+              delay: 0.4,
             }}
           >
 
@@ -224,12 +265,14 @@ const Home = () => {
           </motion.h2>
 
           {/* DESCRIPTION */}
+
           <motion.p
+
             className="hero-description"
 
             initial={{
               opacity: 0,
-              y: 30,
+              y: 20,
             }}
 
             animate={{
@@ -239,24 +282,64 @@ const Home = () => {
 
             transition={{
               delay: 0.6,
-              duration: 0.8,
             }}
           >
 
-            Architecting digital systems
-            with precision, performance,
-            and advanced modular
-            infrastructure.
+            Architecting digital
+            systems with precision,
+            scalable infrastructure,
+            and cinematic user
+            experiences for modern
+            web ecosystems.
 
           </motion.p>
 
-          {/* BUTTONS */}
+          {/* TECH TAGS */}
+
           <motion.div
+
+            className="floating-tech"
+
+            initial={{
+              opacity: 0,
+            }}
+
+            animate={{
+              opacity: 1,
+            }}
+
+            transition={{
+              delay: 0.8,
+            }}
+          >
+
+            <span className="tech-pill">
+              React
+            </span>
+
+            <span className="tech-pill">
+              MERN
+            </span>
+
+            <span className="tech-pill">
+              Firebase
+            </span>
+
+            <span className="tech-pill">
+              UI / UX
+            </span>
+
+          </motion.div>
+
+          {/* BUTTONS */}
+
+          <motion.div
+
             className="hero-actions"
 
             initial={{
               opacity: 0,
-              y: 30,
+              y: 20,
             }}
 
             animate={{
@@ -265,21 +348,21 @@ const Home = () => {
             }}
 
             transition={{
-              delay: 0.8,
-              duration: 0.8,
+              delay: 1,
             }}
           >
 
             <motion.button
+
               className="btn btn-primary-custom"
 
               whileHover={{
-                scale: 1.05,
-                y: -4,
+                scale: 1.04,
+                y: -3,
               }}
 
               whileTap={{
-                scale: 0.96,
+                scale: 0.95,
               }}
 
               onClick={() =>
@@ -292,15 +375,16 @@ const Home = () => {
             </motion.button>
 
             <motion.button
+
               className="btn btn-outline-custom"
 
               whileHover={{
-                scale: 1.05,
-                y: -4,
+                scale: 1.04,
+                y: -3,
               }}
 
               whileTap={{
-                scale: 0.96,
+                scale: 0.95,
               }}
 
               onClick={() =>
@@ -315,31 +399,33 @@ const Home = () => {
           </motion.div>
 
           {/* HUD BOTTOM */}
+
           <motion.div
+
             className="hud-bottom-right"
 
             initial={{
               opacity: 0,
-              x: 20,
             }}
 
             animate={{
               opacity: 1,
-              x: 0,
             }}
 
             transition={{
-              delay: 1,
+              delay: 1.2,
             }}
           >
 
             <span>
-              KNOWLEDGE_LEVEL: 100%
+              KNOWLEDGE_LEVEL:
+              100%
             </span>
 
             <div className="power-bar">
 
               <motion.div
+
                 className="power-fill"
 
                 initial={{
@@ -351,8 +437,8 @@ const Home = () => {
                 }}
 
                 transition={{
-                  delay: 1.1,
-                  duration: 1,
+                  delay: 1.3,
+                  duration: 1.2,
                 }}
               />
 
@@ -362,88 +448,242 @@ const Home = () => {
 
         </motion.div>
 
-        {/* =========================
-            SKILLS SECTION
-        ========================= */}
+        {/* =================================
+            RIGHT INFO CARDS
+        ================================= */}
 
-        <motion.section
-          id="skills"
-          className="home-skills"
+        <div className="right-cards">
 
-          variants={containerVariants}
-
-          initial="hidden"
-
-          whileInView="visible"
-
-          viewport={{
-            once: true,
-            amount: 0.2,
-          }}
-        >
+          {/* CARD 1 */}
 
           <motion.div
-            className="skills-hud"
-            variants={itemVariants}
+
+            className="info-card"
+
+            variants={cardVariant}
+
+            initial="hidden"
+
+            animate="visible"
+
+            whileHover={{
+              y: -6,
+            }}
           >
 
-            SYSTEMS_OVERVIEW
+            <div className="card-shine"></div>
+
+            <div className="info-top">
+
+              <FaCircle className="status-icon" />
+
+              <span>
+                SYSTEM STATUS
+              </span>
+
+            </div>
+
+            <h3>
+              All Systems Online
+            </h3>
+
+            <p>
+              Available for
+              freelance projects and
+              startup collaborations.
+            </p>
 
           </motion.div>
 
-          <motion.h2
-            className="skills-title"
-            variants={itemVariants}
+          {/* CARD 2 */}
+
+          <motion.div
+
+            className="info-card"
+
+            variants={cardVariant}
+
+            initial="hidden"
+
+            animate="visible"
+
+            transition={{
+              delay: 0.15,
+            }}
+
+            whileHover={{
+              y: -6,
+            }}
           >
 
-            CORE <span>SKILLS</span>
+            <div className="card-shine"></div>
 
-          </motion.h2>
+            <div className="info-top">
 
-          {/* SKILLS GRID */}
-          <div className="skills-grid">
+              <FaReact className="react-icon" />
 
-            {
-              [
-                "HTML",
-                "CSS",
-                "Bootstrap",
-                "JavaScript",
-                "React",
-                "Node.js",
-                "Express",
-                "MongoDB",
-                "React-Router",
-                "CRUD Operations",
-                "O auth",
-                "Git & GitHub"
-              ].map((skill, index) => (
+              <span>
+                CURRENT STACK
+              </span>
 
-                <motion.div
-                  key={index}
+            </div>
 
-                  className="skill-box"
+            <div className="stack-list">
 
-                  variants={itemVariants}
+              <div>
+                <FaReact />
+                React
+              </div>
 
-                  whileHover={{
-                    y: -6,
-                    scale: 1.03,
-                  }}
-                >
+              <div>
+                <FaNodeJs />
+                Node.js
+              </div>
 
-                  {skill}
+              <div>
+                <FaDatabase />
+                MongoDB
+              </div>
 
-                </motion.div>
+              <div>
+                <SiFirebase />
+                Firebase
+              </div>
 
-              ))
-            }
+            </div>
 
-          </div>
+          </motion.div>
 
-        </motion.section>
+          {/* CARD 3 */}
+
+          <motion.div
+
+            className="info-card"
+
+            variants={cardVariant}
+
+            initial="hidden"
+
+            animate="visible"
+
+            transition={{
+              delay: 0.3,
+            }}
+
+            whileHover={{
+              y: -6,
+            }}
+          >
+
+            <div className="card-shine"></div>
+
+            <div className="info-top">
+
+              <FaCode className="project-icon" />
+
+              <span>
+                PROJECT STATUS
+              </span>
+
+            </div>
+
+            <div className="project-data">
+
+              <h2>
+                10+
+              </h2>
+
+              <p>
+                Modern Full Stack
+                Projects Successfully
+                Developed & Deployed.
+              </p>
+
+            </div>
+
+          </motion.div>
+
+        </div>
 
       </div>
+
+      {/* =================================
+          SKILLS SECTION
+      ================================= */}
+
+      <motion.section
+
+        className="home-skills"
+
+        initial={{
+          opacity: 0,
+          y: 50,
+        }}
+
+        whileInView={{
+          opacity: 1,
+          y: 0,
+        }}
+
+        viewport={{
+          once: true,
+        }}
+
+        transition={{
+          duration: 0.8,
+        }}
+      >
+
+        <div className="skills-hud">
+
+          SYSTEMS_OVERVIEW
+
+        </div>
+
+        <h2 className="skills-title">
+
+          CORE <span>SKILLS</span>
+
+        </h2>
+
+        <div className="skills-grid">
+
+          {[
+            "HTML",
+            "CSS",
+            "Bootstrap",
+            "JavaScript",
+            "React",
+            "Node.js",
+            "Express",
+            "MongoDB",
+            "Firebase",
+            "Framer Motion",
+            "CRUD Operations",
+            "Git & GitHub",
+          ].map((skill, index) => (
+
+            <motion.div
+
+              key={index}
+
+              className="skill-box"
+
+              whileHover={{
+                y: -6,
+                scale: 1.04,
+              }}
+            >
+
+              {skill}
+
+            </motion.div>
+
+          ))}
+
+        </div>
+
+      </motion.section>
 
     </main>
 
