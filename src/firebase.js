@@ -1,24 +1,28 @@
 import { initializeApp } from "firebase/app";
+
 import { getFirestore } from "firebase/firestore";
 
-// 🔥 AUTH
-import { getAuth, GoogleAuthProvider } from "firebase/auth";
+import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyD0vWgmtJ7JhAJYAYlnKdv_i04HyIlHwRo",
-  authDomain: "raajportfolio.firebaseapp.com",
-  projectId: "raajportfolio",
-  storageBucket: "raajportfolio.firebasestorage.app",
-  messagingSenderId: "815316032594",
-  appId: "1:815316032594:web:fb01ea1419e7a2e1a3938b"
+
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+
+  messagingSenderId:
+    import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
+
 };
 
-// INIT
 const app = initializeApp(firebaseConfig);
 
-// DB
 export const db = getFirestore(app);
 
-// AUTH
 export const auth = getAuth(app);
-export const provider = new GoogleAuthProvider();
