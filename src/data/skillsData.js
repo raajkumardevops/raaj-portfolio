@@ -1,3 +1,22 @@
+import {
+
+  FaHtml5,
+  FaCss3Alt,
+  FaJs,
+  FaReact,
+  FaNodeJs,
+  FaBootstrap,
+
+} from "react-icons/fa";
+
+import {
+
+  SiMongodb,
+  SiFirebase,
+  SiExpress,
+  SiGoogleanalytics,
+
+} from "react-icons/si";
 const skillsData = [
 
   {
@@ -8,7 +27,7 @@ const skillsData = [
     shortDesc:
       "Structure and semantic foundation of modern web applications.",
 
-    icon: "🌐",
+    icon: FaHtml5,
 
     color: "#ff5722",
 
@@ -54,7 +73,7 @@ const skillsData = [
     shortDesc:
       "Designing futuristic interfaces with cinematic UI systems.",
 
-    icon: "🎨",
+    icon: FaCss3Alt,
 
     color: "#2196f3",
 
@@ -102,7 +121,7 @@ const skillsData = [
     shortDesc:
       "Interactive frontend logic and dynamic application behavior.",
 
-    icon: "⚡",
+    icon: FaJs,
 
     color: "#ffd600",
 
@@ -148,7 +167,7 @@ const skillsData = [
     shortDesc:
       "Building scalable component-based frontend architectures.",
 
-    icon: "⚛️",
+    icon: FaReact,
 
     color: "#00e5ff",
 
@@ -194,7 +213,7 @@ const skillsData = [
     shortDesc:
       "Backend runtime for scalable server-side applications.",
 
-    icon: "🟢",
+   icon: FaNodeJs,
 
     color: "#4caf50",
 
@@ -240,7 +259,7 @@ const skillsData = [
     shortDesc:
       "Flexible NoSQL database for modern applications.",
 
-    icon: "🍃",
+    icon: SiMongodb,
 
     color: "#00c853",
 
@@ -286,7 +305,7 @@ const skillsData = [
     shortDesc:
       "Realtime backend ecosystem for modern web apps.",
 
-    icon: "🔥",
+    icon: SiFirebase,
 
     color: "#ff9800",
 
@@ -324,6 +343,140 @@ const skillsData = [
 
   },
 
+{
+  id: "bootstrap",
+
+  title: "Bootstrap",
+
+  shortDesc:
+    "Rapid responsive UI framework for scalable and modern frontend systems.",
+
+  icon: FaBootstrap,
+
+  color: "#7952b3",
+
+  whatIs:
+    "Bootstrap is a frontend CSS framework used for responsive and mobile-first web development.",
+
+  whyUse:
+    "Bootstrap speeds up UI development using prebuilt responsive layouts, grids, and reusable components.",
+
+  howRaajUses:
+    "Raaj uses Bootstrap for responsive landing pages, fast UI structuring, and scalable frontend systems.",
+
+  projects: [
+
+    "Business Websites",
+
+    "Responsive Dashboards",
+
+    "Landing Pages",
+
+  ],
+
+  tools: [
+
+    "Bootstrap Grid",
+
+    "Bootstrap Components",
+
+    "Responsive Utilities",
+
+  ],
+
+  experience:
+    "Experience building responsive systems using Bootstrap framework.",
+},
+
+{
+  id: "express",
+
+  title: "Express.js",
+
+  shortDesc:
+    "Minimal backend framework for building APIs and scalable server architecture.",
+
+  icon: SiExpress,
+
+  color: "#ffffff",
+
+  whatIs:
+    "Express.js is a lightweight backend framework for Node.js used for building APIs and server-side systems.",
+
+  whyUse:
+    "Express simplifies backend development with routing, middleware handling, and scalable server architecture.",
+
+  howRaajUses:
+    "Raaj uses Express.js for backend APIs, authentication systems, and scalable MERN applications.",
+
+  projects: [
+
+    "REST APIs",
+
+    "Authentication Backend",
+
+    "Admin Systems",
+
+  ],
+
+  tools: [
+
+    "Express Router",
+
+    "Middleware",
+
+    "REST API",
+
+  ],
+
+  experience:
+    "Experience building scalable backend services using Express.js.",
+},
+
+{
+  id: "seo",
+
+  title: "SEO",
+
+  shortDesc:
+    "Search optimization techniques for improving visibility and web performance.",
+
+  icon: SiGoogleanalytics,
+
+  color: "#facc15",
+
+  whatIs:
+    "SEO (Search Engine Optimization) improves website visibility and ranking in search engines.",
+
+  whyUse:
+    "SEO helps websites gain better reach, faster indexing, and improved online discoverability.",
+
+  howRaajUses:
+    "Raaj uses SEO techniques for semantic structure, performance optimization, and improved web visibility.",
+
+  projects: [
+
+    "Portfolio Optimization",
+
+    "Business Websites",
+
+    "Landing Pages",
+
+  ],
+
+  tools: [
+
+    "Google Analytics",
+
+    "Meta Optimization",
+
+    "Performance Optimization",
+
+  ],
+
+  experience:
+    "Experience optimizing frontend systems for search visibility and performance.",
+},
 ];
 
 export default skillsData;

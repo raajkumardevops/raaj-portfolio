@@ -149,7 +149,7 @@ const SkillDetails = () => {
           }}
         >
 
-          {skill.icon}
+         <skill.icon />
 
         </motion.div>
 

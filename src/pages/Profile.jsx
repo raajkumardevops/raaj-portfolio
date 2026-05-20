@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import {
   motion,
@@ -9,11 +9,27 @@ import {
   FaTimes,
   FaQuoteLeft,
   FaCircle,
+  FaReact,
+  FaNodeJs,
+  FaBootstrap,
+  FaFire,
 } from "react-icons/fa";
+
+import {
+  SiMongodb,
+  SiExpress,
+  SiOpenai,
+  SiFramer,
+  SiGoogleanalytics,
+} from "react-icons/si";
 
 import "../styles/profile.css";
 
 import profileImg from "../assets/professionalPhotoFinal.jpg";
+
+/* =================================
+   TESTIMONIAL DATA
+================================= */
 
 const testimonials = [
 
@@ -58,10 +74,175 @@ const testimonials = [
     feedback:
       "Very passionate developer with strong problem-solving ability and futuristic UI creativity.",
 
-    name: "Krishnan thiruvengadam",
+    name: "Krishnan Thiruvengadam",
   },
 
 ];
+
+/* =================================
+   TIMELINE DATA
+================================= */
+
+const timelineData = [
+
+  {
+    year: "2024",
+
+    title:
+      "Frontend Development Journey",
+
+    status: "INITIALIZED",
+
+    description:
+      "Started building responsive websites and cinematic frontend interfaces using HTML, CSS, JavaScript, and React.",
+  },
+
+  {
+    year: "2025",
+
+    title:
+      "MERN Stack Systems",
+
+    status: "ACTIVE",
+
+    description:
+      "Built scalable full stack applications using React, Node.js, MongoDB, Firebase, and Framer Motion.",
+  },
+
+  {
+    year: "2026",
+
+    title:
+      "Freelance Client Projects",
+
+    status: "LIVE",
+
+    description:
+      "Developed futuristic UI systems, startup-level portfolio architectures, and premium deployment-ready applications.",
+  },
+
+];
+
+/* =================================
+   SKILL MATRIX
+================================= */
+
+const skillData = [
+
+  {
+    name: "React",
+    percent: 95,
+    icon: <FaReact />,
+  },
+
+  {
+    name: "Bootstrap",
+    percent: 90,
+    icon: <FaBootstrap />,
+  },
+
+  {
+    name: "Node.js",
+    percent: 82,
+    icon: <FaNodeJs />,
+  },
+
+  {
+    name: "Express",
+    percent: 80,
+    icon: <SiExpress />,
+  },
+
+  {
+    name: "MongoDB",
+    percent: 85,
+    icon: <SiMongodb />,
+  },
+
+  {
+    name: "Firebase",
+    percent: 84,
+    icon: <FaFire />,
+  },
+
+  {
+    name: "Prompt Engineering",
+    percent: 88,
+    icon: <SiOpenai />,
+  },
+
+  {
+    name: "UI Design",
+    percent: 93,
+    icon: <FaReact />,
+  },
+
+  {
+    name: "Framer Motion",
+    percent: 90,
+    icon: <SiFramer />,
+  },
+
+  {
+    name: "SEO",
+    percent: 76,
+    icon: <SiGoogleanalytics />,
+  },
+
+];
+
+/* =================================
+   COUNTER COMPONENT
+================================= */
+
+const Counter = ({ end, suffix }) => {
+
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+
+    let start = 0;
+
+    const duration = 1800;
+
+    const increment =
+      end / (duration / 16);
+
+    const timer = setInterval(() => {
+
+      start += increment;
+
+      if (start >= end) {
+
+        setCount(end);
+
+        clearInterval(timer);
+
+      } else {
+
+        setCount(
+          Math.floor(start)
+        );
+
+      }
+
+    }, 16);
+
+    return () =>
+      clearInterval(timer);
+
+  }, [end]);
+
+  return (
+
+    <>
+      {count}
+      {suffix}
+    </>
+
+  );
+
+};
 
 const Profile = () => {
 
@@ -72,48 +253,29 @@ const Profile = () => {
     setActiveTestimonial] =
     useState(null);
 
-  /* =================================
-     FRAMER VARIANTS
-  ================================= */
-
-  const containerVariants = {
-
-    hidden: {},
-
-    visible: {
-
-      transition: {
-        staggerChildren: 0.18,
-      },
-
-    },
-
-  };
-
-  const itemVariants = {
-
-    hidden: {
-      opacity: 0,
-      y: 50,
-    },
-
-    visible: {
-
-      opacity: 1,
-      y: 0,
-
-      transition: {
-        duration: 0.8,
-        ease: "easeOut",
-      },
-
-    },
-
-  };
-
   return (
 
     <main className="profile-wrapper">
+
+      {/* =================================
+          FLOATING PARTICLES
+      ================================= */}
+
+      <div className="floating-tech react-particle">
+        <FaReact />
+      </div>
+
+      <div className="floating-tech node-particle">
+        <FaNodeJs />
+      </div>
+
+      <div className="floating-tech mongo-particle">
+        <SiMongodb />
+      </div>
+
+      <div className="floating-tech firebase-particle">
+        <FaFire />
+      </div>
 
       {/* =================================
           BACKGROUND EFFECTS
@@ -133,26 +295,28 @@ const Profile = () => {
 
         className="profile-card"
 
-        variants={containerVariants}
+        initial={{
+          opacity: 0,
+          y: 40,
+        }}
 
-        initial="hidden"
+        animate={{
+          opacity: 1,
+          y: 0,
+        }}
 
-        animate="visible"
+        transition={{
+          duration: 0.8,
+        }}
       >
 
         {/* SCANLINE */}
 
         <div className="profile-scanline"></div>
 
-        {/* =================================
-            HUD
-        ================================= */}
+        {/* HUD */}
 
-        <motion.div
-          className="profile-hud"
-
-          variants={itemVariants}
-        >
+        <div className="profile-hud">
 
           <div className="hud-line"></div>
 
@@ -162,11 +326,9 @@ const Profile = () => {
 
           </span>
 
-        </motion.div>
+        </div>
 
-        {/* =================================
-            STATUS CHIP
-        ================================= */}
+        {/* STATUS */}
 
         <motion.div
 
@@ -189,21 +351,15 @@ const Profile = () => {
 
         </motion.div>
 
-        {/* =================================
-            CONTENT
-        ================================= */}
+        {/* CONTENT */}
 
         <div className="profile-content">
 
-          {/* =================================
-              IMAGE
-          ================================= */}
+          {/* IMAGE */}
 
           <motion.div
 
             className="profile-image"
-
-            variants={itemVariants}
 
             whileHover={{
               scale: 1.03,
@@ -223,69 +379,39 @@ const Profile = () => {
 
           </motion.div>
 
-          {/* =================================
-              TEXT
-          ================================= */}
+          {/* TEXT */}
 
-          <motion.div
+          <div className="profile-text">
 
-            className="profile-text"
-
-            variants={itemVariants}
-          >
-
-            <motion.h1
-              className="profile-title"
-
-              variants={itemVariants}
-            >
+            <h1 className="profile-title">
 
               PROFILE <span>PAGE</span>
 
-            </motion.h1>
+            </h1>
 
-            <motion.h2
-              className="profile-subtitle"
-
-              variants={itemVariants}
-            >
+            <h2 className="profile-subtitle">
 
               FULL STACK / MERN DEVELOPER
 
-            </motion.h2>
+            </h2>
 
-            <motion.p
-              className="profile-description"
-
-              variants={itemVariants}
-            >
+            <p className="profile-description">
 
               I am a passionate Full Stack Developer focused on building
-              scalable, efficient, and user-centric applications.
+              scalable, efficient, and cinematic digital experiences.
 
-            </motion.p>
+            </p>
 
-            <motion.p
-              className="profile-description"
+            <p className="profile-description">
 
-              variants={itemVariants}
-            >
+              My goal is to continuously evolve my skills, create futuristic
+              systems, and deliver premium deployment-ready applications.
 
-              My goal is to continuously improve my skills, build
-              real-world projects, and deliver reliable,
-              future-ready solutions.
+            </p>
 
-            </motion.p>
+            {/* TECH PILLS */}
 
-            {/* =================================
-                TECH PILLS
-            ================================= */}
-
-            <motion.div
-              className="profile-tech-pills"
-
-              variants={containerVariants}
-            >
+            <div className="profile-tech-pills">
 
               {
                 [
@@ -294,6 +420,7 @@ const Profile = () => {
                   "MongoDB",
                   "Firebase",
                   "Framer Motion",
+                  "SEO",
                 ].map((tech, index) => (
 
                   <motion.span
@@ -301,8 +428,6 @@ const Profile = () => {
                     key={index}
 
                     className="tech-pill"
-
-                    variants={itemVariants}
 
                     whileHover={{
                       y: -4,
@@ -316,36 +441,30 @@ const Profile = () => {
                 ))
               }
 
-            </motion.div>
+            </div>
 
-            {/* =================================
-                STATS
-            ================================= */}
+            {/* STATS */}
 
-            <motion.div
-
-              className="profile-stats"
-
-              variants={containerVariants}
-            >
-
-              {/* PROJECTS */}
+            <div className="profile-stats">
 
               <motion.div
 
                 className="stat-box"
 
-                variants={itemVariants}
-
                 whileHover={{
-                  y: -6,
-                  scale: 1.03,
+                  y: -8,
+                  scale: 1.04,
                 }}
               >
 
+                <div className="stat-shine"></div>
+
                 <span className="stat-value">
 
-                  10+
+                  <Counter
+                    end={10}
+                    suffix="+"
+                  />
 
                 </span>
 
@@ -357,47 +476,46 @@ const Profile = () => {
 
               </motion.div>
 
-              {/* STACK */}
-
               <motion.div
 
                 className="stat-box"
 
-                variants={itemVariants}
-
                 whileHover={{
-                  y: -6,
-                  scale: 1.03,
+                  y: -8,
+                  scale: 1.04,
                 }}
               >
 
+                <div className="stat-shine"></div>
+
                 <span className="stat-value">
 
-                  MERN
+                  <Counter
+                    end={9}
+                    suffix="+"
+                  />
 
                 </span>
 
                 <span className="stat-label">
 
-                  Stack
+                  Technologies
 
                 </span>
 
               </motion.div>
 
-              {/* LEARNING */}
-
               <motion.div
 
                 className="stat-box"
 
-                variants={itemVariants}
-
                 whileHover={{
-                  y: -6,
-                  scale: 1.03,
+                  y: -8,
+                  scale: 1.04,
                 }}
               >
+
+                <div className="stat-shine"></div>
 
                 <span className="stat-value">
 
@@ -413,9 +531,9 @@ const Profile = () => {
 
               </motion.div>
 
-            </motion.div>
+            </div>
 
-          </motion.div>
+          </div>
 
         </div>
 
@@ -433,58 +551,474 @@ const Profile = () => {
 
         </div>
 
-        {/* =================================
-            MARQUEE
-        ================================= */}
+        <div className="testimonial-track">
 
-<div className="testimonial-track">
+          {
+            [...testimonials,
+            ...testimonials].map(
+              (item, index) => (
 
-  {
-    [...testimonials,
-    ...testimonials].map(
-      (item, index) => (
+                <motion.div
 
-        <motion.div
+                  key={index}
 
-          key={index}
+                  className="testimonial-card"
 
-          className="testimonial-card"
+                  whileHover={{
+                    y: -10,
+                    scale: 1.03,
+                  }}
 
-          whileHover={{
-            y: -10,
-            scale: 1.03,
-          }}
+                  onClick={() =>
+                    setActiveTestimonial(item)
+                  }
+                >
 
-          onClick={() =>
-            setActiveTestimonial(item)
+                  <div className="testimonial-shine"></div>
+
+                  <FaQuoteLeft className="quote-icon" />
+
+                  <h3>
+
+                    {item.company}
+
+                  </h3>
+
+                  <p>
+
+                    {item.feedback}
+
+                  </p>
+
+                  <span>
+
+                    — {item.name}
+
+                  </span>
+
+                </motion.div>
+
+              )
+            )
           }
-        >
 
-          <div className="testimonial-shine"></div>
-
-          <FaQuoteLeft className="quote-icon" />
-
-          <h3>
-            {item.company}
-          </h3>
-
-          <p>
-            {item.feedback}
-          </p>
-
-          <span>
-            — {item.name}
-          </span>
-
-        </motion.div>
-
-      )
-    )
-  }
-
-</div>
+        </div>
 
       </section>
+
+      {/* =================================
+          TIMELINE
+      ================================= */}
+
+      <section className="timeline-section">
+
+        <div className="timeline-header">
+
+          MISSION_TIMELINE
+
+        </div>
+
+        <div className="timeline-container">
+
+          {
+            timelineData.map(
+              (item, index) => (
+
+                <motion.div
+
+                  key={index}
+
+                  className="timeline-item"
+
+                  initial={{
+                    opacity: 0,
+                    y: 60,
+                  }}
+
+                  whileInView={{
+                    opacity: 1,
+                    y: 0,
+                  }}
+
+                  transition={{
+                    duration: 0.7,
+                    delay: index * 0.15,
+                  }}
+
+                  viewport={{
+                    once: true,
+                  }}
+                >
+
+                  <div className="timeline-line"></div>
+
+                  <div className="timeline-node"></div>
+
+                  <div className="timeline-card-box">
+
+                    <div className="timeline-top">
+
+                      <span className="timeline-year">
+
+                        {item.year}
+
+                      </span>
+
+                      <span className="timeline-status-badge">
+
+                        {item.status}
+
+                      </span>
+
+                    </div>
+
+                    <h3>
+
+                      {item.title}
+
+                    </h3>
+
+                    <p>
+
+                      {item.description}
+
+                    </p>
+
+                  </div>
+
+                </motion.div>
+
+              )
+            )
+          }
+
+        </div>
+
+      </section>
+
+      {/* =================================
+          SKILL MATRIX
+      ================================= */}
+
+      <section className="skill-matrix-section">
+
+        <div className="skill-matrix-header">
+
+          SKILL_MATRIX_SYSTEM
+
+        </div>
+
+        <div className="skill-matrix-grid">
+
+          {
+            skillData.map(
+              (skill, index) => (
+
+                <motion.div
+
+                  key={index}
+
+                  className="skill-card"
+
+                  initial={{
+                    opacity: 0,
+                    y: 50,
+                  }}
+
+                  whileInView={{
+                    opacity: 1,
+                    y: 0,
+                  }}
+
+                  transition={{
+                    duration: 0.6,
+                    delay: index * 0.08,
+                  }}
+
+                  viewport={{
+                    once: true,
+                  }}
+
+                  whileHover={{
+                    y: -6,
+                  }}
+                >
+
+                  <div className="skill-top">
+
+                    <div className="skill-title-wrap">
+
+                      <span className="skill-icon">
+
+                        {skill.icon}
+
+                      </span>
+
+                      <h3>
+
+                        {skill.name}
+
+                      </h3>
+
+                    </div>
+
+                    <span className="skill-percent">
+
+                      {skill.percent}%
+
+                    </span>
+
+                  </div>
+
+                  <div className="skill-bar">
+
+                    <motion.div
+
+                      className="skill-fill"
+
+                      initial={{
+                        width: 0,
+                      }}
+
+                      whileInView={{
+                        width:
+                          `${skill.percent}%`,
+                      }}
+
+                      transition={{
+                        duration: 1.4,
+                        delay: index * 0.1,
+                      }}
+
+                      viewport={{
+                        once: true,
+                      }}
+                    />
+
+                  </div>
+
+                </motion.div>
+
+              )
+            )
+          }
+
+        </div>
+
+      </section>
+
+{/* =================================
+    TERMINAL + CTA SECTION
+================================= */}
+
+<section className="terminal-section">
+
+  <div className="terminal-layout">
+
+    {/* =================================
+        LEFT TERMINAL
+    ================================= */}
+
+    <motion.div
+
+      className="terminal-window"
+
+      initial={{
+        opacity: 0,
+        x: -40,
+      }}
+
+      whileInView={{
+        opacity: 1,
+        x: 0,
+      }}
+
+      transition={{
+        duration: 0.8,
+      }}
+
+      viewport={{
+        once: true,
+      }}
+    >
+
+      <div className="terminal-topbar">
+
+        <span className="dot red"></span>
+
+        <span className="dot yellow"></span>
+
+        <span className="dot green"></span>
+
+      </div>
+
+      <div className="terminal-content">
+
+        <p>
+
+          {">"} SYSTEM_STATUS :
+          ONLINE
+
+        </p>
+
+        <p>
+
+          {">"} READY_FOR_COLLABORATION
+
+        </p>
+
+        <p>
+
+          {">"} FREELANCE_PROTOCOL :
+          ACTIVE
+
+        </p>
+
+        <p>
+
+          {">"} CONTACT_CHANNEL :
+          OPEN
+
+        </p>
+
+        <p className="cursor-line">
+
+          {">"} awaiting_next_mission
+
+          <span className="terminal-cursor">
+            |
+          </span>
+
+        </p>
+
+      </div>
+
+    </motion.div>
+
+    {/* =================================
+        RIGHT CTA PANEL
+    ================================= */}
+
+    <motion.div
+
+      className="contact-cta-card"
+
+      initial={{
+        opacity: 0,
+        x: 40,
+      }}
+
+      whileInView={{
+        opacity: 1,
+        x: 0,
+      }}
+
+      transition={{
+        duration: 0.8,
+      }}
+
+      viewport={{
+        once: true,
+      }}
+    >
+
+      {/* CHIP */}
+
+      <div className="cta-chip">
+
+        <FaCircle />
+
+        AVAILABLE NOW
+
+      </div>
+
+      {/* TITLE */}
+
+      <h2 className="cta-title">
+
+        INITIATE
+        <span> CONTACT</span>
+
+      </h2>
+
+      {/* TEXT */}
+
+      <p className="cta-description">
+
+        Available for freelance projects,
+        startup collaborations,
+        frontend architecture,
+        and cinematic web experiences.
+
+      </p>
+
+      {/* RESPONSE */}
+
+      <div className="cta-response">
+
+        <span>
+
+          Average Response
+
+        </span>
+
+        <h3>
+
+          {"<"} 12 HOURS
+
+        </h3>
+
+      </div>
+
+      {/* BUTTONS */}
+
+      <div className="cta-buttons">
+
+        <motion.a
+
+          href="/contact"
+
+          className="cta-primary"
+
+          whileHover={{
+            scale: 1.04,
+          }}
+
+          whileTap={{
+            scale: 0.96,
+          }}
+        >
+
+          OPEN COMMUNICATION
+
+        </motion.a>
+
+        <motion.a
+
+          href="/projects"
+
+          className="cta-secondary"
+
+          whileHover={{
+            scale: 1.04,
+          }}
+
+          whileTap={{
+            scale: 0.96,
+          }}
+        >
+
+          VIEW DEPLOYMENTS
+
+        </motion.a>
+
+      </div>
+
+    </motion.div>
+
+  </div>
+
+</section>
 
       {/* =================================
           IMAGE MODAL
@@ -535,10 +1069,6 @@ const Profile = () => {
                 exit={{
                   scale: 0.7,
                   opacity: 0,
-                }}
-
-                transition={{
-                  duration: 0.35,
                 }}
               />
 

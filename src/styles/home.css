@@ -118,6 +118,17 @@
 
 /* =================================
    HERO CARD
+   CHANGED: Removed min-height:720px
+   — this was forcing a large empty
+   gap below the buttons. The card
+   now sizes to its content.
+   CHANGED: justify-content changed
+   from center → flex-start so
+   content stacks from the top and
+   does not leave empty space below.
+   CHANGED: padding-bottom increased
+   to 50px to give breathing room
+   at the bottom of the card.
 ================================= */
 
 .hero-card {
@@ -126,7 +137,18 @@
 
   overflow: hidden;
 
-  padding: 80px 70px;
+  /* REMOVED: min-height: 720px; */
+
+  display: flex;
+
+  flex-direction: column;
+
+  /* CHANGED: was "center" */
+  justify-content: flex-start;
+
+  /* CHANGED: was "70px", added explicit
+     bottom padding for breathing room */
+  padding: 70px 70px 50px;
 
   border-radius: 30px;
 
@@ -145,6 +167,8 @@
 
   backdrop-filter: blur(18px);
 
+  -webkit-backdrop-filter: blur(18px);
+
   border:
     1px solid rgba(255,255,255,0.08);
 
@@ -158,9 +182,14 @@
   transition:
     transform 0.35s ease,
     border-color 0.35s ease,
-    box-shadow 0.35s ease;
+    box-shadow 0.35s ease,
+    background 0.35s ease;
 
 }
+
+/* =================================
+   HERO CARD HOVER
+================================= */
 
 .hero-card:hover {
 
@@ -168,13 +197,16 @@
     translateY(-6px);
 
   border-color:
-    rgba(234,42,51,0.25);
+    rgba(234,42,51,0.22);
 
   box-shadow:
 
-    0 20px 60px rgba(0,0,0,0.55),
+    0 22px 65px rgba(0,0,0,0.55),
 
-    0 0 30px rgba(234,42,51,0.08);
+    0 0 30px rgba(234,42,51,0.08),
+
+    inset 0 1px 1px
+    rgba(255,255,255,0.08);
 
 }
 
@@ -367,6 +399,7 @@
     0 0 12px rgba(234,42,51,0.35);
 
 }
+
 /* =================================
    DESCRIPTION
 ================================= */
@@ -401,11 +434,15 @@
 
   display: flex;
 
+  align-items: center;
+
   flex-wrap: wrap;
 
   gap: 14px;
 
-  margin-top: 32px;
+  margin-top: 34px;
+
+  margin-bottom: 26px;
 
 }
 
@@ -443,11 +480,13 @@
 
   display: flex;
 
-  gap: 18px;
+  align-items: center;
+
+  gap: 16px;
 
   flex-wrap: wrap;
 
-  margin-top: 42px;
+  margin-top: 30px;
 
 }
 
@@ -459,7 +498,7 @@
 
   cursor: pointer;
 
-  padding: 15px 28px;
+  padding: 15px 24px;
 
   border-radius: 16px;
 
@@ -467,7 +506,23 @@
 
   font-weight: 700;
 
-  transition: all 0.35s ease;
+  min-width: 200px;
+
+  max-width: 220px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  text-align: center;
+
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease,
+    border-color 0.35s ease,
+    background 0.35s ease;
 
 }
 
@@ -516,19 +571,30 @@
 
 /* =================================
    POWER BAR
+   CHANGED: Removed position:absolute,
+   right, bottom values. The bar now
+   flows inline below the buttons
+   inside the flex column card.
+   CHANGED: margin-top added so it
+   sits comfortably below the buttons.
+   CHANGED: width changed from 220px
+   to 260px for slightly better
+   proportion on desktop.
 ================================= */
 
 .hud-bottom-right {
 
-  position: absolute;
+  position: relative;
 
-  right: 40px;
+  /* REMOVED: right: 40px; bottom: 50px; */
 
-  bottom: 35px;
+  width: 260px;
 
-  width: 220px;
+  /* CHANGED: was z-index:3, kept relative stacking */
+  z-index: 2;
 
-  z-index: 3;
+  /* CHANGED: added top margin to space from buttons */
+  margin-top: 34px;
 
 }
 
@@ -934,6 +1000,7 @@
     background 0.4s ease;
 
 }
+
 /* =================================
    HOVER
 ================================= */
@@ -994,6 +1061,7 @@
   pointer-events: none;
 
 }
+
 .skill-card:hover::before {
 
   transform:
@@ -1027,7 +1095,78 @@
 }
 
 /* =================================
-   ICON
+   ICON HOVER EFFECT
+================================= */
+
+.skill-card:hover .skill-icon {
+
+  transform:
+    scale(1.15)
+    rotate(-6deg);
+
+  border-color:
+    rgba(255,255,255,0.12);
+
+  background:
+    rgba(255,255,255,0.06);
+
+}
+
+/* =================================
+   INDIVIDUAL GLOWS
+================================= */
+
+.skill-card:nth-child(1):hover .skill-icon {
+
+  box-shadow:
+    0 0 24px rgba(227,79,38,0.35);
+
+}
+
+.skill-card:nth-child(2):hover .skill-icon {
+
+  box-shadow:
+    0 0 24px rgba(21,114,182,0.35);
+
+}
+
+.skill-card:nth-child(3):hover .skill-icon {
+
+  box-shadow:
+    0 0 24px rgba(247,223,30,0.35);
+
+}
+
+.skill-card:nth-child(4):hover .skill-icon {
+
+  box-shadow:
+    0 0 24px rgba(97,218,251,0.35);
+
+}
+
+.skill-card:nth-child(5):hover .skill-icon {
+
+  box-shadow:
+    0 0 24px rgba(104,160,99,0.35);
+
+}
+
+.skill-card:nth-child(6):hover .skill-icon {
+
+  box-shadow:
+    0 0 24px rgba(71,162,72,0.35);
+
+}
+
+.skill-card:nth-child(7):hover .skill-icon {
+
+  box-shadow:
+    0 0 24px rgba(255,145,0,0.35);
+
+}
+
+/* =================================
+   SKILL ICON
 ================================= */
 
 .skill-icon {
@@ -1036,9 +1175,100 @@
 
   z-index: 2;
 
-  font-size: 2rem;
+  display: flex;
 
-  margin-bottom: 20px;
+  align-items: center;
+
+  justify-content: center;
+
+  width: 62px;
+  height: 62px;
+
+  margin-bottom: 24px;
+
+  border-radius: 18px;
+
+  background:
+    rgba(255,255,255,0.04);
+
+  border:
+    1px solid rgba(255,255,255,0.06);
+
+  font-size: 1.8rem;
+
+  transition:
+    transform 0.35s ease,
+    filter 0.35s ease,
+    box-shadow 0.35s ease,
+    border-color 0.35s ease,
+    background 0.35s ease;
+
+}
+
+/* =================================
+   ICON HOVER EFFECT
+================================= */
+
+.skill-card:hover .skill-icon {
+
+  transform:
+    scale(1.15)
+    rotate(-6deg);
+
+  border-color:
+    rgba(255,255,255,0.12);
+
+  background:
+    rgba(255,255,255,0.06);
+
+  filter:
+    drop-shadow(0 0 12px currentColor);
+
+}
+
+/* =================================
+   REAL BRAND COLORS
+================================= */
+
+.skill-card:nth-child(1) .skill-icon {
+
+  color: #e34f26;
+
+}
+
+.skill-card:nth-child(2) .skill-icon {
+
+  color: #1572b6;
+
+}
+
+.skill-card:nth-child(3) .skill-icon {
+
+  color: #f7df1e;
+
+}
+
+.skill-card:nth-child(4) .skill-icon {
+
+  color: #61dafb;
+
+}
+
+.skill-card:nth-child(5) .skill-icon {
+
+  color: #68a063;
+
+}
+
+.skill-card:nth-child(6) .skill-icon {
+
+  color: #47a248;
+
+}
+
+.skill-card:nth-child(7) .skill-icon {
+
+  color: #ff9100;
 
 }
 
@@ -1168,9 +1398,12 @@
 
   }
 
+  /* CHANGED: was padding:60px 28px
+     Added explicit bottom padding
+     so power bar has room */
   .hero-card {
 
-    padding: 60px 28px;
+    padding: 48px 28px 40px;
 
   }
 
@@ -1180,6 +1413,9 @@
 
     letter-spacing: -2px;
 
+     /* ADD THIS */
+  text-align: center;
+
   }
 
   .hero-subtitle {
@@ -1188,51 +1424,77 @@
 
     letter-spacing: 3px;
 
+     /* ADD THIS */
+  text-align: center;
+
   }
 
   .hero-description {
 
     font-size: 0.92rem;
 
+    margin-bottom: 12px;
+
   }
 
-  .hero-actions {
+.hero-actions {
 
-    display: flex;
+  display: flex;
 
   flex-direction: row;
 
-  gap: 14px;
+  align-items: center;
+
+  justify-content: flex-start;
+
+  flex-wrap: wrap;
+
+  gap: 12px;
 
   width: 100%;
 
-  }
+  margin-top: 26px;
 
-  .btn {
+}
 
-     flex: 1;
+.btn {
 
-  padding: 14px 12px;
+  padding: 14px 18px;
 
   font-size: 12px;
 
-  }
+  white-space: nowrap;
 
-  /* KNOWLEDGE BAR */
+  display: flex;
 
-.hud-bottom-right {
+  align-items: center;
 
-  position: relative;
+  justify-content: center;
 
-  right: unset;
+  min-width: unset;
 
-  bottom: unset;
+  max-width: unset;
 
-  width: 100%;
-
-  margin-top: 24px;
+  flex: 1 1 calc(50% - 6px);
 
 }
+  /* CHANGED: was position:absolute
+     with right/bottom values.
+     Now flows inline on mobile too. */
+  .hud-bottom-right {
+
+    position: relative;
+
+    right: unset;
+
+    bottom: unset;
+
+    width: 100%;
+
+    margin-top: 24px;
+
+  }
+
   .skills-title {
 
     font-size: 2.3rem;
@@ -1249,7 +1511,7 @@
 
   .hero-card {
 
-    padding: 50px 22px;
+    padding: 40px 22px 36px;
 
   }
 
@@ -1267,14 +1529,14 @@
 
   .skill-card {
 
-  padding: 26px 20px;
+    padding: 26px 20px;
 
-}
+  }
 
-.skill-card h3 {
+  .skill-card h3 {
 
-  font-size: 1.2rem;
+    font-size: 1.2rem;
 
-}
+  }
 
 }

@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-
 import { motion } from "framer-motion";
 
 import {
@@ -295,43 +294,6 @@ const Home = () => {
 
           </motion.p>
 
-          {/* TECH TAGS */}
-
-          <motion.div
-
-            className="floating-tech"
-
-            initial={{
-              opacity: 0,
-            }}
-
-            animate={{
-              opacity: 1,
-            }}
-
-            transition={{
-              delay: 0.8,
-            }}
-          >
-
-            <span className="tech-pill">
-              React
-            </span>
-
-            <span className="tech-pill">
-              MERN
-            </span>
-
-            <span className="tech-pill">
-              Firebase
-            </span>
-
-            <span className="tech-pill">
-              UI / UX
-            </span>
-
-          </motion.div>
-
           {/* BUTTONS */}
 
           <motion.div
@@ -399,7 +361,10 @@ const Home = () => {
 
           </motion.div>
 
-          {/* HUD BOTTOM */}
+          {/* ── NEW: KNOWLEDGE BAR moved inside normal flow ── */}
+          {/* [CHANGE] Removed position:absolute from hud-bottom-right.
+              It now sits in the normal flex flow below the buttons,
+              so it no longer floats over content or forces extra height. */}
 
           <motion.div
 
@@ -687,7 +652,7 @@ const Home = () => {
                   }}
                 >
 
-                  {skill.icon}
+                 <skill.icon />
 
                 </div>
 
