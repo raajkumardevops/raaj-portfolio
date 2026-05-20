@@ -237,7 +237,7 @@ const Projects = () => {
 
                 </motion.a>
 
-                {/* LIVE */}
+                {/* LIVE
 
                 {
                   project.live && (
@@ -268,7 +268,7 @@ const Projects = () => {
                     </motion.a>
 
                   )
-                }
+                } */}
 
               </div>
 

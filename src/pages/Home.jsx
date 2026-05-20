@@ -40,9 +40,7 @@ const Home = () => {
 
       "MERN STACK ENGINEER",
 
-      "FUTURISTIC UI DESIGNER",
-
-      "FIREBASE ARCHITECT",
+      "FUTURISTIC UI DESIGNER"
 
     ];
 
